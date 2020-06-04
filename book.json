@@ -4,7 +4,7 @@
         "search-plus", "prism", "-highlight", "github-buttons", "splitter",
         "-sharing", "sharing-plus", "tbfed-pagefooter", "expandable-chapters-small",
         "book-summary-scroll-position-saver", "anchors", "anchor-navigation-ex", "sitemap-general",
-        "copy-code-button", "multipart"
+        "copy-code-button", "multipart","edit-link-plus"
     ],
     "pluginsConfig": {
         "theme-default": {
@@ -59,6 +59,13 @@
                 "weibo", "instapaper", "linkedin",
                 "pocket", "stumbleupon"
             ]
+        },
+        "edit-link-plus": {
+            "base": "https://github.com/xiaobei930/LearningNotes/edit/BRANCH/path/to/book",
+            "label": { 
+                "en": "Edit This Page",
+                "zh": "编辑本页"
+            }
         },
         "tbfed-pagefooter": {
             "copyright": "Copyright &copy <a href='https://xiaobei930.github.io' target='_blank'>小北</a> 2020 ",
