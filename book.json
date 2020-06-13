@@ -127,7 +127,7 @@
     "language": "zh-hans",
     "root": ".",
     "structure": {
-        "readme": "SUMMARY.md"
+        "readme": "README.md"
     },
     "links": {
         "sidebar": {
