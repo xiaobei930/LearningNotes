@@ -2,13 +2,13 @@
     "gitbook": "3.x.x",
     "plugins": ["favicon", "yahei", "github", "autotheme", "-lunr", "-search",
         "search-plus", "prism", "-highlight", "github-buttons", "splitter",
-        "-sharing", "sharing-plus", "tbfed-pagefooter", "expandable-chapters-small",
+        "-sharing", "sharing-plus", "page-footer-ex", "expandable-chapters-small",
         "book-summary-scroll-position-saver", "anchors", "anchor-navigation-ex", "sitemap-general",
-        "copy-code-button", "multipart","edit-link-plus"
+        "copy-code-button", "multipart","edit-link-plus","editlink","toc"
     ],
     "pluginsConfig": {
         "theme-default": {
-            "showLevel": true
+            "showLevel": false
         },
         "fontSettings": {
             "family": "serif",
@@ -36,6 +36,11 @@
 				"count": true
               }]
         },
+        "editlink": {
+            "base": "https://github.com/xiaobei930/LearningNotes/blob/master",
+            "label": "Edit",
+            "multilingual": false
+          },
         "sharing": {
             "douban": false,
             "facebook": false,
@@ -67,13 +72,14 @@
                 "zh": "编辑本页"
             }
         },
-        "tbfed-pagefooter": {
-            "copyright": "Copyright &copy <a href='https://xiaobei930.github.io' target='_blank'>小北</a> 2020 ",
-            "modify_label": "修订时间：",
-            "modify_format": "YYYY-MM-DD HH:mm:ss"
-        },
+        "page-footer-ex": {
+            "copyright": "By [xiaobei](https://github.com/xiaobei930)，使用[知识共享 署名-相同方式共享 4.0协议](https://creativecommons.org/licenses/by-sa/4.0/)发布",
+            "markdown": true,
+            "update_label": "此页面修订于：",
+            "update_format": "YYYY-MM-DD HH:mm:ss"
+          },
         "anchor-navigation-ex": {
-            "showLevel": true,
+            "showLevel": false,
             "associatedWithSummary": false,
             "printLog": false,
             "multipleH1": true,
@@ -122,7 +128,7 @@
         }
     },
     "title": "学习笔记",
-    "description": "小北的学习笔记",
+    "description": "杂七杂八乱记一通",
     "author": "小北",
     "language": "zh-hans",
     "root": ".",
