@@ -29,6 +29,7 @@
   - [go 环境及 goland 快捷键](book/technology/go/go环境及goland快捷键.md)
 - Gitbook
   - [命令及使用](book/technology/gitbook/命令及使用.md)
+  - [vscode+picgo+github 搭建 markdown 图床](book/technology/gitbook/vscode+picgo+github搭建markdown图床.md)
 - C#
 - Java
 - Python
