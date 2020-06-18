@@ -1,7 +1,10 @@
+# GoLand 常用快捷键
+
 查找快捷键位置：File->Settings->Keymap
-# GoLand常用快捷键
+
 ## 1、查询快捷键
-```
+
+```cmd
 CTRL+N 查找类
 CTRL+SHIFT+N 查找文件
 CTRL+SHIFT+ALT+N 查找类中的方法或变量
@@ -26,8 +29,10 @@ CTRL+Q 显示注释文档
 CTRL+SHIFT+I 简短查看源定义
 CTRL+SHIFT+P 查看表达式类型（在表达式上或者表达式末尾使用）
 ```
+
 ## 2、自动代码
-```
+
+```cmd
 Alt+Enter 导入包,自动修正
 CTRL+ALT+L 格式化代码
 CTRL+ALT+I 自动缩进
@@ -46,14 +51,17 @@ CTRL+ALT+V 自动生成表达式返回值
 CTRL+ALT+M 重构表达式为函数(光标在表达式末尾)
 CTRL+Space 快速返回实现（return关键字后使用）
 ```
+
 ## 3、复制快捷方式
-```
+
+```cmd
 CTRL+D 复制行
 CTRL+X 剪切,删除行
 ```
 
 ## 4、其他快捷方式
-```
+
+```cmd
 CIRL+U 大小写切换
 CTRL+Z 倒退
 CTRL+SHIFT+Z 向前
