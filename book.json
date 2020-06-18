@@ -4,7 +4,7 @@
         "search-plus", "prism", "-highlight", "github-buttons", "splitter",
         "-sharing", "sharing-plus", "page-footer-ex", "expandable-chapters-small",
         "book-summary-scroll-position-saver", "anchors", "anchor-navigation-ex", "sitemap-general",
-        "copy-code-button", "multipart","edit-link-plus","editlink","toc"
+        "copy-code-button", "multipart","edit-link-plus","editlink","toc","expandable-chapters","insert-logo","advanced-emoji"
     ],
     "pluginsConfig": {
         "theme-default": {
@@ -103,14 +103,18 @@
             "prefix": "https://xiaobei930.github.io/myBook/"
         },
         "favicon": {
-            "shortcut": "/assets/images/favicon.ico",
-            "bookmark": "/assets/images/favicon.ico",
-            "appleTouch": "/assets/images/apple-touch-icon.png",
+            "shortcut": "/assets/logo/favicon.ico",
+            "bookmark": "/assets/logo/favicon.ico",
+            "appleTouch": "/assets/logo/apple-touch-icon.png",
             "appleTouchMore": {
-                "120x120": "/assets/images/apple-touch-icon-120x120.png",
-                "180x180": "/assets/images/apple-touch-icon-180x180.png"
+                "120x120": "/assets/logo/apple-touch-icon-120x120.png",
+                "180x180": "/assets/logo/apple-touch-icon-180x180.png"
             }
-        }
+        },
+        "insert-logo": {
+            "url": "/assets/logo/logo.png",
+            "style": "background: none; max-height: 30px; min-height: 30px"
+          }
     },
     "styles": {
         "website": "assets/styles/website.css"

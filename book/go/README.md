@@ -5,7 +5,7 @@
 
 ## gitbook 操作命令
 
-```cmd
+```bash
 npm install gitbook-cli -g
 gitbook -V
 gitbook install
@@ -15,7 +15,7 @@ gitbook pdf ./ ./mybook.pdf
 
 ## 生成 pdf 的前提环境
 
-```cmd
+```bash
 1.下载calibre,地址：
 https://calibre-ebook.com/
 2.把安装地址存入path内
