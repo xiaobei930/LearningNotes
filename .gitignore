@@ -59,3 +59,6 @@ typings/
 
 _book
 .DS_Store
+
+# vscode configuration
+.vscode/settings.json
