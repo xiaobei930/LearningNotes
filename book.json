@@ -112,7 +112,7 @@
             }
         },
         "insert-logo": {
-            "url": "/assets/logo/logo.png",
+            "url": "https://cdn.jsdelivr.net/gh/xiaobei930/LearningNotes@master/assets/logo/logo.png",
             "style": "background: none; max-height: 30px; min-height: 30px"
           }
     },
@@ -131,7 +131,7 @@
             "bottom": 56
         }
     },
-    "title": "学习笔记",
+    "title": "听小北瞎扯淡",
     "description": "杂七杂八乱记一通",
     "author": "小北",
     "language": "zh-hans",
@@ -142,7 +142,7 @@
     "links": {
         "sidebar": {
             "GitHub": "https://github.com/xiaobei930",
-            "个人博客": "https://xiaobei930.github.io"
+            "博客": "https://xiaobei930.github.io/LearningNotes/"
         }
     }
 }

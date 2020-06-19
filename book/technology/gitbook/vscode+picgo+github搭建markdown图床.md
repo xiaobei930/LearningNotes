@@ -50,22 +50,22 @@ vscode 作为轻量级 IDE 神器，在安装 Markdown All in One 作为 markdow
    略
 3. 进入个人设置，选择开发者设置
    settings-->Developer settings-->Personal access tokens,生成新的 token
-   ![vscode+picgo+github搭建markdown图床-gitbook+pic搭建图床1-2020-06-18](https://cdn.jsdelivr.net/gh/xiaobei930/LearningNotes@master/assets/images/vscode+picgo+github搭建markdown图床-gitbook+pic搭建图床1-2020-06-18.png)
+   ![vscode+picgo+github搭建markdown图床-gitbook+pic搭建图床1-2020-06-18](https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/vscode+picgo+github搭建markdown图床-gitbook+pic搭建图床1-2020-06-18.png)
 4. 添加描述，勾选 repo
-   ![vscode+picgo+github搭建markdown图床-2](https://cdn.jsdelivr.net/gh/xiaobei930/LearningNotes@master/assets/images/vscode+picgo+github搭建markdown图床-2.png)
+   ![vscode+picgo+github搭建markdown图床-2](https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/vscode+picgo+github搭建markdown图床-2.png)
 5. 保存生成的 token **关闭页面将无法再次看到**
-   ![vscode+picgo+github搭建markdown图床-3](https://cdn.jsdelivr.net/gh/xiaobei930/LearningNotes@master/assets/images/vscode+picgo+github搭建markdown图床-3.png)
+   ![vscode+picgo+github搭建markdown图床-3](https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/vscode+picgo+github搭建markdown图床-3.png)
 
 ## picgo 配置
 
 GitHub 设置完之后，需要修改 vscode 的 picgo 插件的设置，配置刚才设置的 github 图床，具体设置如下：
 
 1. vscode 右下角或者 ctrl+，唤出设置页面
-   ![vscode+picgo+github搭建markdown图床-4](https://cdn.jsdelivr.net/gh/xiaobei930/LearningNotes@master/assets/images/vscode+picgo+github搭建markdown图床-4.png)
+   ![vscode+picgo+github搭建markdown图床-4](https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/vscode+picgo+github搭建markdown图床-4.png)
 2. 在扩展打开或者搜索 picgo
-   ![vscode+picgo+github搭建markdown图床-5](https://cdn.jsdelivr.net/gh/xiaobei930/LearningNotes@master/assets/images/vscode+picgo+github搭建markdown图床-5.png)
+   ![vscode+picgo+github搭建markdown图床-5](https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/vscode+picgo+github搭建markdown图床-5.png)
 3. 具体设置如图
-   ![vscode+picgo+github搭建markdown图床-6](https://cdn.jsdelivr.net/gh/xiaobei930/LearningNotes@master/assets/images/vscode+picgo+github搭建markdown图床-6.png)
+   ![vscode+picgo+github搭建markdown图床-6](https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/vscode+picgo+github搭建markdown图床-6.png)
 
 **配置说明：**
 
