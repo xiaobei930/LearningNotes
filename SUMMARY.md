@@ -30,6 +30,7 @@
   - Java
   - Python
   - 数据库
+    - [redis 总结](book//technology/database/redis总结.md)
 
 ---
 

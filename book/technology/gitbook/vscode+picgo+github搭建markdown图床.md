@@ -50,7 +50,7 @@ vscode 作为轻量级 IDE 神器，在安装 Markdown All in One 作为 markdow
    略
 3. 进入个人设置，选择开发者设置
    settings-->Developer settings-->Personal access tokens,生成新的 token
-   ![vscode+picgo+github搭建markdown图床-gitbook+pic搭建图床1-2020-06-18](https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/vscode+picgo+github搭建markdown图床-gitbook+pic搭建图床1-2020-06-18.png)
+   ![vscode+picgo+github搭建markdown图床-gitbook+pic搭建图床1](https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/vscode+picgo+github搭建markdown图床-gitbook+pic搭建图床1.png)
 4. 添加描述，勾选 repo
    ![vscode+picgo+github搭建markdown图床-2](https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/vscode+picgo+github搭建markdown图床-2.png)
 5. 保存生成的 token **关闭页面将无法再次看到**
