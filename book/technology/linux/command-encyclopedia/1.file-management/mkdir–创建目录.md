@@ -16,3 +16,14 @@ mkdir 命令是“make directories”的缩写，用来创建目录。
 |  -v  | 显示目录创建过程             |
 
 ## 参考实例
+
+```shell
+# 在工作目录下，建立一个名为 dir 的子目录
+[root@xiaobei xiaobei]# mkdir dir
+# 在目录/home/xiaobei/dir下建立子目录dir，并且设置文件属主有读、写和执行权限，其他人无权访问
+[root@xiaobei xiaobei]# mkdir -m 700 /home/xiaobei/dir/dir
+# 同时创建子目录dir1，dir2，dir3
+[root@xiaobei dir]# mkdir dir1 dir2 dir3
+# 递归创建目录
+[root@xiaobei dir]# mkdir -p /home/xiaobei/dir/dd/dir
+```
