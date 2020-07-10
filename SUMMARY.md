@@ -3,6 +3,7 @@
 - 技术剪影
   - Linux
     - 系统学习
+      - [操作系统入门](book/technology/linux/Special-lecture/操作系统入门.md)
       - [linux 介绍及安装](book/technology/linux/Special-lecture/linux介绍及安装.md)
       - [基础命令讲解(一)](book/technology/linux/Special-lecture/基础命令讲解一.md)
       - [基础命令讲解(二)](book/technology/linux/Special-lecture/基础命令讲解二.md)
