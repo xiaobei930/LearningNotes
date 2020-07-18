@@ -124,7 +124,7 @@ cd nginx-1.16.0
 开始预编译
 
 ```shell
-./configure --prefix=/usr/local/nginx
+./configure --prefix=/usr/local/nginx --user=nginx --group=nginx
 ```
 
     make clean : 重新预编译时，通常执行这条命令删除上次的编译文件
@@ -163,21 +163,21 @@ nginx version: nginx/1.16.0
 
 # nginx 常用命令
 
-使用/usr/local/nginx/sbin/nginx -h 命令查看可用参数：
-[root@localhost ~]# /usr/local/nginx/sbin/nginx -h
-nginx version: nginx/1.16.0
-Usage: nginx [-?hvVtTq][-s signal] [-c filename][-pprefix] [-g directives]
-Options:
--?,-h : this help
--v : show version and exit
--V : show version and configure options then exit
--t : test configuration and exit
--T : test configuration, dump it and exit
--q : suppress non-error messages during configuration testing
--s signal : send signal to a master process: stop,quit, reopen, reload
--p prefix : set prefix path (default:/usr/local/nginx/)
--c filename : set configuration file (default:conf/nginx.conf)
--g directives : set global directives out of configuration file
+    使用/usr/local/nginx/sbin/nginx -h 命令查看可用参数：
+    [root@localhost ~]# /usr/local/nginx/sbin/nginx -h
+    nginx version: nginx/1.16.0
+    Usage: nginx [-?hvVtTq][-s signal] [-c filename][-pprefix] [-g directives]
+    Options:
+    -?,-h : this help
+    -v : show version and exit
+    -V : show version and configure options then exit
+    -t : test configuration and exit
+    -T : test configuration, dump it and exit
+    -q : suppress non-error messages during configuration testing
+    -s signal : send signal to a master process: stop,quit, reopen, reload
+    -p prefix : set prefix path (default:/usr/local/nginx/)
+    -c filename : set configuration file (default:conf/nginx.conf)
+    -g directives : set global directives out of configuration file
 
 ## 命令解读
 
@@ -203,16 +203,16 @@ Options:
     ln -s /usr/local/nginx/sbin/* /usr/local/sbin
     然后重新读取下配置文件
     . /etc/profile
-
+    
     ps:软连接做在PATH路径是第一位，因为yum安装的在/usr/sbin/目录下，which安装PATH的顺序找到第一个，就不找了。
-
+    
     2、配置环境变量：
     echo "export PATH=/usr/local/nginx/sbin:$PATH" > /etc/profile.d/nginx.sh
     然后重新读取下配置文件
     source /etc/profile
-
+    
     ps:最好写在$PATH前面，否则，如果安装了yum版的nginx,直接执行nginx会启动yum版的nginx，因为which nginx，会先找到/usr/sbin/nginx文件
-
+    
     3、设置别名：
     alias nginx='/usr/local/nginx/sbin/nginx'
     ps:which优先找别名
@@ -268,23 +268,23 @@ root 2698 2532 0 23:58 pts/1 00:00:00 grep --color=auto nginx
 在/data/目录下拷贝一份 nginx 的配置文件，然后修改用户名为 www。
 注意：配置文件中引用的其他配置文件路径也要做一个修改
 
-[root@localhost logs]# cp /usr/local/nginx/conf/nginx.conf /data/
-[root@localhost logs]# vim /data/nginx.conf
-[root@localhost logs]# /usr/local/nginx/sbin/nginx -c /data/nginx.conf
-[root@localhost logs]# ps -ef|grep nginx
-root 2736 1 0 00:05 ? 00:00:00 nginx:master process /usr/local/nginx/sbin/nginx -c /data/nginx.conf
-www 2737 2736 0 00:05 ? 00:00:00 nginx:worker process
-www 2738 2736 0 00:05 ? 00:00:00 nginx:worker process
-www 2739 2736 0 00:05 ? 00:00:00 nginx:worker process
-root 2741 2532 0 00:05 pts/1 00:00:00 grep --color=auto nginx
+    [root@localhost logs]# cp /usr/local/nginx/conf/nginx.conf /data/
+    [root@localhost logs]# vim /data/nginx.conf
+    [root@localhost logs]# /usr/local/nginx/sbin/nginx -c /data/nginx.conf
+    [root@localhost logs]# ps -ef|grep nginx
+    root 2736 1 0 00:05 ? 00:00:00 nginx:master process /usr/local/nginx/sbin/nginx -c /data/nginx.conf
+    www 2737 2736 0 00:05 ? 00:00:00 nginx:worker process
+    www 2738 2736 0 00:05 ? 00:00:00 nginx:worker process
+    www 2739 2736 0 00:05 ? 00:00:00 nginx:worker process
+    root 2741 2532 0 00:05 pts/1 00:00:00 grep --color=auto nginx
 
 ### 设置全局变量
 
-通过设置全局变量，让 nginx 在前端运行。
-[root@localhost logs]# /usr/local/nginx/sbin/nginx -g "daemon off;"
-现在当前 nginx 在前端运行，
-输入 ctrl +c，则 nginx 就退出了。
-可以使用 ctrl +z 放置后台运行。
+    通过设置全局变量，让 nginx 在前端运行。
+    [root@localhost logs]# /usr/local/nginx/sbin/nginx -g "daemon off;"
+    现在当前 nginx 在前端运行，
+    输入 ctrl +c，则 nginx 就退出了。
+    可以使用 ctrl +z 放置后台运行。
 
 # nginx 配置文件路径
 
@@ -320,8 +320,11 @@ http {
 ```
 
 nginx 的配置指令可以分为两大类：指令块与单个指令。
+
 **指令块**就是像 events，http，server 等；
+
 **单独指令**就是像 root html;这样的。
+
 nginx 规定指令块可以嵌套，如 http 块中可以嵌套 server 指令，server 块中可以嵌套 location 指令，指令可以同时出现在不同的指令块，如 root 指令可以同时出现在 http、server 和 location 指令块，**需要注意的是在 location 中定义的指令会覆盖 server，http 的指令**。
 
 # 解析配置文件
@@ -350,12 +353,10 @@ nginx 规定指令块可以嵌套，如 http 块中可以嵌套 server 指令，
     use :用来指定 nginx 的工作模式，通常选择 epoll，除了 epoll，还有select,poll。
     worker_connections :定义每个工作进程的最大连接数，默认是1024。
     ps:进程的最大连接数受 Linux 系统进程的最大打开文件数限制。
-
+    
     修改文件描述符方式：
     临时生效： ulimit -n 65535
-
-
-
+    
     在压测的时候，如果遇到报错 apr_socket_recv: Connection reset by peer (104)：
     解决办法：
     # 临时解决：
@@ -398,30 +399,30 @@ http {
         如果用户请求lutixia.png，服务器上有lutixia.png这个文件，后缀名是png；
         根据mime.types，这个文件的数据类型应该是image/png；
         将Content-Type的值设置为image/png，然后发送给客户端
-
+    
     default_type :设定默认类型为二进制流，也就是当文件类型未定义时使用这种方式，例如在没有配置PHP环境时，Nginx是不予解析的，此时，用浏览器访问PHP文件就会出现下载窗口。
-
+    
     charset utf-8; 解决中文字体乱码
-
+    
     log_format :定义日志文件格式，并默认取名为main，可以自定义该名字。也可以通过添加，删除变量来自定义日志文件的格式。
-
+    
     access_log :定义访问日志的存放路径，并且通过引用log_format所定义的main名称设置其输出格式。
-
+    
     sendfile on :用于开启高效文件传输模式。直接将数据包封装在内核缓冲区，然后返给客户，将tcp_nopush和tcp_nodelay两个指令设置为on用于防止网络阻塞；
-
+    
     keepalive_timeout 65 :设置客户端连接保持活动的超时时间。在超过这个时间之后，服务器会关闭该连接。
-
+    
     keepalive_requests 100 :设置nginx在保持连接状态最多能处理的请求数，到达请求数，即使还在保持连接状态时间内，也需要重新连接。
 
 
     提示：可以用netstat -ntlpa |grep 80 查看链接状态
-
+    
     gzip on :开启压缩功能，减少文件传输大小，节省带宽。
-
+    
     gzip_min_length 1k; 最小文件压缩，1k起压。
-
+    
     gzip_types text/plain text/xml; 压缩文件类型
-
+    
     gzip_comp_level 3; 压缩级别，默认是1。
 
 ## server 指令块
@@ -455,14 +456,14 @@ server {
 
 ```
 
-server :用来定义虚拟主机。
-listen :设置监听端口，默认为 80 端口
-server_name :域名，多个域名通过逗号隔开
-Charset :设置网页的默认编码格式
-access_log :指定该虚拟主机的独立访问日志，会覆盖前面的全局配置。
-index :设置默认的索引文件
-location :定义请求匹配规则。
-error_page :定义访问错误返回的页面，凡是状态码是 500 502 503 504 都会返回这个页面。
+    server :用来定义虚拟主机。
+    listen :设置监听端口，默认为 80 端口
+    server_name :域名，多个域名通过逗号隔开
+    Charset :设置网页的默认编码格式
+    access_log :指定该虚拟主机的独立访问日志，会覆盖前面的全局配置。
+    index :设置默认的索引文件
+    location :定义请求匹配规则。
+    error_page :定义访问错误返回的页面，凡是状态码是 500 502 503 504 都会返回这个页面。
 
 ## location 指令块
 
@@ -483,9 +484,9 @@ error_page :定义访问错误返回的页面，凡是状态码是 500 502 503 5
     #}
 ```
 
-location ~ \.php\$ :凡是以 php 结尾文件，都会匹配到这条规则。
-root :php 文件存放的目录
-fastcgi_pass :指定 php-fpm 进程管理的 ip 端口或者 unix 套接字
-fastcgi_index :指定 php 脚本目录下的索引文件
-fastcgi_param :指定传递给 FastCGI 服务器的参数
-location ~ /\.ht :凡是请求类似.ht 资源，都拒绝
+    location ~ \.php\$ :凡是以 php 结尾文件，都会匹配到这条规则。
+    root :php 文件存放的目录
+    fastcgi_pass :指定 php-fpm 进程管理的 ip 端口或者 unix 套接字
+    fastcgi_index :指定 php 脚本目录下的索引文件
+    fastcgi_param :指定传递给 FastCGI 服务器的参数
+    location ~ /\.ht :凡是请求类似.ht 资源，都拒绝
