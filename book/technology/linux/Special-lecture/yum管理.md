@@ -12,10 +12,10 @@ yum 命令是在 Fedora 和 RedHat 以及 SUSE 中基于 rpm 的软件包管理�
 
     # 安装163的yum源：
     wget -O /etc/yum.repos.d/CentOS7-Base-163.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
-
+    
     # 安装阿里云的yum源：
     wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-
+    
     重新执行: yum makecache
 
 搜狐没有现成的 yum 源文件下载，需要自己配置：
