@@ -77,6 +77,7 @@ mkdir: Access failed: 550 Permission denied. (abc)
 **开启匿名用户创建文件，重命名，删除，上传权限**
 
 ```shell
+# 地址 /etc/vsftpd/vsftpd.conf
 #开启上传权限
 anon_upload_enable=YES
 
@@ -90,20 +91,19 @@ anon_umask=022
 
 重启服务，再次进入，发现还是没法创建目录，但是报错信息不一样:mkdir: Access failed: 550 Create directory operation failed.
 
-这是因为目录没有写权限，给 pub 目录授权，**小总结**：要想匿名用户有写的权限，一是需要服务端配置文件开启写的权
-限，二是所在的目录本身有其他用户写的权限！
+这是因为目录没有写权限，给 pub 目录授权，**小总结**：要想匿名用户有写的权限，一是需要服务端配置文件开启写的权限，二是所在的目录本身有其他用户写的权限！
 
 ## 上传命令
 
 ### put 上传单个文件
 
-要想使用上传命令，需要开启上传权限和可写权限
-语法：put [OPTS] <lfile> [-o <rfile>]
-直接上传不改名，可以省去-o refile,如果不知道本地目录有哪些文件，可以使用!dir 查看，如下：
-lftp 192.168.115.132:/pub> !dir
-anaconda-ks.cfg favicon.png
-lftp 192.168.115.132:/pub> put /etc/fstab
-501 bytes transferred
+    要想使用上传命令，需要开启上传权限和可写权限
+    语法：put [OPTS] <lfile> [-o <rfile>]
+    直接上传不改名，可以省去-o refile,如果不知道本地目录有哪些文件，可以使用!dir 查看，如下：
+    lftp 192.168.115.132:/pub> !dir
+    anaconda-ks.cfg favicon.png
+    lftp 192.168.115.132:/pub> put /etc/fstab
+    501 bytes transferred
 
 ### mput 批量上传
 
