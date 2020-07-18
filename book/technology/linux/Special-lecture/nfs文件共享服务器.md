@@ -109,21 +109,24 @@ autofs 非常方便，主要有两点：
 ```shell
 # 在客户端执行以下命令：
 yum install autofs -y
+# 配置autofs
+rpm -qc autofs
 ```
 
 ### 编辑/etc/auto.master
 
 ```shell
 # 添加以下行：
-/mnt/nfs /etc/nfs.misc
-/mnt/nfs是总的访问目录(客户端的目录) /etc/nfs.misc是对总访问目录的描述，用于子目录的编辑，用户权限分离
+/media /etc/nfs.misc
+#/media 挂载点
+#/etc/nfs.misc是对总访问目录的描述，用于子目录的编辑，用户权限分离
 ```
 
 ### 编辑 nfs.misc
 
 ```shell
-xiaobei -fstype=nfs,rw,sync 192.168.115.130:/data/nfs
-xiaobei -fstype=nfs,ro,sync 192.168.115.130:/data/nfs
+/data/nfs -fstype=nfs,rw,sync 192.168.115.129:/data/nfs
+/data/nfs -fstype=nfs,ro,sync 192.168.115.129:/data/nfs
 ```
 
 ### 启动 nfs
