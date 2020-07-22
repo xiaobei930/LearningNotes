@@ -178,7 +178,7 @@ lftp 192.168.115.132:/pub> rm -rf xiao
 ```shell
 # 服务端设置用户名及密码：
 [root@localhost ~]# id xiaobei
-uid=1000(xiaobei) gid=1000(lutixia) 组=1000(xiaobei)
+uid=1000(xiaobei) gid=1000(xiaobei) 组=1000(xiaobei)
 
 [root@localhost ~]# echo "xiaobei" |passwd --stdin xiaobei
 #更改用户 xiaobei 的密码 。
