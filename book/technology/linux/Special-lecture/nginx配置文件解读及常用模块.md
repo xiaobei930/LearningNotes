@@ -67,7 +67,7 @@ http {
 ```
 
     include mime.types; 定义数据类型
-        如果用户请求lutixia.png，服务器上有lutixia.png这个文件，后缀名是png；
+        如果用户请求xiaobei.png，服务器上有xiaobei.png这个文件，后缀名是png；
         根据mime.types，这个文件的数据类型应该是image/png；
         将Content-Type的值设置为image/png，然后发送给客户端
 
