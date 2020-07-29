@@ -20,10 +20,13 @@ mv 命令是“move”单词的缩写，其功能大致和英文含义一样，�
 ```shell
 #将文件file_1重命名为file_2：
 [root@xiaobei dir]# mv file_1 file_2
+
 # 将文件file移动到目录dir中 ：
 [root@xiaobei dir]# mv file /dir
+
 # 将目录dir1移动目录dir2中（前提是目录dir2已存在，若不存在则改名)：
 [root@xiaobei dir]# mv /dir1 /dir2
+
 # 将目录dir1下的文件移动到当前目录下：
 [root@xiaobei dir]# mv /dir1/* .
 ```
