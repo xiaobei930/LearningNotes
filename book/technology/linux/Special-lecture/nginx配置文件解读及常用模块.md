@@ -325,7 +325,7 @@ http {
 [root@localhost ~]# curl -I 192.168.115.129
 HTTP/1.1 200 OK
 Server: nginx/1.16.0
-Date: Mon, 22 Jul 2019 02:24:19 GMT
+Date: 01 08 2020 02:24:19 GMT
 Content-Type: text/html
 ```
 
@@ -392,7 +392,7 @@ server {
 [root@localhost ~]# curl -I 192.168.115.129
 HTTP/1.1 200 OK
 Server: nginx/1.16.0
-Date: Mon, 22 Jul 2019 02:24:19 GMT
+Date: 01 08 2020 02:24:19 GMT
 Content-Type: text/html
 ```
 

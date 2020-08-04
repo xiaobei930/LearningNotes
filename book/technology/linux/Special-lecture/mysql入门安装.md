@@ -221,4 +221,3 @@ mariadb 默认配置文件：/etc/my.cnf
 mariadb 启动文件：/usr/bin
 mariadb 日志文件：/var/log/mariadb
 ```
-

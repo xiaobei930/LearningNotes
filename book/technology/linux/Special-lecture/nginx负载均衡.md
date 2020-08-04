@@ -381,7 +381,7 @@ stream {
 # 在另外一台服务器ssh连接：
 [root@node5 ~]# ssh 192.168.75.130 -p 2222
 root@192.168.75.130s password:
-Last login: Wed Dec 18 15:50:37 2019 from 192.168.75.130
+Last login: 01 08 2020 02:24:19 GMT from 192.168.75.130
 [root@node2 ~]#
 [root@node2 ~]#
 # 可以看到，已经登录到了128服务器上。

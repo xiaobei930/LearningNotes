@@ -52,6 +52,7 @@ show  databases:
 information_schema：信息数据库。主要保存着关于MySQL服务器所维护的所有其他数据库的信息，如数据库名，数据库的表，表栏的数据类型与访问权 限等。通过show databases;查看到数据库信息，也是出自该数据库中得SCHEMATA表。
 mysql：  mysql的核心数据库。主要负责存储数据库的用户、权限设置、关键字等mysql自己需要使用的控制和管理信息。
 performance_schema： 用于性能优化的数据库。
+
 # 查看数据库的创建语句：
 show create database mysql;
 mysql为数据库名。
