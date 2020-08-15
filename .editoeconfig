@@ -1,0 +1,29 @@
+# editorconfig顶级配置文件,停止向上寻找配置文件
+root = true
+
+# 匹配所有文件
+[*]
+# 缩进样式=空格     【space:空格，tab:tab键】
+indent_style = space
+# 缩进大小=2
+indent_size = 2
+# 换行符类型 = lf   【lf,cr,crlf】
+end_of_line = lf
+# 字符集=utf-8      【latin1、utf - 8、utf - 8 - bom(不建议)、utf - 16be和utf - 16le】
+charset = utf-8
+# 删除行尾空格 = 是
+trim_trailing_whitespace = true
+# 插入最后一行=真
+insert_final_newline = true
+
+# 匹配markdown文件
+[*.md]
+# 删除行尾空格 = 否
+trim_trailing_whitespace = false
+
+# 匹配package.json文件
+[package.json]
+# 缩进样式=空格
+indent_style = space
+# 缩进大小=2
+indent_size = 2

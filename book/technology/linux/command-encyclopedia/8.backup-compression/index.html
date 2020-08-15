@@ -1,0 +1,1633 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>8.备份压缩 · 听小北瞎扯淡</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="小北">
+        
+        
+    
+    <link rel="stylesheet" href="../../../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-yahei/yahei.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-prism/prism-tomorrow.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-multipart/multipart.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../../../../assets/styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../9.other-command/" />
+    
+    
+    <link rel="prev" href="../7.quipment-management/" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"xiaobei930","repo":"LearningNotes","type":"star","size":"small","count":true}]};
+    </script>
+
+    
+        <link rel="shortcut icon" href='../../../../../assets/logo/favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../../../../../assets/logo/favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="apple-touch-icon" href='../../../../../assets/logo/apple-touch-icon.png'>
+    
+    
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="../../../../../assets/logo/apple-touch-icon-120x120.png">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="../../../../../assets/logo/apple-touch-icon-180x180.png">
+        
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/xiaobei930" target="_blank" class="custom-link">GitHub</a>
+        </li>
+    
+        
+        <li>
+            <a href="https://xiaobei930.github.io/LearningNotes/" target="_blank" class="custom-link">博客</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <span>
+            
+                    
+                    技术剪影
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" >
+            
+                <span>
+            
+                    
+                    Linux
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" >
+            
+                <span>
+            
+                    
+                    系统学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1.1" data-path="../../Special-lecture/操作系统入门.html">
+            
+                <a href="../../Special-lecture/操作系统入门.html">
+            
+                    
+                    操作系统入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.2" data-path="../../Special-lecture/linux介绍及安装.html">
+            
+                <a href="../../Special-lecture/linux介绍及安装.html">
+            
+                    
+                    linux 介绍及安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.3" data-path="../../Special-lecture/基础命令讲解一.html">
+            
+                <a href="../../Special-lecture/基础命令讲解一.html">
+            
+                    
+                    基础命令讲解(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.4" data-path="../../Special-lecture/基础命令讲解二.html">
+            
+                <a href="../../Special-lecture/基础命令讲解二.html">
+            
+                    
+                    基础命令讲解(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.5" data-path="../../Special-lecture/vim编辑器.html">
+            
+                <a href="../../Special-lecture/vim编辑器.html">
+            
+                    
+                    vim 编辑器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.6" data-path="../../Special-lecture/yum管理.html">
+            
+                <a href="../../Special-lecture/yum管理.html">
+            
+                    
+                    yum 管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.7" data-path="../../Special-lecture/nfs文件共享服务器.html">
+            
+                <a href="../../Special-lecture/nfs文件共享服务器.html">
+            
+                    
+                    nfs 文件共享服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.8" data-path="../../Special-lecture/ftp文件服务器.html">
+            
+                <a href="../../Special-lecture/ftp文件服务器.html">
+            
+                    
+                    ftp 文件服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.9" data-path="../../Special-lecture/nginx服务安装及配置文件.html">
+            
+                <a href="../../Special-lecture/nginx服务安装及配置文件.html">
+            
+                    
+                    nginx 服务安装及配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.10" data-path="../../Special-lecture/nginx配置文件解读及常用模块.html">
+            
+                <a href="../../Special-lecture/nginx配置文件解读及常用模块.html">
+            
+                    
+                    nginx 配置文件解读及常用模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.11" data-path="../../Special-lecture/nginx服务器location、rewite规则.html">
+            
+                <a href="../../Special-lecture/nginx服务器location、rewite规则.html">
+            
+                    
+                    nginx 服务器 location、rewite 规则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.12" data-path="../../Special-lecture/nginx服务器虚拟主机、反向代理.html">
+            
+                <a href="../../Special-lecture/nginx服务器虚拟主机、反向代理.html">
+            
+                    
+                    nginx 服务器虚拟主机、反向代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.13" data-path="../../Special-lecture/nginx负载均衡.html">
+            
+                <a href="../../Special-lecture/nginx负载均衡.html">
+            
+                    
+                    nginx 负载均衡
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.14" data-path="../../Special-lecture/mysql入门安装.html">
+            
+                <a href="../../Special-lecture/mysql入门安装.html">
+            
+                    
+                    mysql 入门安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.15" data-path="../../Special-lecture/mysql数据库基础操作.html">
+            
+                <a href="../../Special-lecture/mysql数据库基础操作.html">
+            
+                    
+                    mysql 数据库基础操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.16" data-path="../../Special-lecture/mysql主从同步及mysqldump备份.html">
+            
+                <a href="../../Special-lecture/mysql主从同步及mysqldump备份.html">
+            
+                    
+                    mysql 主从同步及 mysqldump 备份
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.17" data-path="../../Special-lecture/mysql读写分离实战.html">
+            
+                <a href="../../Special-lecture/mysql读写分离实战.html">
+            
+                    
+                    mysql 读写分离实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.18" data-path="../../Special-lecture/LNMP高性能服务器.html">
+            
+                <a href="../../Special-lecture/LNMP高性能服务器.html">
+            
+                    
+                    LNMP 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.19" data-path="../../Special-lecture/分布式LNMP高性能服务器.html">
+            
+                <a href="../../Special-lecture/分布式LNMP高性能服务器.html">
+            
+                    
+                    分布式 LNMP 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.20" data-path="../../Special-lecture/LNMP+redis高性能服务器.html">
+            
+                <a href="../../Special-lecture/LNMP+redis高性能服务器.html">
+            
+                    
+                    LNMP+redis 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.21" data-path="../../Special-lecture/redis数据库主从哨兵模式.html">
+            
+                <a href="../../Special-lecture/redis数据库主从哨兵模式.html">
+            
+                    
+                    redis 数据库主从哨兵模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.22" data-path="../../Special-lecture/zabbix监控入门.html">
+            
+                <a href="../../Special-lecture/zabbix监控入门.html">
+            
+                    
+                    zabbix 监控入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.23" data-path="../../Special-lecture/zabbix自定义监控项，触发器动作.html">
+            
+                <a href="../../Special-lecture/zabbix自定义监控项，触发器动作.html">
+            
+                    
+                    zabbix 自定义监控项，触发器动作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.24" data-path="../../Special-lecture/zabbix分布式应用，微信报警.html">
+            
+                <a href="../../Special-lecture/zabbix分布式应用，微信报警.html">
+            
+                    
+                    zabbix 分布式应用，微信报警
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.25" data-path="../../Special-lecture/tomcat服务器实战.html">
+            
+                <a href="../../Special-lecture/tomcat服务器实战.html">
+            
+                    
+                    tomcat服务器实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.26" data-path="../../Special-lecture/SHELL编程入门&案例实战.html">
+            
+                <a href="../../Special-lecture/SHELL编程入门&案例实战.html">
+            
+                    
+                    SHELL编程入门&案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.27" data-path="../../Special-lecture/SHELL编程变量&if实战.html">
+            
+                <a href="../../Special-lecture/SHELL编程变量&if实战.html">
+            
+                    
+                    SHELL编程变量&if实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.28" data-path="../../Special-lecture/SHELL编程if语句和for循环.html">
+            
+                <a href="../../Special-lecture/SHELL编程if语句和for循环.html">
+            
+                    
+                    SHELL编程if语句和for循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.29" data-path="../../Special-lecture/SHELL编程For&While.html">
+            
+                <a href="../../Special-lecture/SHELL编程For&While.html">
+            
+                    
+                    SHELL编程For&While实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.30" data-path="../../Special-lecture/SHELL编程Case&While实战.html">
+            
+                <a href="../../Special-lecture/SHELL编程Case&While实战.html">
+            
+                    
+                    SHELL编程Case&While实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.31" data-path="../../Special-lecture/SHELL编程Nginx虚拟主机实战.html">
+            
+                <a href="../../Special-lecture/SHELL编程Nginx虚拟主机实战.html">
+            
+                    
+                    SHELL编程Nginx虚拟主机实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.32" data-path="../../Special-lecture/SHELL编程Find案例实战.html">
+            
+                <a href="../../Special-lecture/SHELL编程Find案例实战.html">
+            
+                    
+                    SHELL编程Find案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.33" data-path="../../Special-lecture/SHELL编程Sed&Grep案例实战.html">
+            
+                <a href="../../Special-lecture/SHELL编程Sed&Grep案例实战.html">
+            
+                    
+                    SHELL编程Sed&Grep案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.34" data-path="../../Special-lecture/SHELL编程Grep&Awk案例实战.html">
+            
+                <a href="../../Special-lecture/SHELL编程Grep&Awk案例实战.html">
+            
+                    
+                    SHELL编程Grep&Awk案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.35" data-path="../../Special-lecture/LVS+Keepalived高可用实战.html">
+            
+                <a href="../../Special-lecture/LVS+Keepalived高可用实战.html">
+            
+                    
+                    LVS+Keepalived高可用实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.36" data-path="../../Special-lecture/Nginx+Keepalived高可用企业实战.html">
+            
+                <a href="../../Special-lecture/Nginx+Keepalived高可用企业实战.html">
+            
+                    
+                    Nginx+Keepalived高可用企业实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.37" data-path="../../Special-lecture/LVS+Keepalived高可用企业实战.html">
+            
+                <a href="../../Special-lecture/LVS+Keepalived高可用企业实战.html">
+            
+                    
+                    LVS+Keepalived高可用企业实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.38" data-path="../../Special-lecture/Docker虚拟化技术实战.html">
+            
+                <a href="../../Special-lecture/Docker虚拟化技术实战.html">
+            
+                    
+                    Docker虚拟化技术实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" >
+            
+                <span>
+            
+                    
+                    linux 命令大全
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1" data-path="../1.file-management/">
+            
+                <a href="../1.file-management/">
+            
+                    
+                    1.文件管理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1.1" data-path="../1.file-management/ls-显示指定工作目录下的内容及属性信息.html">
+            
+                <a href="../1.file-management/ls-显示指定工作目录下的内容及属性信息.html">
+            
+                    
+                    ls-显示指定工作目录下的内容及属性信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.2" data-path="../1.file-management/mkdir–创建目录.html">
+            
+                <a href="../1.file-management/mkdir–创建目录.html">
+            
+                    
+                    mkdir–创建目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.3" data-path="../1.file-management/cp-复制文件或目录.html">
+            
+                <a href="../1.file-management/cp-复制文件或目录.html">
+            
+                    
+                    cp-复制文件或目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.4" data-path="../1.file-management/pwd-显示当前目录.html">
+            
+                <a href="../1.file-management/pwd-显示当前目录.html">
+            
+                    
+                    pwd-显示当前目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.5" data-path="../1.file-management/mv-移动或改名.html">
+            
+                <a href="../1.file-management/mv-移动或改名.html">
+            
+                    
+                    mv-移动或改名
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.6" data-path="../1.file-management/touch-创建文件.html">
+            
+                <a href="../1.file-management/touch-创建文件.html">
+            
+                    
+                    touch-创建文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.7" data-path="../1.file-management/userdel-删除用户.html">
+            
+                <a href="../1.file-management/userdel-删除用户.html">
+            
+                    
+                    userdel-删除用户
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.8" data-path="../1.file-management/ln-为文件创建链接.html">
+            
+                <a href="../1.file-management/ln-为文件创建链接.html">
+            
+                    
+                    ln-为文件创建链接
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.9" data-path="../1.file-management/chattr-更改文件属性.html">
+            
+                <a href="../1.file-management/chattr-更改文件属性.html">
+            
+                    
+                    chattr-更改文件属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.10" data-path="../1.file-management/cd-切换目录.html">
+            
+                <a href="../1.file-management/cd-切换目录.html">
+            
+                    
+                    cd-切换目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.11" data-path="../1.file-management/traceroute-追踪数据包在网络上的传输时的全部路径.html">
+            
+                <a href="../1.file-management/traceroute-追踪数据包在网络上的传输时的全部路径.html">
+            
+                    
+                    traceroute-追踪数据包在网络上的传输时的全部路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.12" data-path="../1.file-management/cksum-校验文件.html">
+            
+                <a href="../1.file-management/cksum-校验文件.html">
+            
+                    
+                    cksum-校验文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.13" data-path="../1.file-management/locate-快速查找文件或目录.html">
+            
+                <a href="../1.file-management/locate-快速查找文件或目录.html">
+            
+                    
+                    locate-快速查找文件或目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.14" data-path="../1.file-management/wc-统计文件的字节数、字数、行数.html">
+            
+                <a href="../1.file-management/wc-统计文件的字节数、字数、行数.html">
+            
+                    
+                    wc-统计文件的字节数、字数、行数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.15" data-path="../1.file-management/lsattr-显示文件隐藏属性.html">
+            
+                <a href="../1.file-management/lsattr-显示文件隐藏属性.html">
+            
+                    
+                    lsattr-显示文件隐藏属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.16" data-path="../1.file-management/whereis-显示命令及相关文件的路径.html">
+            
+                <a href="../1.file-management/whereis-显示命令及相关文件的路径.html">
+            
+                    
+                    whereis-显示命令及相关文件的路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.17" data-path="../1.file-management/sort-排序文件并输出.html">
+            
+                <a href="../1.file-management/sort-排序文件并输出.html">
+            
+                    
+                    sort-排序文件并输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.18" data-path="../1.file-management/less-分页显示工具.html">
+            
+                <a href="../1.file-management/less-分页显示工具.html">
+            
+                    
+                    less-分页显示工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.2" data-path="../2.documents-editing/">
+            
+                <a href="../2.documents-editing/">
+            
+                    
+                    2.文档编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.3" data-path="../3.system-management/">
+            
+                <a href="../3.system-management/">
+            
+                    
+                    3.系统管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.4" data-path="../4.disk-management/">
+            
+                <a href="../4.disk-management/">
+            
+                    
+                    4.磁盘管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.5" data-path="../5.file-transfer/">
+            
+                <a href="../5.file-transfer/">
+            
+                    
+                    5.文件传输
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.6" data-path="../6.network-communication/">
+            
+                <a href="../6.network-communication/">
+            
+                    
+                    6.网络通讯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.7" data-path="../7.quipment-management/">
+            
+                <a href="../7.quipment-management/">
+            
+                    
+                    7.设备管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.1.2.8" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    8.备份压缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.9" data-path="../9.other-command/">
+            
+                <a href="../9.other-command/">
+            
+                    
+                    9.其他命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" >
+            
+                <span>
+            
+                    
+                    Go
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../../../go/go环境及goland快捷键.html">
+            
+                <a href="../../../go/go环境及goland快捷键.html">
+            
+                    
+                    go 环境及 goland 快捷键
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" >
+            
+                <span>
+            
+                    
+                    Gitbook
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../../../gitbook/命令及使用.html">
+            
+                <a href="../../../gitbook/命令及使用.html">
+            
+                    
+                    命令及使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../../../gitbook/vscode+picgo+github搭建markdown图床.html">
+            
+                <a href="../../../gitbook/vscode+picgo+github搭建markdown图床.html">
+            
+                    
+                    vscode+picgo+github 搭建 markdown 图床
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" >
+            
+                <span>
+            
+                    
+                    C#
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" >
+            
+                <span>
+            
+                    
+                    Java
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" >
+            
+                <span>
+            
+                    
+                    Python
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" >
+            
+                <span>
+            
+                    
+                    数据库
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.7.1" data-path="../../../database/redis总结.html">
+            
+                <a href="../../../database/redis总结.html">
+            
+                    
+                    redis 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" >
+            
+                <span>
+            
+                    
+                    思维变革
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" >
+            
+                <span>
+            
+                    
+                    技术基础
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" >
+            
+                <span>
+            
+                    
+                    分布式架构
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" >
+            
+                <span>
+            
+                    
+                    编程规范
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" >
+            
+                <span>
+            
+                    
+                    弹性设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" >
+            
+                <span>
+            
+                    
+                    管理设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" >
+            
+                <span>
+            
+                    
+                    性能设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" >
+            
+                <span>
+            
+                    
+                    区块链
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.8" >
+            
+                <span>
+            
+                    
+                    面试
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.9" >
+            
+                <span>
+            
+                    
+                    高效学习
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.10" >
+            
+                <span>
+            
+                    
+                    高效沟通
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" >
+            
+                <span>
+            
+                    
+                    玩物丧志
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" >
+            
+                <span>
+            
+                    
+                    单反
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" >
+            
+                <span>
+            
+                    
+                    NAS
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../../../../">
+            
+                <a href="../../../../../">
+            
+                    
+                    关于
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../../../.." >8.备份压缩</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#8&#x5907;&#x4EFD;&#x538B;&#x7F29;"><b></b>8.&#x5907;&#x4EFD;&#x538B;&#x7F29;</a></li></ul></div><a href="#8&#x5907;&#x4EFD;&#x538B;&#x7F29;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="8&#x5907;&#x4EFD;&#x538B;&#x7F29;"><a name="8&#x5907;&#x4EFD;&#x538B;&#x7F29;" class="anchor-navigation-ex-anchor" href="#8&#x5907;&#x4EFD;&#x538B;&#x7F29;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="8&#x5907;&#x4EFD;&#x538B;&#x7F29;" class="plugin-anchor" href="#8&#x5907;&#x4EFD;&#x538B;&#x7F29;"><i class="fa fa-link" aria-hidden="true"></i></a>8.&#x5907;&#x4EFD;&#x538B;&#x7F29;</h1>
+<p>&#x5185;&#x5BB9;&#x6765;&#x81EA;&#x7F51;&#x7EDC;&#xFF0C;&#x4EC5;&#x505A;&#x5B66;&#x4E60;&#x7814;&#x7A76;&#x4F7F;&#x7528;&#xFF0C;&#x5982;&#x6709;&#x4FB5;&#x6743;&#x8BF7;&#x8054;&#x7CFB;&#x5220;&#x9664;</p>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> By <a href="https://github.com/xiaobei930" target="_blank">xiaobei</a>&#xFF0C;&#x4F7F;&#x7528;<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">&#x77E5;&#x8BC6;&#x5171;&#x4EAB; &#x7F72;&#x540D;-&#x76F8;&#x540C;&#x65B9;&#x5F0F;&#x5171;&#x4EAB; 4.0&#x534F;&#x8BAE;</a>&#x53D1;&#x5E03; </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> &#x6B64;&#x9875;&#x9762;&#x4FEE;&#x8BA2;&#x4E8E;&#xFF1A; 2020-08-15 09:39:51 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../7.quipment-management/" class="navigation navigation-prev " aria-label="Previous page: 7.设备管理">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../9.other-command/" class="navigation navigation-next " aria-label="Next page: 9.其他命令">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"8.备份压缩","level":"1.1.1.2.8","depth":4,"next":{"title":"9.其他命令","level":"1.1.1.2.9","depth":4,"path":"book/technology/linux/command-encyclopedia/9.other-command/README.md","ref":"book/technology/linux/command-encyclopedia/9.other-command/README.md","articles":[]},"previous":{"title":"7.设备管理","level":"1.1.1.2.7","depth":4,"path":"book/technology/linux/command-encyclopedia/7.quipment-management/README.md","ref":"book/technology/linux/command-encyclopedia/7.quipment-management/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["favicon","yahei","github","autotheme","-lunr","-search","search-plus","prism","-highlight","github-buttons","splitter","-sharing","sharing-plus","page-footer-ex","expandable-chapters-small","book-summary-scroll-position-saver","anchors","anchor-navigation-ex","sitemap-general","copy-code-button","multipart","edit-link-plus","editlink","toc","expandable-chapters","insert-logo","advanced-emoji"],"root":".","styles":{"website":"assets/styles/website.css"},"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"github":{"url":"https://github.com/xiaobei930"},"editlink":{"label":"Edit","multilingual":false,"base":"https://github.com/xiaobei930/LearningNotes/blob/master"},"yahei":{},"book-summary-scroll-position-saver":{},"page-footer-ex":{"copyright":"By [xiaobei](https://github.com/xiaobei930)，使用[知识共享 署名-相同方式共享 4.0协议](https://creativecommons.org/licenses/by-sa/4.0/)发布","markdown":true,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"此页面修订于："},"splitter":{},"toc":{},"edit-link-plus":{"label":{"en":"Edit This Page","zh":"编辑本页"},"base":"https://github.com/xiaobei930/LearningNotes/edit/BRANCH/path/to/book"},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"multipart":{},"sitemap-general":{"prefix":"https://xiaobei930.github.io/myBook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"family":"serif","size":2},"anchor-navigation-ex":{"associatedWithSummary":false,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"/assets/logo/favicon.ico","bookmark":"/assets/logo/favicon.ico","appleTouch":"/assets/logo/apple-touch-icon.png","appleTouchMore":{"120x120":"/assets/logo/apple-touch-icon-120x120.png","180x180":"/assets/logo/apple-touch-icon-180x180.png"}},"github-buttons":{"buttons":[{"user":"xiaobei930","repo":"LearningNotes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"autotheme":{"night":[20,21,22,23,0,1,2,3,4,5],"sepia":[6,7,8,18,19,19],"white":[9,10,11,12,13,14,15,16,17]},"advanced-emoji":{"embedEmojis":false},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":true,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":true},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"https://cdn.jsdelivr.net/gh/xiaobei930/LearningNotes@master/assets/logo/logo.png"},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"小北","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"听小北瞎扯淡","language":"zh-hans","links":{"sidebar":{"GitHub":"https://github.com/xiaobei930","博客":"https://xiaobei930.github.io/LearningNotes/"}},"gitbook":"3.x.x","description":"杂七杂八乱记一通"},"file":{"path":"book/technology/linux/command-encyclopedia/8.backup-compression/README.md","mtime":"2020-08-15T09:39:51.413Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-15T09:40:42.655Z"},"basePath":"../../../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../../../gitbook/gitbook.js"></script>
+    <script src="../../../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-autotheme/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-book-summary-scroll-position-saver/book-summary-scroll-position-saver.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-edit-link-plus/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

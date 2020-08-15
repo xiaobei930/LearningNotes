@@ -1,0 +1,1950 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>nginx 负载均衡 · 听小北瞎扯淡</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="小北">
+        
+        
+    
+    <link rel="stylesheet" href="../../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-yahei/yahei.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-prism/prism-tomorrow.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-multipart/multipart.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../../../assets/styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="mysql入门安装.html" />
+    
+    
+    <link rel="prev" href="nginx服务器虚拟主机、反向代理.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"xiaobei930","repo":"LearningNotes","type":"star","size":"small","count":true}]};
+    </script>
+
+    
+        <link rel="shortcut icon" href='../../../../assets/logo/favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../../../../assets/logo/favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="apple-touch-icon" href='../../../../assets/logo/apple-touch-icon.png'>
+    
+    
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="../../../../assets/logo/apple-touch-icon-120x120.png">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="../../../../assets/logo/apple-touch-icon-180x180.png">
+        
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/xiaobei930" target="_blank" class="custom-link">GitHub</a>
+        </li>
+    
+        
+        <li>
+            <a href="https://xiaobei930.github.io/LearningNotes/" target="_blank" class="custom-link">博客</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <span>
+            
+                    
+                    技术剪影
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" >
+            
+                <span>
+            
+                    
+                    Linux
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" >
+            
+                <span>
+            
+                    
+                    系统学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1.1" data-path="操作系统入门.html">
+            
+                <a href="操作系统入门.html">
+            
+                    
+                    操作系统入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.2" data-path="linux介绍及安装.html">
+            
+                <a href="linux介绍及安装.html">
+            
+                    
+                    linux 介绍及安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.3" data-path="基础命令讲解一.html">
+            
+                <a href="基础命令讲解一.html">
+            
+                    
+                    基础命令讲解(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.4" data-path="基础命令讲解二.html">
+            
+                <a href="基础命令讲解二.html">
+            
+                    
+                    基础命令讲解(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.5" data-path="vim编辑器.html">
+            
+                <a href="vim编辑器.html">
+            
+                    
+                    vim 编辑器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.6" data-path="yum管理.html">
+            
+                <a href="yum管理.html">
+            
+                    
+                    yum 管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.7" data-path="nfs文件共享服务器.html">
+            
+                <a href="nfs文件共享服务器.html">
+            
+                    
+                    nfs 文件共享服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.8" data-path="ftp文件服务器.html">
+            
+                <a href="ftp文件服务器.html">
+            
+                    
+                    ftp 文件服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.9" data-path="nginx服务安装及配置文件.html">
+            
+                <a href="nginx服务安装及配置文件.html">
+            
+                    
+                    nginx 服务安装及配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.10" data-path="nginx配置文件解读及常用模块.html">
+            
+                <a href="nginx配置文件解读及常用模块.html">
+            
+                    
+                    nginx 配置文件解读及常用模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.11" data-path="nginx服务器location、rewite规则.html">
+            
+                <a href="nginx服务器location、rewite规则.html">
+            
+                    
+                    nginx 服务器 location、rewite 规则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.12" data-path="nginx服务器虚拟主机、反向代理.html">
+            
+                <a href="nginx服务器虚拟主机、反向代理.html">
+            
+                    
+                    nginx 服务器虚拟主机、反向代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.1.1.13" data-path="nginx负载均衡.html">
+            
+                <a href="nginx负载均衡.html">
+            
+                    
+                    nginx 负载均衡
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.14" data-path="mysql入门安装.html">
+            
+                <a href="mysql入门安装.html">
+            
+                    
+                    mysql 入门安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.15" data-path="mysql数据库基础操作.html">
+            
+                <a href="mysql数据库基础操作.html">
+            
+                    
+                    mysql 数据库基础操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.16" data-path="mysql主从同步及mysqldump备份.html">
+            
+                <a href="mysql主从同步及mysqldump备份.html">
+            
+                    
+                    mysql 主从同步及 mysqldump 备份
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.17" data-path="mysql读写分离实战.html">
+            
+                <a href="mysql读写分离实战.html">
+            
+                    
+                    mysql 读写分离实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.18" data-path="LNMP高性能服务器.html">
+            
+                <a href="LNMP高性能服务器.html">
+            
+                    
+                    LNMP 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.19" data-path="分布式LNMP高性能服务器.html">
+            
+                <a href="分布式LNMP高性能服务器.html">
+            
+                    
+                    分布式 LNMP 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.20" data-path="LNMP+redis高性能服务器.html">
+            
+                <a href="LNMP+redis高性能服务器.html">
+            
+                    
+                    LNMP+redis 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.21" data-path="redis数据库主从哨兵模式.html">
+            
+                <a href="redis数据库主从哨兵模式.html">
+            
+                    
+                    redis 数据库主从哨兵模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.22" data-path="zabbix监控入门.html">
+            
+                <a href="zabbix监控入门.html">
+            
+                    
+                    zabbix 监控入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.23" data-path="zabbix自定义监控项，触发器动作.html">
+            
+                <a href="zabbix自定义监控项，触发器动作.html">
+            
+                    
+                    zabbix 自定义监控项，触发器动作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.24" data-path="zabbix分布式应用，微信报警.html">
+            
+                <a href="zabbix分布式应用，微信报警.html">
+            
+                    
+                    zabbix 分布式应用，微信报警
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.25" data-path="tomcat服务器实战.html">
+            
+                <a href="tomcat服务器实战.html">
+            
+                    
+                    tomcat服务器实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.26" data-path="SHELL编程入门&案例实战.html">
+            
+                <a href="SHELL编程入门&案例实战.html">
+            
+                    
+                    SHELL编程入门&案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.27" data-path="SHELL编程变量&if实战.html">
+            
+                <a href="SHELL编程变量&if实战.html">
+            
+                    
+                    SHELL编程变量&if实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.28" data-path="SHELL编程if语句和for循环.html">
+            
+                <a href="SHELL编程if语句和for循环.html">
+            
+                    
+                    SHELL编程if语句和for循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.29" data-path="SHELL编程For&While.html">
+            
+                <a href="SHELL编程For&While.html">
+            
+                    
+                    SHELL编程For&While实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.30" data-path="SHELL编程Case&While实战.html">
+            
+                <a href="SHELL编程Case&While实战.html">
+            
+                    
+                    SHELL编程Case&While实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.31" data-path="SHELL编程Nginx虚拟主机实战.html">
+            
+                <a href="SHELL编程Nginx虚拟主机实战.html">
+            
+                    
+                    SHELL编程Nginx虚拟主机实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.32" data-path="SHELL编程Find案例实战.html">
+            
+                <a href="SHELL编程Find案例实战.html">
+            
+                    
+                    SHELL编程Find案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.33" data-path="SHELL编程Sed&Grep案例实战.html">
+            
+                <a href="SHELL编程Sed&Grep案例实战.html">
+            
+                    
+                    SHELL编程Sed&Grep案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.34" data-path="SHELL编程Grep&Awk案例实战.html">
+            
+                <a href="SHELL编程Grep&Awk案例实战.html">
+            
+                    
+                    SHELL编程Grep&Awk案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.35" data-path="LVS+Keepalived高可用实战.html">
+            
+                <a href="LVS+Keepalived高可用实战.html">
+            
+                    
+                    LVS+Keepalived高可用实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.36" data-path="Nginx+Keepalived高可用企业实战.html">
+            
+                <a href="Nginx+Keepalived高可用企业实战.html">
+            
+                    
+                    Nginx+Keepalived高可用企业实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.37" data-path="LVS+Keepalived高可用企业实战.html">
+            
+                <a href="LVS+Keepalived高可用企业实战.html">
+            
+                    
+                    LVS+Keepalived高可用企业实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.38" data-path="Docker虚拟化技术实战.html">
+            
+                <a href="Docker虚拟化技术实战.html">
+            
+                    
+                    Docker虚拟化技术实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" >
+            
+                <span>
+            
+                    
+                    linux 命令大全
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1" data-path="../command-encyclopedia/1.file-management/">
+            
+                <a href="../command-encyclopedia/1.file-management/">
+            
+                    
+                    1.文件管理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1.1" data-path="../command-encyclopedia/1.file-management/ls-显示指定工作目录下的内容及属性信息.html">
+            
+                <a href="../command-encyclopedia/1.file-management/ls-显示指定工作目录下的内容及属性信息.html">
+            
+                    
+                    ls-显示指定工作目录下的内容及属性信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.2" data-path="../command-encyclopedia/1.file-management/mkdir–创建目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/mkdir–创建目录.html">
+            
+                    
+                    mkdir–创建目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.3" data-path="../command-encyclopedia/1.file-management/cp-复制文件或目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/cp-复制文件或目录.html">
+            
+                    
+                    cp-复制文件或目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.4" data-path="../command-encyclopedia/1.file-management/pwd-显示当前目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/pwd-显示当前目录.html">
+            
+                    
+                    pwd-显示当前目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.5" data-path="../command-encyclopedia/1.file-management/mv-移动或改名.html">
+            
+                <a href="../command-encyclopedia/1.file-management/mv-移动或改名.html">
+            
+                    
+                    mv-移动或改名
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.6" data-path="../command-encyclopedia/1.file-management/touch-创建文件.html">
+            
+                <a href="../command-encyclopedia/1.file-management/touch-创建文件.html">
+            
+                    
+                    touch-创建文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.7" data-path="../command-encyclopedia/1.file-management/userdel-删除用户.html">
+            
+                <a href="../command-encyclopedia/1.file-management/userdel-删除用户.html">
+            
+                    
+                    userdel-删除用户
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.8" data-path="../command-encyclopedia/1.file-management/ln-为文件创建链接.html">
+            
+                <a href="../command-encyclopedia/1.file-management/ln-为文件创建链接.html">
+            
+                    
+                    ln-为文件创建链接
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.9" data-path="../command-encyclopedia/1.file-management/chattr-更改文件属性.html">
+            
+                <a href="../command-encyclopedia/1.file-management/chattr-更改文件属性.html">
+            
+                    
+                    chattr-更改文件属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.10" data-path="../command-encyclopedia/1.file-management/cd-切换目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/cd-切换目录.html">
+            
+                    
+                    cd-切换目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.11" data-path="../command-encyclopedia/1.file-management/traceroute-追踪数据包在网络上的传输时的全部路径.html">
+            
+                <a href="../command-encyclopedia/1.file-management/traceroute-追踪数据包在网络上的传输时的全部路径.html">
+            
+                    
+                    traceroute-追踪数据包在网络上的传输时的全部路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.12" data-path="../command-encyclopedia/1.file-management/cksum-校验文件.html">
+            
+                <a href="../command-encyclopedia/1.file-management/cksum-校验文件.html">
+            
+                    
+                    cksum-校验文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.13" data-path="../command-encyclopedia/1.file-management/locate-快速查找文件或目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/locate-快速查找文件或目录.html">
+            
+                    
+                    locate-快速查找文件或目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.14" data-path="../command-encyclopedia/1.file-management/wc-统计文件的字节数、字数、行数.html">
+            
+                <a href="../command-encyclopedia/1.file-management/wc-统计文件的字节数、字数、行数.html">
+            
+                    
+                    wc-统计文件的字节数、字数、行数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.15" data-path="../command-encyclopedia/1.file-management/lsattr-显示文件隐藏属性.html">
+            
+                <a href="../command-encyclopedia/1.file-management/lsattr-显示文件隐藏属性.html">
+            
+                    
+                    lsattr-显示文件隐藏属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.16" data-path="../command-encyclopedia/1.file-management/whereis-显示命令及相关文件的路径.html">
+            
+                <a href="../command-encyclopedia/1.file-management/whereis-显示命令及相关文件的路径.html">
+            
+                    
+                    whereis-显示命令及相关文件的路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.17" data-path="../command-encyclopedia/1.file-management/sort-排序文件并输出.html">
+            
+                <a href="../command-encyclopedia/1.file-management/sort-排序文件并输出.html">
+            
+                    
+                    sort-排序文件并输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.18" data-path="../command-encyclopedia/1.file-management/less-分页显示工具.html">
+            
+                <a href="../command-encyclopedia/1.file-management/less-分页显示工具.html">
+            
+                    
+                    less-分页显示工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.2" data-path="../command-encyclopedia/2.documents-editing/">
+            
+                <a href="../command-encyclopedia/2.documents-editing/">
+            
+                    
+                    2.文档编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.3" data-path="../command-encyclopedia/3.system-management/">
+            
+                <a href="../command-encyclopedia/3.system-management/">
+            
+                    
+                    3.系统管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.4" data-path="../command-encyclopedia/4.disk-management/">
+            
+                <a href="../command-encyclopedia/4.disk-management/">
+            
+                    
+                    4.磁盘管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.5" data-path="../command-encyclopedia/5.file-transfer/">
+            
+                <a href="../command-encyclopedia/5.file-transfer/">
+            
+                    
+                    5.文件传输
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.6" data-path="../command-encyclopedia/6.network-communication/">
+            
+                <a href="../command-encyclopedia/6.network-communication/">
+            
+                    
+                    6.网络通讯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.7" data-path="../command-encyclopedia/7.quipment-management/">
+            
+                <a href="../command-encyclopedia/7.quipment-management/">
+            
+                    
+                    7.设备管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.8" data-path="../command-encyclopedia/8.backup-compression/">
+            
+                <a href="../command-encyclopedia/8.backup-compression/">
+            
+                    
+                    8.备份压缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.9" data-path="../command-encyclopedia/9.other-command/">
+            
+                <a href="../command-encyclopedia/9.other-command/">
+            
+                    
+                    9.其他命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" >
+            
+                <span>
+            
+                    
+                    Go
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../../go/go环境及goland快捷键.html">
+            
+                <a href="../../go/go环境及goland快捷键.html">
+            
+                    
+                    go 环境及 goland 快捷键
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" >
+            
+                <span>
+            
+                    
+                    Gitbook
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../../gitbook/命令及使用.html">
+            
+                <a href="../../gitbook/命令及使用.html">
+            
+                    
+                    命令及使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../../gitbook/vscode+picgo+github搭建markdown图床.html">
+            
+                <a href="../../gitbook/vscode+picgo+github搭建markdown图床.html">
+            
+                    
+                    vscode+picgo+github 搭建 markdown 图床
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" >
+            
+                <span>
+            
+                    
+                    C#
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" >
+            
+                <span>
+            
+                    
+                    Java
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" >
+            
+                <span>
+            
+                    
+                    Python
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" >
+            
+                <span>
+            
+                    
+                    数据库
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.7.1" data-path="../../database/redis总结.html">
+            
+                <a href="../../database/redis总结.html">
+            
+                    
+                    redis 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" >
+            
+                <span>
+            
+                    
+                    思维变革
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" >
+            
+                <span>
+            
+                    
+                    技术基础
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" >
+            
+                <span>
+            
+                    
+                    分布式架构
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" >
+            
+                <span>
+            
+                    
+                    编程规范
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" >
+            
+                <span>
+            
+                    
+                    弹性设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" >
+            
+                <span>
+            
+                    
+                    管理设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" >
+            
+                <span>
+            
+                    
+                    性能设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" >
+            
+                <span>
+            
+                    
+                    区块链
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.8" >
+            
+                <span>
+            
+                    
+                    面试
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.9" >
+            
+                <span>
+            
+                    
+                    高效学习
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.10" >
+            
+                <span>
+            
+                    
+                    高效沟通
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" >
+            
+                <span>
+            
+                    
+                    玩物丧志
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" >
+            
+                <span>
+            
+                    
+                    单反
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" >
+            
+                <span>
+            
+                    
+                    NAS
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../../../">
+            
+                <a href="../../../../">
+            
+                    
+                    关于
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../../.." >nginx 负载均衡</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#nginx-&#x8D1F;&#x8F7D;&#x5747;&#x8861;"><b></b>nginx &#x8D1F;&#x8F7D;&#x5747;&#x8861;</a></li><ul><li><span class="title-icon "></span><a href="#&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x76EE;&#x7684;"><b></b>&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x76EE;&#x7684;</a></li><li><span class="title-icon "></span><a href="#&#x5DE5;&#x4F5C;&#x539F;&#x7406;"><b></b>&#x5DE5;&#x4F5C;&#x539F;&#x7406;</a></li><li><span class="title-icon "></span><a href="#&#x914D;&#x7F6E;-7-&#x5C42;&#x5747;&#x8861;"><b></b>&#x914D;&#x7F6E; 7 &#x5C42;&#x5747;&#x8861;</a></li><ul><li><span class="title-icon "></span><a href="#&#x914D;&#x7F6E;&#x524D;&#x7AEF;-nginx"><b></b>&#x914D;&#x7F6E;&#x524D;&#x7AEF; nginx</a></li><li><span class="title-icon "></span><a href="#&#x914D;&#x7F6E;&#x540E;&#x7AEF;-nginx"><b></b>&#x914D;&#x7F6E;&#x540E;&#x7AEF; nginx</a></li><li><span class="title-icon "></span><a href="#&#x5747;&#x8861;&#x65B9;&#x5F0F;"><b></b>&#x5747;&#x8861;&#x65B9;&#x5F0F;</a></li></ul><li><span class="title-icon "></span><a href="#&#x914D;&#x7F6E;&#x56DB;&#x5C42;&#x5747;&#x8861;"><b></b>&#x914D;&#x7F6E;&#x56DB;&#x5C42;&#x5747;&#x8861;</a></li><ul><li><span class="title-icon "></span><a href="#&#x914D;&#x7F6E;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;"><b></b>&#x914D;&#x7F6E;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;</a></li><li><span class="title-icon "></span><a href="#&#x914D;&#x7F6E;&#x540E;&#x7AEF;&#x6D4B;&#x8BD5;&#x9875;&#x9762;"><b></b>&#x914D;&#x7F6E;&#x540E;&#x7AEF;&#x6D4B;&#x8BD5;&#x9875;&#x9762;</a></li><li><span class="title-icon "></span><a href="#&#x8BBF;&#x95EE;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;"><b></b>&#x8BBF;&#x95EE;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;</a></li><li><span class="title-icon "></span><a href="#&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;"><b></b>&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;</a></li></ul></ul></ul></div><a href="#nginx-&#x8D1F;&#x8F7D;&#x5747;&#x8861;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="nginx-&#x8D1F;&#x8F7D;&#x5747;&#x8861;"><a name="nginx-&#x8D1F;&#x8F7D;&#x5747;&#x8861;" class="anchor-navigation-ex-anchor" href="#nginx-&#x8D1F;&#x8F7D;&#x5747;&#x8861;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="nginx-&#x8D1F;&#x8F7D;&#x5747;&#x8861;" class="plugin-anchor" href="#nginx-&#x8D1F;&#x8F7D;&#x5747;&#x8861;"><i class="fa fa-link" aria-hidden="true"></i></a>nginx &#x8D1F;&#x8F7D;&#x5747;&#x8861;</h1>
+<h2 id="&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x76EE;&#x7684;"><a name="&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x76EE;&#x7684;" class="anchor-navigation-ex-anchor" href="#&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x76EE;&#x7684;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x76EE;&#x7684;" class="plugin-anchor" href="#&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x76EE;&#x7684;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x76EE;&#x7684;</h2>
+<p>&#x5C06;&#x524D;&#x7AEF;&#x8D85;&#x9AD8;&#x5E76;&#x53D1;&#x8BBF;&#x95EE;&#x8F6C;&#x53D1;&#x81F3;&#x540E;&#x7AEF;&#x591A;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C;&#x89E3;&#x51B3;&#x5355;&#x4E2A;&#x8282;&#x70B9;&#x538B;&#x529B;&#x8FC7;&#x5927;&#xFF0C;&#x9020;&#x6210; Web &#x670D;&#x52A1;&#x54CD;&#x5E94;&#x8FC7;&#x6162;&#xFF0C;&#x4E25;&#x91CD;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x5BFC;&#x81F4;&#x670D;&#x52A1;&#x762B;&#x75EA;&#xFF0C;&#x65E0;&#x6CD5;&#x6B63;&#x5E38;&#x63D0;
+&#x4F9B;&#x670D;&#x52A1;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<h2 id="&#x5DE5;&#x4F5C;&#x539F;&#x7406;"><a name="&#x5DE5;&#x4F5C;&#x539F;&#x7406;" class="anchor-navigation-ex-anchor" href="#&#x5DE5;&#x4F5C;&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5DE5;&#x4F5C;&#x539F;&#x7406;" class="plugin-anchor" href="#&#x5DE5;&#x4F5C;&#x539F;&#x7406;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5DE5;&#x4F5C;&#x539F;&#x7406;</h2>
+<p>&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x5206;&#x4E3A;&#x56DB;&#x5C42;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x548C;&#x4E03;&#x5C42;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#xFF1A;</p>
+<p>&#x56DB;&#x5C42;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x662F;&#x5DE5;&#x4F5C;&#x5728;&#x4E03;&#x5C42;&#x534F;&#x8BAE;&#x7684;&#x7B2C;&#x56DB;&#x5C42;-&#x4F20;&#x8F93;&#x5C42;&#xFF0C;&#x4E3B;&#x8981;&#x5DE5;&#x4F5C;&#x662F;&#x8F6C;&#x53D1;&#x3002;</p>
+<p>&#x5B83;&#x5728;&#x63A5;&#x6536;&#x5230;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x6D41;&#x91CF;&#x4EE5;&#x540E;&#x901A;&#x8FC7;&#x4FEE;&#x6539;&#x6570;&#x636E;&#x5305;&#x7684;&#x5730;&#x5740;&#x4FE1;&#x606F;&#xFF08;&#x76EE;&#x6807;&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;&#x548C;&#x6E90;&#x5730;&#x5740;&#xFF09;&#x5C06;&#x6D41;&#x91CF;&#x8F6C;&#x53D1;&#x5230;&#x5E94;&#x7528;&#x670D;&#x52A1;&#x5668;&#x3002;</p>
+<p>&#x4E03;&#x5C42;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x662F;&#x5DE5;&#x4F5C;&#x5728;&#x4E03;&#x5C42;&#x534F;&#x8BAE;&#x7684;&#x7B2C;&#x4E03;&#x5C42;-&#x5E94;&#x7528;&#x5C42;&#xFF0C;&#x4E3B;&#x8981;&#x5DE5;&#x4F5C;&#x662F;&#x4EE3;&#x7406;&#x3002;</p>
+<p>&#x5B83;&#x9996;&#x5148;&#x4F1A;&#x4E0E;&#x5BA2;&#x6237;&#x7AEF;&#x5EFA;&#x7ACB;&#x4E00;&#x6761;&#x5B8C;&#x6574;&#x7684;&#x8FDE;&#x63A5;&#x5E76;&#x5C06;&#x5E94;&#x7528;&#x5C42;&#x7684;&#x8BF7;&#x6C42;&#x6D41;&#x91CF;&#x89E3;&#x6790;&#x51FA;&#x6765;&#xFF0C;&#x518D;&#x6309;&#x7167;&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5E76;&#x4E0E;&#x5E94;&#x7528;&#x670D;&#x52A1;&#x5668;&#x5EFA;&#x7ACB;&#x53E6;&#x5916;&#x4E00;&#x6761;&#x8FDE;&#x63A5;
+&#x5C06;&#x8BF7;&#x6C42;&#x53D1;&#x9001;&#x8FC7;&#x53BB;&#x3002;</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/nginx&#x8D1F;&#x8F7D;&#x5747;&#x8861;-&#x4E03;&#x5C42;&#x534F;&#x8BAE;.jpg" alt="nginx&#x8D1F;&#x8F7D;&#x5747;&#x8861;-&#x4E03;&#x5C42;&#x534F;&#x8BAE;"></p>
+<h2 id="&#x914D;&#x7F6E;-7-&#x5C42;&#x5747;&#x8861;"><a name="&#x914D;&#x7F6E;-7-&#x5C42;&#x5747;&#x8861;" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;-7-&#x5C42;&#x5747;&#x8861;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x914D;&#x7F6E;-7-&#x5C42;&#x5747;&#x8861;" class="plugin-anchor" href="#&#x914D;&#x7F6E;-7-&#x5C42;&#x5747;&#x8861;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x7F6E; 7 &#x5C42;&#x5747;&#x8861;</h2>
+<pre class="language-"><code>&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#xFF1A; 192.168.1.6
+&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;1&#xFF1A;192.168.1.5
+&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;2&#xFF1A;192.168.1.7
+&#x8FD9;&#x91CC;&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x5B9E;&#x73B0;
+</code></pre><p>&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x4E3B;&#x8981;&#x914D;&#x7F6E; upstream &#x548C; proxy_pass&#xFF1A;</p>
+<ul>
+<li>upstream &#x4E3B;&#x8981;&#x662F;&#x914D;&#x7F6E;&#x5747;&#x8861;&#x6C60;&#x548C;&#x8C03;&#x5EA6;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>proxy_pass &#x4E3B;&#x8981;&#x662F;&#x914D;&#x7F6E;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668; ip &#x6216;&#x670D;&#x52A1;&#x5668;&#x7EC4;&#x7684;&#x540D;&#x5B57;&#x3002;</li>
+<li>proxy_set_header &#x4E3B;&#x8981;&#x662F;&#x914D;&#x7F6E;&#x8F6C;&#x53D1;&#x7ED9;&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x7684; Host &#x548C;&#x524D;&#x7AEF;&#x5BA2;&#x6237;&#x7AEF;&#x771F;&#x5B9E; ip&#x3002;</li>
+</ul>
+<h3 id="&#x914D;&#x7F6E;&#x524D;&#x7AEF;-nginx"><a name="&#x914D;&#x7F6E;&#x524D;&#x7AEF;-nginx" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;&#x524D;&#x7AEF;-nginx"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x914D;&#x7F6E;&#x524D;&#x7AEF;-nginx" class="plugin-anchor" href="#&#x914D;&#x7F6E;&#x524D;&#x7AEF;-nginx"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x7F6E;&#x524D;&#x7AEF; nginx</h3>
+<pre class="language-"><code class="lang-shell"># &#x5728;http&#x6307;&#x4EE4;&#x5757;&#x4E0B;&#x914D;&#x7F6E;upstream&#x6307;&#x4EE4;&#x5757;(/etc/nginx/conf.d/default.conf)
+upstream web {
+    server 192.168.1.5;
+    server 192.168.1.7;
+}
+# &#x5728;location&#x6307;&#x4EE4;&#x5757;&#x914D;&#x7F6E;proxy_pass
+server {
+    listen 80;
+    server_name localhost;
+    location / {
+        proxy_pass http://web;
+        proxy_next_upstream error http_404 http_502;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+# proxy_next_upstream error http_404 http_502;
+# &#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x6307;&#x4EE4;&#xFF0C;&#x53EF;&#x4EE5;&#x5904;&#x7406;&#x5F53;&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x8FD4;&#x56DE;404&#x7B49;&#x62A5;&#x9519;&#x65F6;&#xFF0C;&#x76F4;&#x63A5;&#x5C06;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x7ED9;&#x5176;&#x4ED6;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x628A;&#x62A5;&#x9519;&#x4FE1;&#x606F;&#x8FD4;&#x56DE;&#x5BA2;&#x6237;&#x7AEF;&#x3002;
+
+# proxy_set_header Host $host;
+# &#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x6307;&#x4EE4;&#xFF0C;&#x628A;&#x5BA2;&#x6237;&#x7AEF;&#x8BF7;&#x6C42;&#x7684;host&#xFF0C;&#x8F6C;&#x53D1;&#x7ED9;&#x540E;&#x7AEF;&#x3002;
+
+# proxy_set_header X-Real-IP $remote_addr
+# &#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x6307;&#x4EE4;&#xFF0C;&#x628A;&#x5BA2;&#x6237;&#x7AEF;&#x7684;IP&#x8F6C;&#x53D1;&#x7ED9;&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5728;&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x7684;&#x65E5;&#x5FD7;&#x683C;&#x5F0F;&#x4E2D;&#xFF0C;&#x6DFB;&#x52A0;$http_x_real_ip&#x5373;&#x53EF;&#x83B7;&#x53D6;&#x539F;&#x59CB;&#x5BA2;&#x6237;&#x7AEF;&#x7684;IP&#x4E86;&#x3002;
+</code></pre>
+<h3 id="&#x914D;&#x7F6E;&#x540E;&#x7AEF;-nginx"><a name="&#x914D;&#x7F6E;&#x540E;&#x7AEF;-nginx" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;&#x540E;&#x7AEF;-nginx"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x914D;&#x7F6E;&#x540E;&#x7AEF;-nginx" class="plugin-anchor" href="#&#x914D;&#x7F6E;&#x540E;&#x7AEF;-nginx"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x7F6E;&#x540E;&#x7AEF; nginx</h3>
+<pre class="language-"><code class="lang-shell">yum install nginx -y
+echo &quot;this is 1.5 page&quot; &gt; /usr/share/nginx/html/index.html
+echo &quot;this is 1.7 page&quot; &gt; /usr/share/nginx/html/index.htm
+</code></pre>
+<h3 id="&#x5747;&#x8861;&#x65B9;&#x5F0F;"><a name="&#x5747;&#x8861;&#x65B9;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#&#x5747;&#x8861;&#x65B9;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5747;&#x8861;&#x65B9;&#x5F0F;" class="plugin-anchor" href="#&#x5747;&#x8861;&#x65B9;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5747;&#x8861;&#x65B9;&#x5F0F;</h3>
+<h4 id="&#x8F6E;&#x8BE2;"><a name="&#x8F6E;&#x8BE2;" class="anchor-navigation-ex-anchor" href="#&#x8F6E;&#x8BE2;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8F6E;&#x8BE2;" class="plugin-anchor" href="#&#x8F6E;&#x8BE2;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8F6E;&#x8BE2;</h4>
+<pre class="language-"><code class="lang-shell">upstream web {
+    server 192.168.1.5;
+    server 192.168.1.7;
+}
+</code></pre>
+<p>&#x8BBF;&#x95EE;&#x524D;&#x7AEF; IP:</p>
+<pre class="language-"><code class="lang-shell">[root@192 ~]# while true;do curl 192.168.1.6;sleep 2;done
+this is 1.5 page
+this is 1.7 page
+this is 1.5 page
+this is 1.7 page
+#&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x975E;&#x5E38;&#x5E73;&#x5747;&#x7684;&#x5904;&#x7406;&#x8BF7;&#x6C42;&#x3002;
+</code></pre>
+<h4 id="&#x8F6E;&#x8BE2;&#x52A0;&#x6743;&#x91CD;"><a name="&#x8F6E;&#x8BE2;&#x52A0;&#x6743;&#x91CD;" class="anchor-navigation-ex-anchor" href="#&#x8F6E;&#x8BE2;&#x52A0;&#x6743;&#x91CD;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8F6E;&#x8BE2;&#x52A0;&#x6743;&#x91CD;" class="plugin-anchor" href="#&#x8F6E;&#x8BE2;&#x52A0;&#x6743;&#x91CD;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8F6E;&#x8BE2;&#x52A0;&#x6743;&#x91CD;</h4>
+<pre class="language-"><code class="lang-shell">upstream web {
+    server 192.168.1.5 weight=3;
+    server 192.168.1.7 weight=1;
+}
+</code></pre>
+<p>&#x8BBF;&#x95EE;&#x524D;&#x7AEF; IP:</p>
+<pre class="language-"><code class="lang-shell">[root@192 ~]# while true;do curl 192.168.1.6;sleep 1;done
+this is 1.5 page
+this is 1.5 page
+this is 1.5 page
+this is 1.7 page
+this is 1.5 page
+this is 1.5 page
+this is 1.5 page
+this is 1.7 page
+#&#x540E;&#x7AEF;&#x670D;&#x52A1;&#xFF0C;&#x6839;&#x636E;&#x6743;&#x91CD;&#x6BD4;&#x4F8B;&#x5904;&#x7406;&#x8BF7;&#x6C42;&#xFF0C;&#x9002;&#x7528;&#x4E8E;&#x670D;&#x52A1;&#x5668;&#x6027;&#x80FD;&#x4E0D;&#x5747;&#x7684;&#x73AF;&#x5883;&#x3002;
+</code></pre>
+<h4 id="&#x6700;&#x5927;&#x9519;&#x8BEF;&#x8FDE;&#x63A5;&#x6B21;&#x6570;"><a name="&#x6700;&#x5927;&#x9519;&#x8BEF;&#x8FDE;&#x63A5;&#x6B21;&#x6570;" class="anchor-navigation-ex-anchor" href="#&#x6700;&#x5927;&#x9519;&#x8BEF;&#x8FDE;&#x63A5;&#x6B21;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6700;&#x5927;&#x9519;&#x8BEF;&#x8FDE;&#x63A5;&#x6B21;&#x6570;" class="plugin-anchor" href="#&#x6700;&#x5927;&#x9519;&#x8BEF;&#x8FDE;&#x63A5;&#x6B21;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6700;&#x5927;&#x9519;&#x8BEF;&#x8FDE;&#x63A5;&#x6B21;&#x6570;</h4>
+<p>&#x9519;&#x8BEF;&#x7684;&#x8FDE;&#x63A5;&#x7531; proxy_next_upstream&#xFF0C; fastcgi_next_upstream &#x7B49;&#x6307;&#x4EE4;&#x51B3;&#x5B9A;&#xFF0C;&#x4E14;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x540E;&#x7AEF;&#x67D0;&#x53F0;&#x670D;&#x52A1;&#x5668;<strong>&#x51FA;&#x73B0;&#x6545;&#x969C;</strong>&#x4E86;&#xFF0C;nginx &#x4F1A;&#x81EA;&#x52A8;&#x5C06;&#x8BF7;&#x6C42;&#x518D;&#x6B21;&#x8F6C;&#x53D1;&#x7ED9;&#x5176;&#x4ED6;&#x6B63;&#x5E38;&#x7684;&#x670D;&#x52A1;&#x5668;&#xFF08;&#x56E0;&#x4E3A;&#x9ED8;&#x8BA4; proxy_next_upstream errortimeout&#xFF09;&#x3002;&#x6240;&#x4EE5;&#x5373;&#x4F7F;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x914D;&#x8FD9;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;nginx &#x4E5F;&#x53EF;&#x4EE5;&#x5E2E;&#x6211;&#x4EEC;&#x5904;&#x7406; error &#x548C; timeout &#x7684;&#x54CD;&#x5E94;&#xFF0C;&#x4F46;&#x662F;&#x6CA1;&#x6CD5;&#x5904;&#x7406; 404 &#x7B49;&#x62A5;&#x9519;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x770B;&#x6E05;&#x695A;&#x672C;&#x8D28;&#xFF0C;<strong>&#x53EF;&#x4EE5;&#x5148;&#x5C06; proxy_next_upstream &#x8BBE;&#x7F6E;&#x4E3A; off</strong>&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E0D;&#x5C06;&#x5931;&#x8D25;&#x7684;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x7ED9;&#x5176;&#x4ED6;&#x6B63;&#x5E38;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x8FD9;&#x6837;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8BF7;&#x6C42;&#x5931;&#x8D25;&#x7684;&#x7ED3;&#x679C;&#x3002;</p>
+<pre class="language-"><code class="lang-shell">upstream web {
+    server 192.168.1.5 weight=1 max_fails=3
+    fail_timeout=9s;
+    #&#x5148;&#x5C06;1.5&#x8FD9;&#x53F0;nginx&#x5173;&#x4E86;&#x3002;
+    server 192.168.1.7 weight=1;
+}
+server {
+    listen 80;
+    server_name localhost;
+    location / {
+        proxy_pass http://web;
+        #proxy_next_upstream error http_404 http_502;
+        proxy_next_upstream off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+# &#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#x8BBE;&#x7F6E;&#x4E3A;9s&#xFF0C;&#x6700;&#x591A;&#x5C1D;&#x8BD5;3&#x6B21;&#xFF0C;
+&#x8FD9;&#x91CC;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x5C1D;&#x8BD5;3&#x6B21;&#xFF0C;&#x4F9D;&#x7136;&#x9075;&#x5FAA;&#x8F6E;&#x8BE2;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x8BF7;&#x6C42;&#xFF0C;&#x8FDE;&#x63A5;3&#x6B21;&#xFF0C;
+&#x800C;&#x662F;&#x8F6E;&#x8BE2;&#x4E09;&#x6B21;&#xFF0C;&#x6709;3&#x6B21;&#x5904;&#x7406;&#x8BF7;&#x6C42;&#x7684;&#x673A;&#x4F1A;&#x3002;
+</code></pre>
+<p>&#x8BBF;&#x95EE;&#x524D;&#x7AEF; IP:</p>
+<pre class="language-"><code class="lang-shell">[root@192 ~]# while true;do curl -I 192.168.1.6
+2&gt;/dev/null|grep HTTP/1.1 ;sleep 3;done
+HTTP/1.1 502 Bad Gateway
+HTTP/1.1 200 OK
+HTTP/1.1 502 Bad Gateway
+HTTP/1.1 200 OK
+HTTP/1.1 502 Bad Gateway
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+HTTP/1.1 502 Bad Gateway
+# &#x6211;&#x4EEC;&#x8BBE;&#x7F6E;&#x7684;&#x8D85;&#x65F6;&#x65F6;&#x95F4;&#x4E3A;9s&#xFF0C;&#x6211;&#x4EEC;&#x662F;&#x6BCF;3s&#x8BF7;&#x6C42;&#x4E00;&#x6B21;&#x3002;
+&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x540E;&#x7AEF;&#x4E00;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x6302;&#x4E86;&#x540E;&#xFF0C;&#x8BF7;&#x6C42;&#x6CA1;&#x6709;&#x76F4;&#x63A5;&#x8F6C;&#x53D1;&#x7ED9;&#x6B63;&#x5E38;&#x7684;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x4E86;502&#x3002;&#x5C1D;&#x8BD5;&#x4E09;&#x6B21;&#x540E;&#xFF0C;&#x7B49;&#x5F85;9s&#xFF0C;&#x624D;&#x5F00;&#x59CB;&#x518D;&#x6B21;&#x5C1D;&#x8BD5;&#xFF08;&#x6700;&#x540E;&#x4E00;&#x4E2A;
+502&#xFF09;&#x3002;
+</code></pre>
+<p><strong>&#x628A; proxy_next_upstream &#x5F00;&#x542F;</strong>&#xFF0C;&#x518D;&#x6765;&#x8BBF;&#x95EE;&#x770B;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre class="language-"><code class="lang-shell">upstream web {
+    server 192.168.1.5 weight=1 max_fails=3
+    fail_timeout=9s;
+    #&#x5148;&#x5C06;1.5&#x8FD9;&#x53F0;nginx&#x5173;&#x4E86;&#x3002;
+    server 192.168.1.7 weight=1;
+}
+server {
+    listen 80;
+    server_name localhost;
+    location / {
+        proxy_pass http://web;
+        proxy_next_upstream error http_404 http_502;
+        #proxy_next_upstream off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+</code></pre>
+<p>&#x8BBF;&#x95EE;&#x524D;&#x7AEF; IP&#xFF1A;</p>
+<pre class="language-"><code class="lang-shell">[root@192 ~]# while true;do curl -I 192.168.1.6
+2&gt;/dev/null|grep HTTP/1.1 ;sleep 3;done
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+#&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x73B0;&#x5728;&#x6CA1;&#x6709;502&#x62A5;&#x9519;&#xFF0C;&#x8BF7;&#x6C42;&#x90FD;&#x5904;&#x7406;&#x4E86;&#x3002;&#x56E0;&#x4E3A;&#x9519;&#x8BEF;&#x7684;&#x54CD;&#x5E94;&#x7801;&#x88AB;
+#proxy_next_upstream &#x83B7;&#x53D6;&#xFF0C;&#x8FD9;&#x6B21;&#x8BF7;&#x6C42;&#x88AB;&#x8F6C;&#x53D1;&#x7ED9;&#x4E0B;&#x4E00;&#x4E2A;&#x6B63;&#x5E38;&#x7684;&#x670D;&#x52A1;&#x5668;&#x4E86;&#x3002;
+</code></pre>
+<h4 id="iphash"><a name="iphash" class="anchor-navigation-ex-anchor" href="#iphash"><i class="fa fa-link" aria-hidden="true"></i></a><a name="iphash" class="plugin-anchor" href="#iphash"><i class="fa fa-link" aria-hidden="true"></i></a>ip_hash</h4>
+<p>&#x901A;&#x8FC7;&#x5BA2;&#x6237;&#x7AEF; ip &#x8FDB;&#x884C; hash&#xFF0C;&#x518D;&#x901A;&#x8FC7; hash &#x503C;&#x9009;&#x62E9;&#x540E;&#x7AEF; server &#x3002;</p>
+<pre class="language-"><code class="lang-shell">upstream web {
+    ip_hash;
+    server 192.168.1.5 weight=1 max_fails=3
+    fail_timeout=9s;
+    server 192.168.1.7 weight=1;
+}
+server {
+    listen 80;
+    server_name localhost;
+    location / {
+        proxy_pass http://web;
+        proxy_next_upstream error http_404 http_502;
+        #proxy_next_upstream off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+</code></pre>
+<p>&#x8BBF;&#x95EE;&#x524D;&#x7AEF; IP&#xFF1A;</p>
+<pre class="language-"><code class="lang-shell">[root@192 ~]# while true;do curl 192.168.1.6;sleep 2;done
+this is 1.5 page
+this is 1.5 page
+this is 1.5 page
+^C
+[root@192 ~]# curl 192.168.1.7
+this is 1.7 page
+#&#x53EF;&#x4EE5;&#x770B;&#x5230;1.7&#x7684;&#x670D;&#x52A1;&#x662F;&#x6B63;&#x5E38;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5374;&#x4E0D;&#x8F6C;&#x53D1;&#x7ED9;1.7&#x4E86;&#xFF0C;&#x8BF7;&#x6C42;&#x56FA;&#x5B9A;&#x5728;&#x4E86;1.5&#x7684;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x3002;
+</code></pre>
+<p>&#x5728;&#x4F7F;&#x7528;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x9047;&#x5230;&#x4F1A;&#x8BDD;&#x4FDD;&#x6301;&#x7684;&#x95EE;&#x9898;,&#x5E38;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x6709;:
+a&#x3001;ip_hash&#xFF0C;&#x6839;&#x636E;&#x5BA2;&#x6237;&#x7AEF;&#x7684; IP&#xFF0C;&#x5C06;&#x8BF7;&#x6C42;&#x5206;&#x914D;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x670D;&#x52A1;&#x5668;&#x4E0A;;
+b&#x3001;cookie&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x4E0B;&#x53D1;&#x4E00;&#x4E2A; cookie&#xFF0C;&#x5177;&#x6709;&#x7279;&#x5B9A; cookie &#x7684;&#x8BF7;&#x6C42;&#x4F1A;&#x5206;&#x914D;&#x7ED9;&#x5B83;&#x7684;&#x53D1;&#x5E03;&#x8005;&#x3002;</p>
+<h4 id="urlhash"><a name="urlhash" class="anchor-navigation-ex-anchor" href="#urlhash"><i class="fa fa-link" aria-hidden="true"></i></a><a name="urlhash" class="plugin-anchor" href="#urlhash"><i class="fa fa-link" aria-hidden="true"></i></a>url_hash</h4>
+<p>&#x901A;&#x8FC7;&#x8BF7;&#x6C42; url &#x8FDB;&#x884C; hash&#xFF0C;&#x518D;&#x901A;&#x8FC7; hash &#x503C;&#x9009;&#x62E9;&#x540E;&#x7AEF; server</p>
+<pre class="language-"><code class="lang-shell">upstream nginx_web {
+    hash $request_uri consistent;
+    server 192.168.75.128;
+    server 192.168.75.135;
+}
+</code></pre>
+<h4 id="&#x6839;&#x636E;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#x5747;&#x8861;"><a name="&#x6839;&#x636E;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#x5747;&#x8861;" class="anchor-navigation-ex-anchor" href="#&#x6839;&#x636E;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#x5747;&#x8861;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6839;&#x636E;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#x5747;&#x8861;" class="plugin-anchor" href="#&#x6839;&#x636E;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#x5747;&#x8861;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6839;&#x636E;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#x5747;&#x8861;</h4>
+<p>fair &#x7B97;&#x6CD5;&#x4F1A;&#x6839;&#x636E;&#x540E;&#x7AEF;&#x8282;&#x70B9;&#x670D;&#x52A1;&#x5668;&#x7684;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#x6765;&#x5206;&#x914D;&#x8BF7;&#x6C42;&#xFF0C;&#x65F6;&#x95F4;&#x77ED;&#x7684;&#x4F18;&#x5148;&#x5206;&#x914D;</p>
+<pre class="language-"><code class="lang-shell"># &#x4E0B;&#x8F7D;&#x6A21;&#x5757;&#xFF1A;
+wget https://github.com/gnosek/nginx-upstreamfair/archive/master.zip
+
+# &#x89E3;&#x538B;&#xFF1A;
+unzip master.zip
+
+# &#x4FEE;&#x6539;&#x6E90;&#x7801;bug&#xFF1A;
+sed -i &apos;s/default_port/no_port/g&apos;
+ngx_http_upstream_fair_module.c
+
+# &#x9884;&#x7F16;&#x8BD1;&#xFF1A;
+./configure --prefix=/usr/local/nginx --addmodule=../echo-nginx-module --with-http_stub_status_module
+--add-module=../nginx-upstream-fair-master
+
+# &#x7F16;&#x8BD1;/&#x5B89;&#x88C5;&#xFF1A;
+make &amp;&amp; make install
+
+# &#x914D;&#x7F6E;&#xFF1A;
+upstream web {
+    fair;
+    server 192.168.1.5 weight=1 max_fails=3
+    fail_timeout=9s;
+    server 192.168.1.7 weight=1;
+}
+</code></pre>
+<h4 id="&#x5907;&#x7528;&#x670D;&#x52A1;&#x5668;"><a name="&#x5907;&#x7528;&#x670D;&#x52A1;&#x5668;" class="anchor-navigation-ex-anchor" href="#&#x5907;&#x7528;&#x670D;&#x52A1;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5907;&#x7528;&#x670D;&#x52A1;&#x5668;" class="plugin-anchor" href="#&#x5907;&#x7528;&#x670D;&#x52A1;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5907;&#x7528;&#x670D;&#x52A1;&#x5668;</h4>
+<pre class="language-"><code class="lang-shell">upstream web {
+    server 192.168.1.5 weight=1 max_fails=3
+    fail_timeout=9s;
+    server 192.168.1.7 weight=1 backup;
+}
+# 1.7&#x7684;&#x670D;&#x52A1;&#x5668;&#x505A;&#x5907;&#x7528;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x53EA;&#x6709;&#x5728;1.5&#x5F97;&#x670D;&#x52A1;&#x5668;&#x4E0D;&#x80FD;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#x65F6;&#xFF0C;&#x624D;&#x4F1A;&#x81EA;&#x52A8;&#x9876;&#x4E0A;,&#x5426;&#x5219;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;&#x4E0D;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#x7684;&#x3002;
+</code></pre>
+<h2 id="&#x914D;&#x7F6E;&#x56DB;&#x5C42;&#x5747;&#x8861;"><a name="&#x914D;&#x7F6E;&#x56DB;&#x5C42;&#x5747;&#x8861;" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;&#x56DB;&#x5C42;&#x5747;&#x8861;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x914D;&#x7F6E;&#x56DB;&#x5C42;&#x5747;&#x8861;" class="plugin-anchor" href="#&#x914D;&#x7F6E;&#x56DB;&#x5C42;&#x5747;&#x8861;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x7F6E;&#x56DB;&#x5C42;&#x5747;&#x8861;</h2>
+<pre class="language-"><code>&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#xFF1A;192.168.75.130
+&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;1&#xFF1A;192.168.75.128
+&#x540E;&#x7AEF;&#x670D;&#x52A1;&#x5668;2&#xFF1A;192.168.75.135
+</code></pre><p>&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x4E3B;&#x8981;&#x914D;&#x7F6E; stream &#x548C; upstream&#xFF0C;&#x6CE8;&#x610F;&#x8BE5;&#x6A21;&#x5757;&#x9700;&#x8981;&#x5728;&#x9884;&#x7F16;&#x8BD1;&#x65F6;&#x6307;&#x5B9A;&#xFF0C;&#x6CA1;&#x6709;&#x88AB;&#x9ED8;&#x8BA4;&#x7F16;&#x8BD1;&#x8FDB; nginx&#x3002;</p>
+<h3 id="&#x914D;&#x7F6E;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;"><a name="&#x914D;&#x7F6E;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x914D;&#x7F6E;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;" class="plugin-anchor" href="#&#x914D;&#x7F6E;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x7F6E;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;</h3>
+<pre class="language-"><code class="lang-shell"># &#x9884;&#x7F16;&#x8BD1;&#xFF1A;
+./configure --prefix=/usr/local/nginx --addmodule=../echo-nginx-module --with-http_stub_status_module
+--with-stream
+
+# &#x7F16;&#x8BD1;/&#x5B89;&#x88C5;&#xFF1A;
+make &amp;&amp; make install
+
+# &#x5728;main&#x5168;&#x5C40;&#x914D;&#x7F6E;stream&#xFF1A;
+events {
+    worker_connections 1024;
+}
+stream {
+    upstream web {
+    # &#x5FC5;&#x987B;&#x8981;&#x6307;&#x5B9A;ip&#x52A0;port
+        server 192.168.75.128:80;
+        server 192.168.75.135:80;
+    }
+    server {
+        listen 80;
+        # &#x8FDE;&#x63A5;&#x4E0A;&#x6E38;&#x670D;&#x52A1;&#x5668;&#x8D85;&#x65F6;&#x95F4;&#xFF0C;&#x8D85;&#x8FC7;&#x5219;&#x9009;&#x62E9;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x5668;
+        proxy_connect_timeout 3s;
+        # tcp&#x8FDE;&#x63A5;&#x95F2;&#x7F6E;&#x65F6;&#x95F4;&#xFF0C;&#x8D85;&#x8FC7;&#x5219;&#x5173;&#x95ED;
+        proxy_timeout 10s;
+        proxy_pass web;
+    }
+    log_format proxy &apos;$remote_addr $remote_port $protocol $status [$time_iso8601] &apos; &apos;&quot;$upstream_addr&quot; &quot;$upstream_bytes_sent&quot; &quot;$upstream_connect_time&quot;&apos; ;
+    access_log /usr/local/nginx/logs/proxy.log proxy;
+}
+</code></pre>
+<h3 id="&#x914D;&#x7F6E;&#x540E;&#x7AEF;&#x6D4B;&#x8BD5;&#x9875;&#x9762;"><a name="&#x914D;&#x7F6E;&#x540E;&#x7AEF;&#x6D4B;&#x8BD5;&#x9875;&#x9762;" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;&#x540E;&#x7AEF;&#x6D4B;&#x8BD5;&#x9875;&#x9762;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x914D;&#x7F6E;&#x540E;&#x7AEF;&#x6D4B;&#x8BD5;&#x9875;&#x9762;" class="plugin-anchor" href="#&#x914D;&#x7F6E;&#x540E;&#x7AEF;&#x6D4B;&#x8BD5;&#x9875;&#x9762;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x7F6E;&#x540E;&#x7AEF;&#x6D4B;&#x8BD5;&#x9875;&#x9762;</h3>
+<pre class="language-"><code>echo &quot;this is 128 page&quot; &gt; /usr/local/nginx/html/index.html
+echo &quot;this is 135 page&quot; &gt; /usr/local/nginx/html/index.html
+</code></pre><h3 id="&#x8BBF;&#x95EE;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;"><a name="&#x8BBF;&#x95EE;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;" class="anchor-navigation-ex-anchor" href="#&#x8BBF;&#x95EE;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8BBF;&#x95EE;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;" class="plugin-anchor" href="#&#x8BBF;&#x95EE;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BBF;&#x95EE;&#x524D;&#x7AEF;&#x670D;&#x52A1;&#x5668;</h3>
+<pre class="language-"><code class="lang-shell"># &#x5728;&#x540E;&#x7AEF;135&#x4E0A;&#x8BBF;&#x95EE;130&#xFF1A;
+[root@node5 ~]# curl 192.168.75.130/index.html
+this is 128 page
+
+# &#x67E5;&#x770B;&#x540E;&#x7AEF;128&#x65E5;&#x5FD7;&#xFF1A;
+[root@node2 ~]# tailf /usr/local/nginx/logs/access.log
+192.168.75.130 - - [2020-07-31T11:07:56+08:00] &quot;GET/index.html HTTP/1.1&quot; 200 17 &quot;-&quot; &quot;curl/7.29.0&quot; &quot;-&quot;
+
+# &#x67E5;&#x770B;&#x524D;&#x7AEF;130&#x4EE3;&#x7406;&#x65E5;&#x5FD7;&#xFF1A;
+[root@node3 nginx-1.16.0]# tailf /usr/local/nginx/logs/proxy.log
+192.168.75.135 57704 TCP 200 [2020-07-31T11:07:56+08:00]&quot;192.168.75.128:80&quot; &quot;88&quot; &quot;0.001&quot;
+</code></pre>
+<h3 id="&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;"><a name="&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;" class="anchor-navigation-ex-anchor" href="#&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;" class="plugin-anchor" href="#&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7AEF;&#x53E3;&#x8F6C;&#x53D1;</h3>
+<pre class="language-"><code class="lang-shell"># &#x524D;&#x7AEF;130&#x4E0A;&#x914D;&#x7F6E;&#x5982;&#x4E0B;&#xFF1A;
+stream {
+    upstream web {
+        server 192.168.75.128:22;
+    }
+    server {
+        listen 2222;
+        proxy_connect_timeout 3s;
+        proxy_timeout 10s;
+        proxy_pass web;
+        #proxy_set_header X-Real-IP $remote_addr;
+    }
+    log_format proxy &apos;$remote_addr $remote_port $protocol $status [$time_iso8601] &apos; &apos;&quot;$upstream_addr&quot; &quot;$upstream_bytes_sent&quot; &quot;$upstream_connect_time&quot;&apos; ;
+    access_log /usr/local/nginx/logs/proxy.log proxy;
+}
+# &#x5728;&#x53E6;&#x5916;&#x4E00;&#x53F0;&#x670D;&#x52A1;&#x5668;ssh&#x8FDE;&#x63A5;&#xFF1A;
+[root@node5 ~]# ssh 192.168.75.130 -p 2222
+root@192.168.75.130s password:
+Last login: 01 08 2020 02:24:19 GMT from 192.168.75.130
+[root@node2 ~]#
+[root@node2 ~]#
+# &#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x5DF2;&#x7ECF;&#x767B;&#x5F55;&#x5230;&#x4E86;128&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x3002;
+[root@node2 ~]# ip a
+1: lo: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>LOOPBACK,UP,LOWER_UP</span><span class="token punctuation">&gt;</span></span> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lovalid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host valid_lft forever preferred_lft forever
+2: ens32: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>BROADCAST,MULTICAST,UP,LOWER_UP</span><span class="token punctuation">&gt;</span></span> mtu 1500 qdiscpfifo_fast state UP qlen 1000
+    link/ether 00:50:56:2a:4e:7f brd ff:ff:ff:ff:ff:ff
+    inet 192.168.75.128/24 brd 192.168.75.255 scope global ens32 valid_lft forever preferred_lft forever
+    inet6 fe80::52eb:5720:d625:841/64 scope link valid_lft forever preferred_lft forever
+</code></pre>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> By <a href="https://github.com/xiaobei930" target="_blank">xiaobei</a>&#xFF0C;&#x4F7F;&#x7528;<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">&#x77E5;&#x8BC6;&#x5171;&#x4EAB; &#x7F72;&#x540D;-&#x76F8;&#x540C;&#x65B9;&#x5F0F;&#x5171;&#x4EAB; 4.0&#x534F;&#x8BAE;</a>&#x53D1;&#x5E03; </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> &#x6B64;&#x9875;&#x9762;&#x4FEE;&#x8BA2;&#x4E8E;&#xFF1A; 2020-08-15 09:39:51 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="nginx服务器虚拟主机、反向代理.html" class="navigation navigation-prev " aria-label="Previous page: nginx 服务器虚拟主机、反向代理">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="mysql入门安装.html" class="navigation navigation-next " aria-label="Next page: mysql 入门安装">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"nginx 负载均衡","level":"1.1.1.1.13","depth":4,"next":{"title":"mysql 入门安装","level":"1.1.1.1.14","depth":4,"path":"book/technology/linux/Special-lecture/mysql入门安装.md","ref":"book/technology/linux/Special-lecture/mysql入门安装.md","articles":[]},"previous":{"title":"nginx 服务器虚拟主机、反向代理","level":"1.1.1.1.12","depth":4,"path":"book/technology/linux/Special-lecture/nginx服务器虚拟主机、反向代理.md","ref":"book/technology/linux/Special-lecture/nginx服务器虚拟主机、反向代理.md","articles":[]},"dir":"ltr"},"config":{"plugins":["favicon","yahei","github","autotheme","-lunr","-search","search-plus","prism","-highlight","github-buttons","splitter","-sharing","sharing-plus","page-footer-ex","expandable-chapters-small","book-summary-scroll-position-saver","anchors","anchor-navigation-ex","sitemap-general","copy-code-button","multipart","edit-link-plus","editlink","toc","expandable-chapters","insert-logo","advanced-emoji"],"root":".","styles":{"website":"assets/styles/website.css"},"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"github":{"url":"https://github.com/xiaobei930"},"editlink":{"label":"Edit","multilingual":false,"base":"https://github.com/xiaobei930/LearningNotes/blob/master"},"yahei":{},"book-summary-scroll-position-saver":{},"page-footer-ex":{"copyright":"By [xiaobei](https://github.com/xiaobei930)，使用[知识共享 署名-相同方式共享 4.0协议](https://creativecommons.org/licenses/by-sa/4.0/)发布","markdown":true,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"此页面修订于："},"splitter":{},"toc":{},"edit-link-plus":{"label":{"en":"Edit This Page","zh":"编辑本页"},"base":"https://github.com/xiaobei930/LearningNotes/edit/BRANCH/path/to/book"},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"multipart":{},"sitemap-general":{"prefix":"https://xiaobei930.github.io/myBook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"family":"serif","size":2},"anchor-navigation-ex":{"associatedWithSummary":false,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"/assets/logo/favicon.ico","bookmark":"/assets/logo/favicon.ico","appleTouch":"/assets/logo/apple-touch-icon.png","appleTouchMore":{"120x120":"/assets/logo/apple-touch-icon-120x120.png","180x180":"/assets/logo/apple-touch-icon-180x180.png"}},"github-buttons":{"buttons":[{"user":"xiaobei930","repo":"LearningNotes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"autotheme":{"night":[20,21,22,23,0,1,2,3,4,5],"sepia":[6,7,8,18,19,19],"white":[9,10,11,12,13,14,15,16,17]},"advanced-emoji":{"embedEmojis":false},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":true,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":true},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"https://cdn.jsdelivr.net/gh/xiaobei930/LearningNotes@master/assets/logo/logo.png"},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"小北","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"听小北瞎扯淡","language":"zh-hans","links":{"sidebar":{"GitHub":"https://github.com/xiaobei930","博客":"https://xiaobei930.github.io/LearningNotes/"}},"gitbook":"3.x.x","description":"杂七杂八乱记一通"},"file":{"path":"book/technology/linux/Special-lecture/nginx负载均衡.md","mtime":"2020-08-15T09:39:51.413Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-15T09:40:42.655Z"},"basePath":"../../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../../gitbook/gitbook.js"></script>
+    <script src="../../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-autotheme/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-book-summary-scroll-position-saver/book-summary-scroll-position-saver.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-edit-link-plus/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

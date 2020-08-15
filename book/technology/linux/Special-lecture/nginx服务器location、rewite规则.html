@@ -1,0 +1,1882 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>nginx 服务器 location、rewite 规则 · 听小北瞎扯淡</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="小北">
+        
+        
+    
+    <link rel="stylesheet" href="../../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-yahei/yahei.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-prism/prism-tomorrow.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-multipart/multipart.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../../../assets/styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="nginx服务器虚拟主机、反向代理.html" />
+    
+    
+    <link rel="prev" href="nginx配置文件解读及常用模块.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"xiaobei930","repo":"LearningNotes","type":"star","size":"small","count":true}]};
+    </script>
+
+    
+        <link rel="shortcut icon" href='../../../../assets/logo/favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../../../../assets/logo/favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="apple-touch-icon" href='../../../../assets/logo/apple-touch-icon.png'>
+    
+    
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="../../../../assets/logo/apple-touch-icon-120x120.png">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="../../../../assets/logo/apple-touch-icon-180x180.png">
+        
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/xiaobei930" target="_blank" class="custom-link">GitHub</a>
+        </li>
+    
+        
+        <li>
+            <a href="https://xiaobei930.github.io/LearningNotes/" target="_blank" class="custom-link">博客</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <span>
+            
+                    
+                    技术剪影
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" >
+            
+                <span>
+            
+                    
+                    Linux
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" >
+            
+                <span>
+            
+                    
+                    系统学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1.1" data-path="操作系统入门.html">
+            
+                <a href="操作系统入门.html">
+            
+                    
+                    操作系统入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.2" data-path="linux介绍及安装.html">
+            
+                <a href="linux介绍及安装.html">
+            
+                    
+                    linux 介绍及安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.3" data-path="基础命令讲解一.html">
+            
+                <a href="基础命令讲解一.html">
+            
+                    
+                    基础命令讲解(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.4" data-path="基础命令讲解二.html">
+            
+                <a href="基础命令讲解二.html">
+            
+                    
+                    基础命令讲解(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.5" data-path="vim编辑器.html">
+            
+                <a href="vim编辑器.html">
+            
+                    
+                    vim 编辑器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.6" data-path="yum管理.html">
+            
+                <a href="yum管理.html">
+            
+                    
+                    yum 管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.7" data-path="nfs文件共享服务器.html">
+            
+                <a href="nfs文件共享服务器.html">
+            
+                    
+                    nfs 文件共享服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.8" data-path="ftp文件服务器.html">
+            
+                <a href="ftp文件服务器.html">
+            
+                    
+                    ftp 文件服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.9" data-path="nginx服务安装及配置文件.html">
+            
+                <a href="nginx服务安装及配置文件.html">
+            
+                    
+                    nginx 服务安装及配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.10" data-path="nginx配置文件解读及常用模块.html">
+            
+                <a href="nginx配置文件解读及常用模块.html">
+            
+                    
+                    nginx 配置文件解读及常用模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.1.1.11" data-path="nginx服务器location、rewite规则.html">
+            
+                <a href="nginx服务器location、rewite规则.html">
+            
+                    
+                    nginx 服务器 location、rewite 规则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.12" data-path="nginx服务器虚拟主机、反向代理.html">
+            
+                <a href="nginx服务器虚拟主机、反向代理.html">
+            
+                    
+                    nginx 服务器虚拟主机、反向代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.13" data-path="nginx负载均衡.html">
+            
+                <a href="nginx负载均衡.html">
+            
+                    
+                    nginx 负载均衡
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.14" data-path="mysql入门安装.html">
+            
+                <a href="mysql入门安装.html">
+            
+                    
+                    mysql 入门安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.15" data-path="mysql数据库基础操作.html">
+            
+                <a href="mysql数据库基础操作.html">
+            
+                    
+                    mysql 数据库基础操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.16" data-path="mysql主从同步及mysqldump备份.html">
+            
+                <a href="mysql主从同步及mysqldump备份.html">
+            
+                    
+                    mysql 主从同步及 mysqldump 备份
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.17" data-path="mysql读写分离实战.html">
+            
+                <a href="mysql读写分离实战.html">
+            
+                    
+                    mysql 读写分离实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.18" data-path="LNMP高性能服务器.html">
+            
+                <a href="LNMP高性能服务器.html">
+            
+                    
+                    LNMP 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.19" data-path="分布式LNMP高性能服务器.html">
+            
+                <a href="分布式LNMP高性能服务器.html">
+            
+                    
+                    分布式 LNMP 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.20" data-path="LNMP+redis高性能服务器.html">
+            
+                <a href="LNMP+redis高性能服务器.html">
+            
+                    
+                    LNMP+redis 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.21" data-path="redis数据库主从哨兵模式.html">
+            
+                <a href="redis数据库主从哨兵模式.html">
+            
+                    
+                    redis 数据库主从哨兵模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.22" data-path="zabbix监控入门.html">
+            
+                <a href="zabbix监控入门.html">
+            
+                    
+                    zabbix 监控入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.23" data-path="zabbix自定义监控项，触发器动作.html">
+            
+                <a href="zabbix自定义监控项，触发器动作.html">
+            
+                    
+                    zabbix 自定义监控项，触发器动作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.24" data-path="zabbix分布式应用，微信报警.html">
+            
+                <a href="zabbix分布式应用，微信报警.html">
+            
+                    
+                    zabbix 分布式应用，微信报警
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.25" data-path="tomcat服务器实战.html">
+            
+                <a href="tomcat服务器实战.html">
+            
+                    
+                    tomcat服务器实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.26" data-path="SHELL编程入门&案例实战.html">
+            
+                <a href="SHELL编程入门&案例实战.html">
+            
+                    
+                    SHELL编程入门&案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.27" data-path="SHELL编程变量&if实战.html">
+            
+                <a href="SHELL编程变量&if实战.html">
+            
+                    
+                    SHELL编程变量&if实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.28" data-path="SHELL编程if语句和for循环.html">
+            
+                <a href="SHELL编程if语句和for循环.html">
+            
+                    
+                    SHELL编程if语句和for循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.29" data-path="SHELL编程For&While.html">
+            
+                <a href="SHELL编程For&While.html">
+            
+                    
+                    SHELL编程For&While实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.30" data-path="SHELL编程Case&While实战.html">
+            
+                <a href="SHELL编程Case&While实战.html">
+            
+                    
+                    SHELL编程Case&While实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.31" data-path="SHELL编程Nginx虚拟主机实战.html">
+            
+                <a href="SHELL编程Nginx虚拟主机实战.html">
+            
+                    
+                    SHELL编程Nginx虚拟主机实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.32" data-path="SHELL编程Find案例实战.html">
+            
+                <a href="SHELL编程Find案例实战.html">
+            
+                    
+                    SHELL编程Find案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.33" data-path="SHELL编程Sed&Grep案例实战.html">
+            
+                <a href="SHELL编程Sed&Grep案例实战.html">
+            
+                    
+                    SHELL编程Sed&Grep案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.34" data-path="SHELL编程Grep&Awk案例实战.html">
+            
+                <a href="SHELL编程Grep&Awk案例实战.html">
+            
+                    
+                    SHELL编程Grep&Awk案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.35" data-path="LVS+Keepalived高可用实战.html">
+            
+                <a href="LVS+Keepalived高可用实战.html">
+            
+                    
+                    LVS+Keepalived高可用实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.36" data-path="Nginx+Keepalived高可用企业实战.html">
+            
+                <a href="Nginx+Keepalived高可用企业实战.html">
+            
+                    
+                    Nginx+Keepalived高可用企业实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.37" data-path="LVS+Keepalived高可用企业实战.html">
+            
+                <a href="LVS+Keepalived高可用企业实战.html">
+            
+                    
+                    LVS+Keepalived高可用企业实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.38" data-path="Docker虚拟化技术实战.html">
+            
+                <a href="Docker虚拟化技术实战.html">
+            
+                    
+                    Docker虚拟化技术实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" >
+            
+                <span>
+            
+                    
+                    linux 命令大全
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1" data-path="../command-encyclopedia/1.file-management/">
+            
+                <a href="../command-encyclopedia/1.file-management/">
+            
+                    
+                    1.文件管理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1.1" data-path="../command-encyclopedia/1.file-management/ls-显示指定工作目录下的内容及属性信息.html">
+            
+                <a href="../command-encyclopedia/1.file-management/ls-显示指定工作目录下的内容及属性信息.html">
+            
+                    
+                    ls-显示指定工作目录下的内容及属性信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.2" data-path="../command-encyclopedia/1.file-management/mkdir–创建目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/mkdir–创建目录.html">
+            
+                    
+                    mkdir–创建目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.3" data-path="../command-encyclopedia/1.file-management/cp-复制文件或目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/cp-复制文件或目录.html">
+            
+                    
+                    cp-复制文件或目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.4" data-path="../command-encyclopedia/1.file-management/pwd-显示当前目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/pwd-显示当前目录.html">
+            
+                    
+                    pwd-显示当前目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.5" data-path="../command-encyclopedia/1.file-management/mv-移动或改名.html">
+            
+                <a href="../command-encyclopedia/1.file-management/mv-移动或改名.html">
+            
+                    
+                    mv-移动或改名
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.6" data-path="../command-encyclopedia/1.file-management/touch-创建文件.html">
+            
+                <a href="../command-encyclopedia/1.file-management/touch-创建文件.html">
+            
+                    
+                    touch-创建文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.7" data-path="../command-encyclopedia/1.file-management/userdel-删除用户.html">
+            
+                <a href="../command-encyclopedia/1.file-management/userdel-删除用户.html">
+            
+                    
+                    userdel-删除用户
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.8" data-path="../command-encyclopedia/1.file-management/ln-为文件创建链接.html">
+            
+                <a href="../command-encyclopedia/1.file-management/ln-为文件创建链接.html">
+            
+                    
+                    ln-为文件创建链接
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.9" data-path="../command-encyclopedia/1.file-management/chattr-更改文件属性.html">
+            
+                <a href="../command-encyclopedia/1.file-management/chattr-更改文件属性.html">
+            
+                    
+                    chattr-更改文件属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.10" data-path="../command-encyclopedia/1.file-management/cd-切换目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/cd-切换目录.html">
+            
+                    
+                    cd-切换目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.11" data-path="../command-encyclopedia/1.file-management/traceroute-追踪数据包在网络上的传输时的全部路径.html">
+            
+                <a href="../command-encyclopedia/1.file-management/traceroute-追踪数据包在网络上的传输时的全部路径.html">
+            
+                    
+                    traceroute-追踪数据包在网络上的传输时的全部路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.12" data-path="../command-encyclopedia/1.file-management/cksum-校验文件.html">
+            
+                <a href="../command-encyclopedia/1.file-management/cksum-校验文件.html">
+            
+                    
+                    cksum-校验文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.13" data-path="../command-encyclopedia/1.file-management/locate-快速查找文件或目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/locate-快速查找文件或目录.html">
+            
+                    
+                    locate-快速查找文件或目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.14" data-path="../command-encyclopedia/1.file-management/wc-统计文件的字节数、字数、行数.html">
+            
+                <a href="../command-encyclopedia/1.file-management/wc-统计文件的字节数、字数、行数.html">
+            
+                    
+                    wc-统计文件的字节数、字数、行数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.15" data-path="../command-encyclopedia/1.file-management/lsattr-显示文件隐藏属性.html">
+            
+                <a href="../command-encyclopedia/1.file-management/lsattr-显示文件隐藏属性.html">
+            
+                    
+                    lsattr-显示文件隐藏属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.16" data-path="../command-encyclopedia/1.file-management/whereis-显示命令及相关文件的路径.html">
+            
+                <a href="../command-encyclopedia/1.file-management/whereis-显示命令及相关文件的路径.html">
+            
+                    
+                    whereis-显示命令及相关文件的路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.17" data-path="../command-encyclopedia/1.file-management/sort-排序文件并输出.html">
+            
+                <a href="../command-encyclopedia/1.file-management/sort-排序文件并输出.html">
+            
+                    
+                    sort-排序文件并输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.18" data-path="../command-encyclopedia/1.file-management/less-分页显示工具.html">
+            
+                <a href="../command-encyclopedia/1.file-management/less-分页显示工具.html">
+            
+                    
+                    less-分页显示工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.2" data-path="../command-encyclopedia/2.documents-editing/">
+            
+                <a href="../command-encyclopedia/2.documents-editing/">
+            
+                    
+                    2.文档编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.3" data-path="../command-encyclopedia/3.system-management/">
+            
+                <a href="../command-encyclopedia/3.system-management/">
+            
+                    
+                    3.系统管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.4" data-path="../command-encyclopedia/4.disk-management/">
+            
+                <a href="../command-encyclopedia/4.disk-management/">
+            
+                    
+                    4.磁盘管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.5" data-path="../command-encyclopedia/5.file-transfer/">
+            
+                <a href="../command-encyclopedia/5.file-transfer/">
+            
+                    
+                    5.文件传输
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.6" data-path="../command-encyclopedia/6.network-communication/">
+            
+                <a href="../command-encyclopedia/6.network-communication/">
+            
+                    
+                    6.网络通讯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.7" data-path="../command-encyclopedia/7.quipment-management/">
+            
+                <a href="../command-encyclopedia/7.quipment-management/">
+            
+                    
+                    7.设备管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.8" data-path="../command-encyclopedia/8.backup-compression/">
+            
+                <a href="../command-encyclopedia/8.backup-compression/">
+            
+                    
+                    8.备份压缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.9" data-path="../command-encyclopedia/9.other-command/">
+            
+                <a href="../command-encyclopedia/9.other-command/">
+            
+                    
+                    9.其他命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" >
+            
+                <span>
+            
+                    
+                    Go
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../../go/go环境及goland快捷键.html">
+            
+                <a href="../../go/go环境及goland快捷键.html">
+            
+                    
+                    go 环境及 goland 快捷键
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" >
+            
+                <span>
+            
+                    
+                    Gitbook
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../../gitbook/命令及使用.html">
+            
+                <a href="../../gitbook/命令及使用.html">
+            
+                    
+                    命令及使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../../gitbook/vscode+picgo+github搭建markdown图床.html">
+            
+                <a href="../../gitbook/vscode+picgo+github搭建markdown图床.html">
+            
+                    
+                    vscode+picgo+github 搭建 markdown 图床
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" >
+            
+                <span>
+            
+                    
+                    C#
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" >
+            
+                <span>
+            
+                    
+                    Java
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" >
+            
+                <span>
+            
+                    
+                    Python
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" >
+            
+                <span>
+            
+                    
+                    数据库
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.7.1" data-path="../../database/redis总结.html">
+            
+                <a href="../../database/redis总结.html">
+            
+                    
+                    redis 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" >
+            
+                <span>
+            
+                    
+                    思维变革
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" >
+            
+                <span>
+            
+                    
+                    技术基础
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" >
+            
+                <span>
+            
+                    
+                    分布式架构
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" >
+            
+                <span>
+            
+                    
+                    编程规范
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" >
+            
+                <span>
+            
+                    
+                    弹性设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" >
+            
+                <span>
+            
+                    
+                    管理设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" >
+            
+                <span>
+            
+                    
+                    性能设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" >
+            
+                <span>
+            
+                    
+                    区块链
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.8" >
+            
+                <span>
+            
+                    
+                    面试
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.9" >
+            
+                <span>
+            
+                    
+                    高效学习
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.10" >
+            
+                <span>
+            
+                    
+                    高效沟通
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" >
+            
+                <span>
+            
+                    
+                    玩物丧志
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" >
+            
+                <span>
+            
+                    
+                    单反
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" >
+            
+                <span>
+            
+                    
+                    NAS
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../../../">
+            
+                <a href="../../../../">
+            
+                    
+                    关于
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../../.." >nginx 服务器 location、rewite 规则</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#location-&#x57FA;&#x7840;&#x77E5;&#x8BC6;"><b></b>Location &#x57FA;&#x7840;&#x77E5;&#x8BC6;</a></li><ul><li><span class="title-icon "></span><a href="#&#x6982;&#x5FF5;"><b></b>&#x6982;&#x5FF5;</a></li><li><span class="title-icon "></span><a href="#&#x8BED;&#x6CD5;"><b></b>&#x8BED;&#x6CD5;</a></li><ul><li><span class="title-icon "></span><a href="#&#x4FEE;&#x9970;&#x7B26;"><b></b>&#x4FEE;&#x9970;&#x7B26;</a></li></ul></ul><li><span class="title-icon "></span><a href="#location-&#x914D;&#x7F6E;&#x5B9E;&#x4F8B;"><b></b>Location &#x914D;&#x7F6E;&#x5B9E;&#x4F8B;</a></li><ul><li><span class="title-icon "></span><a href="#&#x7CBE;&#x51C6;&#x5339;&#x914D;"><b></b>&#x7CBE;&#x51C6;&#x5339;&#x914D;</a></li><li><span class="title-icon "></span><a href="#&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#x5339;&#x914D;"><b></b>&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#x5339;&#x914D;</a></li><li><span class="title-icon "></span><a href="#&#x5927;&#x5C0F;&#x5199;&#x4E0D;&#x654F;&#x611F;&#x5339;&#x914D;"><b></b>&#x5927;&#x5C0F;&#x5199;&#x4E0D;&#x654F;&#x611F;&#x5339;&#x914D;</a></li><li><span class="title-icon "></span><a href="#&#x6307;&#x5B9A;&#x540E;&#x7F00;&#x5339;&#x914D;"><b></b>&#x6307;&#x5B9A;&#x540E;&#x7F00;&#x5339;&#x914D;</a></li><li><span class="title-icon "></span><a href="#&#x5FFD;&#x7565;&#x6B63;&#x5219;&#x5339;&#x914D;"><b></b>&#x5FFD;&#x7565;&#x6B63;&#x5219;&#x5339;&#x914D;</a></li></ul><li><span class="title-icon "></span><a href="#location-&#x4F18;&#x5148;&#x7EA7;"><b></b>Location &#x4F18;&#x5148;&#x7EA7;</a></li><li><span class="title-icon "></span><a href="#rewrite-&#x89C4;&#x5219;"><b></b>rewrite &#x89C4;&#x5219;</a></li><ul><li><span class="title-icon "></span><a href="#rewrite-&#x8BED;&#x6CD5;"><b></b>rewrite &#x8BED;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#rewrite-&#x5B9E;&#x4F8B;"><b></b>rewrite &#x5B9E;&#x4F8B;</a></li><ul><li><span class="title-icon "></span><a href="#&#x5B9E;&#x73B0;&#x57DF;&#x540D;&#x8DF3;&#x8F6C;"><b></b>&#x5B9E;&#x73B0;&#x57DF;&#x540D;&#x8DF3;&#x8F6C;</a></li><li><span class="title-icon "></span><a href="#&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7EC8;&#x7AEF;&#x8DF3;&#x8F6C;"><b></b>&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7EC8;&#x7AEF;&#x8DF3;&#x8F6C;</a></li><li><span class="title-icon "></span><a href="#&#x5B9E;&#x73B0;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BED;&#x8A00;&#x8DF3;&#x8F6C;"><b></b>&#x5B9E;&#x73B0;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BED;&#x8A00;&#x8DF3;&#x8F6C;</a></li><li><span class="title-icon "></span><a href="#&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x9996;&#x9875;"><b></b>&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x9996;&#x9875;</a></li><li><span class="title-icon "></span><a href="#&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x817E;&#x8BAF;&#x516C;&#x76CA;&#x9875;&#x9762;"><b></b>&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x817E;&#x8BAF;&#x516C;&#x76CA;&#x9875;&#x9762;</a></li></ul></ul></ul></div><a href="#location-&#x57FA;&#x7840;&#x77E5;&#x8BC6;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="location-&#x57FA;&#x7840;&#x77E5;&#x8BC6;"><a name="location-&#x57FA;&#x7840;&#x77E5;&#x8BC6;" class="anchor-navigation-ex-anchor" href="#location-&#x57FA;&#x7840;&#x77E5;&#x8BC6;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="location-&#x57FA;&#x7840;&#x77E5;&#x8BC6;" class="plugin-anchor" href="#location-&#x57FA;&#x7840;&#x77E5;&#x8BC6;"><i class="fa fa-link" aria-hidden="true"></i></a>Location &#x57FA;&#x7840;&#x77E5;&#x8BC6;</h1>
+<h2 id="&#x6982;&#x5FF5;"><a name="&#x6982;&#x5FF5;" class="anchor-navigation-ex-anchor" href="#&#x6982;&#x5FF5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6982;&#x5FF5;" class="plugin-anchor" href="#&#x6982;&#x5FF5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6982;&#x5FF5;</h2>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x914D;&#x7F6E; Location &#x6307;&#x4EE4;&#x5757;&#xFF0C;&#x6765;&#x51B3;&#x5B9A;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x8FC7;&#x6765;&#x7684;&#x8BF7;&#x6C42; URI &#x5982;&#x4F55;&#x5904;&#x7406;&#x3002;</p>
+<h2 id="&#x8BED;&#x6CD5;"><a name="&#x8BED;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x8BED;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8BED;&#x6CD5;" class="plugin-anchor" href="#&#x8BED;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BED;&#x6CD5;</h2>
+<pre class="language-"><code class="lang-shell">Syntax: location [ = | ~ | ~* | ^~ ] uri { ... } location @name { ... }
+Default: &#x2014;
+Context: server, location
+</code></pre>
+<p>location &#x914D;&#x7F6E;&#x53EF;&#x4EE5;&#x6709;&#x4E24;&#x79CD;&#x914D;&#x7F6E;&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x5728; server &#x6307;&#x4EE4;&#x5757;&#x548C; location &#x6307;&#x4EE4;&#x5757;&#x914D;&#x7F6E;&#x3002;
+1&#x3001;&#x4FEE;&#x9970;&#x7B26; + uri&#xFF08;&#x8D44;&#x6E90;&#x8DEF;&#x5F84;&#xFF09;
+2&#x3001;@ + name</p>
+<h3 id="&#x4FEE;&#x9970;&#x7B26;"><a name="&#x4FEE;&#x9970;&#x7B26;" class="anchor-navigation-ex-anchor" href="#&#x4FEE;&#x9970;&#x7B26;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4FEE;&#x9970;&#x7B26;" class="plugin-anchor" href="#&#x4FEE;&#x9970;&#x7B26;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4FEE;&#x9970;&#x7B26;</h3>
+<pre class="language-"><code class="lang-shell">= &#xFF1A;&#x7CBE;&#x786E;&#x5339;&#x914D;&#xFF08;&#x5FC5;&#x987B;&#x5168;&#x90E8;&#x76F8;&#x7B49;&#xFF09;
+~ &#xFF1A;&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#xFF08;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#xFF09;
+~*&#xFF1A;&#x5FFD;&#x7565;&#x5927;&#x5C0F;&#x5199;&#xFF08;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#xFF09;&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x6CE8;&#x610F;&#x5FFD;&#x7565;&#x5927;&#x5C0F;&#x5199;&#x7684;&#x610F;&#x601D;&#x662F;&#x8BF7;&#x6C42;&#x7684;&#x5B57;&#x7B26;&#x5927;&#x5C0F;&#x5199;&#x90FD;&#x53EF;&#x4EE5;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x4F1A;&#x8FDB;&#x884C;&#x5927;&#x5C0F;&#x8F6C;&#x6362;&#xFF0C;&#x8BF7;&#x6C42;&#x7684;&#x5927;&#x5C0F;&#x5199;&#x5BF9;&#x5E94;&#x7684;&#x6587;&#x4EF6;&#x5FC5;&#x987B;&#x5B58;&#x5728;&#x3002;
+^~ &#xFF1A;&#x53EA;&#x9700;&#x5339;&#x914D;uri&#x90E8;&#x5206;
+@ &#xFF1A;&#x5185;&#x90E8;&#x670D;&#x52A1;&#x8DF3;&#x8F6C;
+</code></pre>
+<h1 id="location-&#x914D;&#x7F6E;&#x5B9E;&#x4F8B;"><a name="location-&#x914D;&#x7F6E;&#x5B9E;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#location-&#x914D;&#x7F6E;&#x5B9E;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="location-&#x914D;&#x7F6E;&#x5B9E;&#x4F8B;" class="plugin-anchor" href="#location-&#x914D;&#x7F6E;&#x5B9E;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>Location &#x914D;&#x7F6E;&#x5B9E;&#x4F8B;</h1>
+<h2 id="&#x7CBE;&#x51C6;&#x5339;&#x914D;"><a name="&#x7CBE;&#x51C6;&#x5339;&#x914D;" class="anchor-navigation-ex-anchor" href="#&#x7CBE;&#x51C6;&#x5339;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x7CBE;&#x51C6;&#x5339;&#x914D;" class="plugin-anchor" href="#&#x7CBE;&#x51C6;&#x5339;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7CBE;&#x51C6;&#x5339;&#x914D;</h2>
+<p>=&#xFF0C;&#x7CBE;&#x51C6;&#x5339;&#x914D;&#xFF0C;&#x4E00;&#x822C;&#x662F;&#x5339;&#x914D;&#x67D0;&#x4E2A;&#x5177;&#x4F53;&#x6587;&#x4EF6;&#x3002;</p>
+<pre class="language-"><code class="lang-shell">location = /index.html {
+    [ configuration ]
+}
+# &#x5219;&#x5339;&#x914D;&#x5230;`http://www.xiaobei.com/index.html`&#x8FD9;&#x79CD;&#x8BF7;&#x6C42;&#x3002;
+</code></pre>
+<h2 id="&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#x5339;&#x914D;"><a name="&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#x5339;&#x914D;" class="anchor-navigation-ex-anchor" href="#&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#x5339;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#x5339;&#x914D;" class="plugin-anchor" href="#&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#x5339;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#x5339;&#x914D;</h2>
+<p>~&#xFF0C;&#x5927;&#x5C0F;&#x5199;&#x654F;&#x611F;&#xFF08;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#xFF09;&#x3002;</p>
+<pre class="language-"><code class="lang-shell">location ~ /XIAOBEI/ {
+    [ configuration ]
+}
+#&#x8BF7;&#x6C42;&#x793A;&#x4F8B;
+#http://www.xiaobei.com/XIAOBEI/ [&#x6210;&#x529F;]
+#http://www.xiaobei.com/xiaobei/ [&#x5931;&#x8D25;]
+</code></pre>
+<h2 id="&#x5927;&#x5C0F;&#x5199;&#x4E0D;&#x654F;&#x611F;&#x5339;&#x914D;"><a name="&#x5927;&#x5C0F;&#x5199;&#x4E0D;&#x654F;&#x611F;&#x5339;&#x914D;" class="anchor-navigation-ex-anchor" href="#&#x5927;&#x5C0F;&#x5199;&#x4E0D;&#x654F;&#x611F;&#x5339;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5927;&#x5C0F;&#x5199;&#x4E0D;&#x654F;&#x611F;&#x5339;&#x914D;" class="plugin-anchor" href="#&#x5927;&#x5C0F;&#x5199;&#x4E0D;&#x654F;&#x611F;&#x5339;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5927;&#x5C0F;&#x5199;&#x4E0D;&#x654F;&#x611F;&#x5339;&#x914D;</h2>
+<p>~*&#xFF0C;&#x5927;&#x5C0F;&#x5199;&#x5FFD;&#x7565;&#xFF08;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#xFF09;&#x3002;</p>
+<pre class="language-"><code class="lang-shell">location ~* /xiaobei.html {
+    [ configuration ]
+}
+# &#x5219;&#x4F1A;&#x5FFD;&#x7565; uri &#x90E8;&#x5206;&#x7684;&#x5927;&#x5C0F;&#x5199;
+#http://www.xiaobei.com/xiaobei.html [&#x6210;&#x529F;] &#x53EF;&#x4EE5;&#x6210;&#x529F;&#x5339;&#x914D;&#xFF0C;&#x4F46;&#x662F;&#x76EE;&#x5F55;&#x4E2D;&#x8981;xiaobei.html&#x6587;&#x4EF6;
+#http://www.xiaobei.com/XIAOBEI.html [&#x6210;&#x529F;] &#x53EF;&#x4EE5;&#x6210;&#x529F;&#x5339;&#x914D;&#xFF0C;&#x4F46;&#x662F;&#x76EE;&#x5F55;&#x4E2D;&#x8981;XIAOBEI.html&#x6587;&#x4EF6;
+</code></pre>
+<h2 id="&#x6307;&#x5B9A;&#x540E;&#x7F00;&#x5339;&#x914D;"><a name="&#x6307;&#x5B9A;&#x540E;&#x7F00;&#x5339;&#x914D;" class="anchor-navigation-ex-anchor" href="#&#x6307;&#x5B9A;&#x540E;&#x7F00;&#x5339;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6307;&#x5B9A;&#x540E;&#x7F00;&#x5339;&#x914D;" class="plugin-anchor" href="#&#x6307;&#x5B9A;&#x540E;&#x7F00;&#x5339;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6307;&#x5B9A;&#x540E;&#x7F00;&#x5339;&#x914D;</h2>
+<p>&#x5339;&#x914D;&#x4EE5; gif&#x3001;jpg&#x3001;jpeg &#x7ED3;&#x5C3E;&#x7684;&#x6587;&#x4EF6;</p>
+<pre class="language-"><code class="lang-shell">location ~* \.(gif|jpg|jpeg)$ {
+    [ configuration ]
+}
+#http://www.xiaobei.com/img/xiaobei.jpg [&#x6210;&#x529F;]
+</code></pre>
+<h2 id="&#x5FFD;&#x7565;&#x6B63;&#x5219;&#x5339;&#x914D;"><a name="&#x5FFD;&#x7565;&#x6B63;&#x5219;&#x5339;&#x914D;" class="anchor-navigation-ex-anchor" href="#&#x5FFD;&#x7565;&#x6B63;&#x5219;&#x5339;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5FFD;&#x7565;&#x6B63;&#x5219;&#x5339;&#x914D;" class="plugin-anchor" href="#&#x5FFD;&#x7565;&#x6B63;&#x5219;&#x5339;&#x914D;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5FFD;&#x7565;&#x6B63;&#x5219;&#x5339;&#x914D;</h2>
+<p>^~&#xFF0C;&#x53EA;&#x5339;&#x914D;&#x4EE5; uri &#x5F00;&#x5934;&#xFF0C;&#x5339;&#x914D;&#x6210;&#x529F;&#x4EE5;&#x540E;&#xFF0C;&#x4F1A;&#x505C;&#x6B62;&#x641C;&#x7D22;&#x540E;&#x9762;&#x7684;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5339;&#x914D;&#x3002;</p>
+<pre class="language-"><code class="lang-shell">location ^~ /img/ {
+    [ configuration ]
+}
+#&#x4EE5; /img/ &#x5F00;&#x5934;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x90FD;&#x4F1A;&#x5339;&#x914D;&#x4E0A;
+#http://www.xiaobei.com/img/xiaobei.jpg [&#x6210;&#x529F;]
+#http://www.xiaobei.com/img/xiaobei.png [&#x6210;&#x529F;]
+</code></pre>
+<p>&#x5982;&#x679C;&#x914D;&#x7F6E;&#x4E86;&#x5FFD;&#x7565;&#x6B63;&#x5219;&#x5339;&#x914D;&#xFF0C;&#x90A3;&#x4E48;&#x6240;&#x6709;&#x8BF7;&#x6C42; /img/ &#x4E0B;&#x7684;&#x56FE;&#x7247;&#x4F1A;&#x88AB;&#x4E0A;&#x9762;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x56E0;&#x4E3A; ^~&#x6307;&#x4EE4;&#x5339;&#x914D;&#x5230;&#x4E86;&#xFF0C;&#x5219;&#x4E0D;&#x68C0;&#x67E5;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x3002;&#x5BF9;&#x6BD4;&#x8FD9;&#x4E24;&#x4E2A; location&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4E0D;&#x540C;&#x76EE;&#x5F55;&#xFF0C;&#x76F8;&#x540C;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x5B9E;&#x9A8C;&#x3002;</p>
+<h1 id="location-&#x4F18;&#x5148;&#x7EA7;"><a name="location-&#x4F18;&#x5148;&#x7EA7;" class="anchor-navigation-ex-anchor" href="#location-&#x4F18;&#x5148;&#x7EA7;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="location-&#x4F18;&#x5148;&#x7EA7;" class="plugin-anchor" href="#location-&#x4F18;&#x5148;&#x7EA7;"><i class="fa fa-link" aria-hidden="true"></i></a>Location &#x4F18;&#x5148;&#x7EA7;</h1>
+<p>&#x5B8C;&#x6574;&#x8303;&#x4F8B;&#xFF1A;</p>
+<pre class="language-"><code class="lang-shell">&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x7B80;&#x77ED;&#x7684;localtion&#x914D;&#x7F6E;&#xFF1A;
+location / {
+    echo &quot;this is $request_uri&quot;;
+}
+location ~* \.(jpg|png) {
+    echo &quot;this is ~* \.(jpg|png)&quot;;
+}
+location ~ \.(jpg|png) {
+    echo &quot;this is ~ \.(jpg|png)&quot;;
+}
+location ^~ /img/xiaobei.jpg {
+    echo &quot;this is ^~ /img/xiaobei.jpg&quot;;
+}
+location = /img/xiaobei.jpg {
+    echo &quot;this is = /img/xiaobei.jpg&quot;;
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x8BF7;&#x6C42;&#x662F;&#xFF1A;<code>curl 192.168.115.129/img/xiaobei.jpg</code>
+&#x90A3;&#x4E48;&#x6309;&#x7167;&#x5339;&#x914D;&#x89C4;&#x5219;&#x987A;&#x5E8F;&#x5E94;&#x8BE5;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
+<ol>
+<li>&#x53D6;&#x51FA; uri&#xFF1A;/img/xiaobei.jpg</li>
+<li>&#x53BB;&#x5339;&#x914D; localtion &#x89C4;&#x5219;&#xFF0C;&#x67E5;&#x627E;&#x6709;&#x6CA1;&#x6709; = /img/xiaobei.jpg &#x7684;&#x89C4;&#x5219;&#xFF0C;&#x6709;&#x5219;&#x505C;&#x6B62;&#x5339;&#x914D;&#x3002;</li>
+</ol>
+<pre class="language-"><code class="lang-shell">[root@localhost ~]# curl 192.168.115.129/img/xiaobei.jpg
+this is = /img/xiaobei.jpg
+</code></pre>
+<ol>
+<li>&#x5C06; location = /img/xiaobei.jpg &#x89C4;&#x5219;&#x6CE8;&#x91CA;&#xFF0C;&#x7EE7;&#x7EED;&#x67E5;&#x627E;&#x6709;&#x6CA1;&#x6709; ^~ /img/&#x7684;&#x89C4;&#x5219;&#x3002;</li>
+</ol>
+<pre class="language-"><code class="lang-shell">[root@www ~]# curl 192.168.115.129/img/xiaobei.jpg
+this is ^~ /img/xiaobei.jpg
+</code></pre>
+<ol>
+<li>&#x5C06; location ^~ /img/&#x6CE8;&#x91CA;&#xFF0C;&#x8FD9;&#x662F;&#x5B83;&#x4F1A;&#x53BB;&#x67E5;&#x627E;&#x6709;&#x6CA1;&#x6709;&#x6B63;&#x5219;&#x5339;&#x914D;&#x89C4;&#x5219;&#x3002;</li>
+</ol>
+<pre class="language-"><code class="lang-shell">location / {
+echo &quot;this is $request_uri&quot;;
+}
+location ~* \.(jpg|png)$ {
+echo &quot;this is ~* \.(jpg|png)&quot;;
+}
+location ~ \.(jpg|png)$ {
+echo &quot;this is ~ \.(jpg|png)&quot;;
+}
+#location ^~ /img/xiaobei.jpg {
+# echo &quot;this is ^~ /img/xiaobei.jpg&quot;;
+#}
+#location = /img/xiaobei.jpg {
+# echo &quot;this is = /img/xiaobei.jpg&quot;;
+#}
+&#x5176;&#x4E2D;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x548C;&#x7684;&#x7B2C;&#x4E09;&#x4E2A;&#x89C4;&#x5219;&#x90FD;&#x662F;&#x6B63;&#x5219;&#xFF0C;&#x8FD9;&#x65F6;&#x4F1A;&#x6309;&#x7167;&#x81F3;&#x4E0A;&#x800C;&#x4E0B;&#x7684;&#x987A;&#x5E8F;&#x5339;&#x914D;&#x3002;
+[root@localhost ~]# curl 192.168.129.115/img/xiaobei.jpg
+this is ~* \.(jpg|png)
+</code></pre>
+<ol>
+<li>&#x5176;&#x4ED6;&#x7684;&#x90FD;&#x6CE8;&#x91CA;&#x540E;&#xFF0C;&#x56E0;&#x4E3A;&#x4F18;&#x5148;&#x5339;&#x914D;&#x89C4;&#x5219;&#x90FD;&#x6CA1;&#x6709;&#x627E;&#x5230;&#xFF0C;&#x6700;&#x540E;&#x5339;&#x914D;&#x5230;/img/&#x89C4;&#x5219;</li>
+</ol>
+<pre class="language-"><code class="lang-shell">[root@localhost ~]# curl 192.168.115.129/img/xiaobei.jpg
+this is /img/xiaobei.jpg
+</code></pre>
+<h1 id="rewrite-&#x89C4;&#x5219;"><a name="rewrite-&#x89C4;&#x5219;" class="anchor-navigation-ex-anchor" href="#rewrite-&#x89C4;&#x5219;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="rewrite-&#x89C4;&#x5219;" class="plugin-anchor" href="#rewrite-&#x89C4;&#x5219;"><i class="fa fa-link" aria-hidden="true"></i></a>rewrite &#x89C4;&#x5219;</h1>
+<p>Nginx &#x7684; rewrite &#x529F;&#x80FD;&#x9700;&#x8981; pcre &#x8F6F;&#x4EF6;&#x7684;&#x652F;&#x6301;&#xFF0C;&#x5373;&#x901A;&#x8FC7; perl &#x517C;&#x5BB9;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x8BED;&#x53E5;&#x8FDB;&#x884C;&#x89C4;&#x5219;&#x5339;&#x914D;&#x7684;&#x3002;</p>
+<p>&#x9ED8;&#x8BA4;&#x53C2;&#x6570;&#x7F16;&#x8BD1; nginx &#x5C31;&#x4F1A;&#x652F;&#x6301; rewrite &#x7684;&#x6A21;&#x5757;&#xFF0C;&#x4F46;&#x662F;&#x4E5F;&#x5FC5;&#x987B;&#x8981; pcre &#x7684;&#x652F;&#x6301;&#x3002;</p>
+<p>rewrite &#x662F;&#x5B9E;&#x73B0; URL &#x91CD;&#x5199;&#x7684;&#x5173;&#x952E;&#x6307;&#x4EE4;&#xFF0C;&#x6839;&#x636E; regex&#xFF08;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#xFF09;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#xFF0C;&#x91CD;&#x5B9A;&#x5411;&#x5230; replacement&#xFF0C;&#x7ED3;&#x5C3E;&#x662F; flag &#x6807;&#x8BB0;&#x3002;</p>
+<h2 id="rewrite-&#x8BED;&#x6CD5;"><a name="rewrite-&#x8BED;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#rewrite-&#x8BED;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="rewrite-&#x8BED;&#x6CD5;" class="plugin-anchor" href="#rewrite-&#x8BED;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>rewrite &#x8BED;&#x6CD5;</h2>
+<pre class="language-"><code class="lang-shell">rewrite <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>regex</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replacement</span><span class="token punctuation">&gt;</span></span> [flag];
+            &#x6B63;&#x5219;   &#x66FF;&#x4EE3;&#x5185;&#x5BB9;    flag&#x6807;&#x8BB0;
+&#x6B63;&#x5219;&#xFF1A;perl&#x517C;&#x5BB9;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x8BED;&#x53E5;&#x8FDB;&#x884C;&#x89C4;&#x5219;&#x5339;&#x914D;
+&#x66FF;&#x4EE3;&#x5185;&#x5BB9;&#xFF1A;&#x5C06;&#x6B63;&#x5219;&#x5339;&#x914D;&#x7684;&#x5185;&#x5BB9;&#x66FF;&#x6362;&#x6210;replacement
+flag&#x6807;&#x8BB0;&#xFF1A;rewrite&#x652F;&#x6301;&#x7684;flag&#x6807;&#x8BB0;
+
+# flag&#x6807;&#x8BB0;&#x8BF4;&#x660E;&#xFF1A;
+last #&#x672C;&#x6761;&#x89C4;&#x5219;&#x5339;&#x914D;&#x5B8C;&#x6210;&#x7EC8;&#x6B62;&#x5F53;&#x524D;location&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x7EE7;&#x7EED;&#x5411;&#x4E0B;&#x5339;&#x914D;&#x65B0;&#x7684;location URI&#x89C4;&#x5219;
+break #&#x672C;&#x6761;&#x89C4;&#x5219;&#x5339;&#x914D;&#x5B8C;&#x6210;&#x5373;&#x7EC8;&#x6B62;&#xFF0C;&#x4E0D;&#x518D;&#x5339;&#x914D;&#x540E;&#x9762;&#x7684;&#x4EFB;&#x4F55;&#x89C4;&#x5219;
+redirect #&#x8FD4;&#x56DE;302&#x4E34;&#x65F6;&#x91CD;&#x5B9A;&#x5411;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x5730;&#x5740;&#x4F1A;&#x663E;&#x793A;&#x8DF3;&#x8F6C;&#x540E;&#x7684;URL&#x5730;&#x5740;&#xFF0C;&#x5173;&#x95ED;&#x670D;&#x52A1;&#xFF0C;&#x65E0;&#x6CD5;&#x91CD;&#x5B9A;&#x5411;&#x3002;
+permanent #&#x8FD4;&#x56DE;301&#x6C38;&#x4E45;&#x91CD;&#x5B9A;&#x5411;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x5730;&#x5740;&#x680F;&#x4F1A;&#x663E;&#x793A;&#x8DF3;&#x8F6C;&#x540E;&#x7684;URL&#x5730;&#x5740;&#xFF0C;&#x5173;&#x95ED;&#x670D;&#x52A1;&#xFF0C;&#x4F9D;&#x7136;&#x53EF;&#x4EE5;&#x91CD;&#x5B9A;&#x5411;&#xFF0C;&#x6E05;&#x9664;&#x7F13;&#x5B58;&#x5931;&#x6548;&#x3002;
+</code></pre>
+<h2 id="rewrite-&#x5B9E;&#x4F8B;"><a name="rewrite-&#x5B9E;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#rewrite-&#x5B9E;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="rewrite-&#x5B9E;&#x4F8B;" class="plugin-anchor" href="#rewrite-&#x5B9E;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>rewrite &#x5B9E;&#x4F8B;</h2>
+<h3 id="&#x5B9E;&#x73B0;&#x57DF;&#x540D;&#x8DF3;&#x8F6C;"><a name="&#x5B9E;&#x73B0;&#x57DF;&#x540D;&#x8DF3;&#x8F6C;" class="anchor-navigation-ex-anchor" href="#&#x5B9E;&#x73B0;&#x57DF;&#x540D;&#x8DF3;&#x8F6C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B9E;&#x73B0;&#x57DF;&#x540D;&#x8DF3;&#x8F6C;" class="plugin-anchor" href="#&#x5B9E;&#x73B0;&#x57DF;&#x540D;&#x8DF3;&#x8F6C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9E;&#x73B0;&#x57DF;&#x540D;&#x8DF3;&#x8F6C;</h3>
+<pre class="language-"><code class="lang-shell">#&#x65B9;&#x6848;&#x4E00;&#xFF1A;
+server {
+    listen 80;
+    server_name xiaobei.com;
+    rewrite ^/(.*)$ http://www.xiaobei.com/$1 permanent;
+}
+server {
+    listen 80;
+    server_name www.xiaobei.com;
+    location / {
+        root /data/www/;
+        index index.html index.htm;
+    }
+}
+
+#&#x65B9;&#x6848;&#x4E8C;&#xFF1A;
+server {
+    listen 80;
+    server_name www.xiaobei.com xiaobei.com;
+    if ( $host != &apos;www.xiaobei.com&apos; ) {
+        rewrite ^/(.*)$ http://www.xiaobei.com/$1 permanent;
+    }
+    location / {
+        root /data/www/;
+        index index.html index.htm;
+    }
+}
+#ps&#xFF1A;&#x672C;&#x5730;&#x9700;&#x8981;&#x505A;hosts&#x89E3;&#x6790;
+#192.168.115.129 www.xiaobei.com xiaobei.com
+</code></pre>
+<h3 id="&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7EC8;&#x7AEF;&#x8DF3;&#x8F6C;"><a name="&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7EC8;&#x7AEF;&#x8DF3;&#x8F6C;" class="anchor-navigation-ex-anchor" href="#&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7EC8;&#x7AEF;&#x8DF3;&#x8F6C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7EC8;&#x7AEF;&#x8DF3;&#x8F6C;" class="plugin-anchor" href="#&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7EC8;&#x7AEF;&#x8DF3;&#x8F6C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7EC8;&#x7AEF;&#x8DF3;&#x8F6C;</h3>
+<pre class="language-"><code class="lang-shell">server {
+    listen 80;
+    server_name xiaobei.com www.xiaobei.com;
+    root /usr/share/nginx/html/test;
+    if ( $http_user_agent ~* &quot;iphone|android&quot;) {
+        rewrite ^/(.*)$
+        http://m.xiaobei.com/$1;
+    }
+    index index.html;
+}
+
+server {
+    listen 80;
+    server_name m.xiaobei.com;
+    root /data/www/m;
+    index index.html;
+    location / {
+        default_type text/html;
+        return 200 &quot;this is iphone|android html&quot;;
+    }
+}
+</code></pre>
+<h3 id="&#x5B9E;&#x73B0;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BED;&#x8A00;&#x8DF3;&#x8F6C;"><a name="&#x5B9E;&#x73B0;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BED;&#x8A00;&#x8DF3;&#x8F6C;" class="anchor-navigation-ex-anchor" href="#&#x5B9E;&#x73B0;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BED;&#x8A00;&#x8DF3;&#x8F6C;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B9E;&#x73B0;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BED;&#x8A00;&#x8DF3;&#x8F6C;" class="plugin-anchor" href="#&#x5B9E;&#x73B0;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BED;&#x8A00;&#x8DF3;&#x8F6C;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9E;&#x73B0;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BED;&#x8A00;&#x8DF3;&#x8F6C;</h3>
+<pre class="language-"><code class="lang-shell"># &#x6839;&#x636E;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BED;&#x8A00;&#x8DF3;&#x8F6C;&#x5230;&#x6307;&#x5B9A;url:
+server {
+    listen 80;
+    server_name xiaobei.com www.xiaobei.com;
+    root /usr/share/nginx/html/test;
+    index index.html;
+    location / {
+        if ( $http_accept_language ~ &quot;^zh-CN&quot; ) {
+            rewrite ^/(.*) /zh/$1 ;
+        }
+        if ( $http_accept_language ~ &quot;^en&quot; ) {
+            rewrite ^/(.*) /en/$1 ;
+        }
+        root html;
+        index index.html index.htm;
+    }
+
+    location ^~ /zh/ {
+        root html/;
+        index index.html;
+    }
+
+    location ^~ /en/ {
+        root html/;
+        index index.html;
+    }
+}
+
+mkdir -p /usr/share/nginx/html/test/zh
+mkdir -p /usr/share/nginx/html/test/en
+echo &quot;this is &#x4E2D;&#x6587; &quot; &gt;
+/usr/share/nginx/html/test/zh/index.html
+echo &quot;this is English &quot; &gt;
+/usr/share/nginx/html/test/en/index.html
+</code></pre>
+<h3 id="&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x9996;&#x9875;"><a name="&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x9996;&#x9875;" class="anchor-navigation-ex-anchor" href="#&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x9996;&#x9875;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x9996;&#x9875;" class="plugin-anchor" href="#&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x9996;&#x9875;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x9996;&#x9875;</h3>
+<pre class="language-"><code class="lang-shell">error_page 404 =200 /index.html;
+</code></pre>
+<h3 id="&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x817E;&#x8BAF;&#x516C;&#x76CA;&#x9875;&#x9762;"><a name="&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x817E;&#x8BAF;&#x516C;&#x76CA;&#x9875;&#x9762;" class="anchor-navigation-ex-anchor" href="#&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x817E;&#x8BAF;&#x516C;&#x76CA;&#x9875;&#x9762;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x817E;&#x8BAF;&#x516C;&#x76CA;&#x9875;&#x9762;" class="plugin-anchor" href="#&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x817E;&#x8BAF;&#x516C;&#x76CA;&#x9875;&#x9762;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9E;&#x73B0;&#x9519;&#x8BEF;&#x9875;&#x9762;&#x8FD4;&#x56DE;&#x817E;&#x8BAF;&#x516C;&#x76CA;&#x9875;&#x9762;</h3>
+<pre class="language-"><code class="lang-shell">error_page 404 =200 /404.html;
+vim /usr/local/nginx/html/404.html
+</code></pre>
+<pre class="language-"><code class="lang-html"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>UTF-8<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>&#x516C;&#x76CA;404<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span>
+      <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>text/javascript<span class="token punctuation">&quot;</span></span>
+      <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js<span class="token punctuation">&quot;</span></span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>utf-8<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> By <a href="https://github.com/xiaobei930" target="_blank">xiaobei</a>&#xFF0C;&#x4F7F;&#x7528;<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">&#x77E5;&#x8BC6;&#x5171;&#x4EAB; &#x7F72;&#x540D;-&#x76F8;&#x540C;&#x65B9;&#x5F0F;&#x5171;&#x4EAB; 4.0&#x534F;&#x8BAE;</a>&#x53D1;&#x5E03; </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> &#x6B64;&#x9875;&#x9762;&#x4FEE;&#x8BA2;&#x4E8E;&#xFF1A; 2020-08-15 09:39:51 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="nginx配置文件解读及常用模块.html" class="navigation navigation-prev " aria-label="Previous page: nginx 配置文件解读及常用模块">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="nginx服务器虚拟主机、反向代理.html" class="navigation navigation-next " aria-label="Next page: nginx 服务器虚拟主机、反向代理">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"nginx 服务器 location、rewite 规则","level":"1.1.1.1.11","depth":4,"next":{"title":"nginx 服务器虚拟主机、反向代理","level":"1.1.1.1.12","depth":4,"path":"book/technology/linux/Special-lecture/nginx服务器虚拟主机、反向代理.md","ref":"book/technology/linux/Special-lecture/nginx服务器虚拟主机、反向代理.md","articles":[]},"previous":{"title":"nginx 配置文件解读及常用模块","level":"1.1.1.1.10","depth":4,"path":"book/technology/linux/Special-lecture/nginx配置文件解读及常用模块.md","ref":"book/technology/linux/Special-lecture/nginx配置文件解读及常用模块.md","articles":[]},"dir":"ltr"},"config":{"plugins":["favicon","yahei","github","autotheme","-lunr","-search","search-plus","prism","-highlight","github-buttons","splitter","-sharing","sharing-plus","page-footer-ex","expandable-chapters-small","book-summary-scroll-position-saver","anchors","anchor-navigation-ex","sitemap-general","copy-code-button","multipart","edit-link-plus","editlink","toc","expandable-chapters","insert-logo","advanced-emoji"],"root":".","styles":{"website":"assets/styles/website.css"},"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"github":{"url":"https://github.com/xiaobei930"},"editlink":{"label":"Edit","multilingual":false,"base":"https://github.com/xiaobei930/LearningNotes/blob/master"},"yahei":{},"book-summary-scroll-position-saver":{},"page-footer-ex":{"copyright":"By [xiaobei](https://github.com/xiaobei930)，使用[知识共享 署名-相同方式共享 4.0协议](https://creativecommons.org/licenses/by-sa/4.0/)发布","markdown":true,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"此页面修订于："},"splitter":{},"toc":{},"edit-link-plus":{"label":{"en":"Edit This Page","zh":"编辑本页"},"base":"https://github.com/xiaobei930/LearningNotes/edit/BRANCH/path/to/book"},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"multipart":{},"sitemap-general":{"prefix":"https://xiaobei930.github.io/myBook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"family":"serif","size":2},"anchor-navigation-ex":{"associatedWithSummary":false,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"/assets/logo/favicon.ico","bookmark":"/assets/logo/favicon.ico","appleTouch":"/assets/logo/apple-touch-icon.png","appleTouchMore":{"120x120":"/assets/logo/apple-touch-icon-120x120.png","180x180":"/assets/logo/apple-touch-icon-180x180.png"}},"github-buttons":{"buttons":[{"user":"xiaobei930","repo":"LearningNotes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"autotheme":{"night":[20,21,22,23,0,1,2,3,4,5],"sepia":[6,7,8,18,19,19],"white":[9,10,11,12,13,14,15,16,17]},"advanced-emoji":{"embedEmojis":false},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":true,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":true},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"https://cdn.jsdelivr.net/gh/xiaobei930/LearningNotes@master/assets/logo/logo.png"},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"小北","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"听小北瞎扯淡","language":"zh-hans","links":{"sidebar":{"GitHub":"https://github.com/xiaobei930","博客":"https://xiaobei930.github.io/LearningNotes/"}},"gitbook":"3.x.x","description":"杂七杂八乱记一通"},"file":{"path":"book/technology/linux/Special-lecture/nginx服务器location、rewite规则.md","mtime":"2020-08-15T09:39:51.413Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-15T09:40:42.655Z"},"basePath":"../../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../../gitbook/gitbook.js"></script>
+    <script src="../../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-autotheme/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-book-summary-scroll-position-saver/book-summary-scroll-position-saver.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-edit-link-plus/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

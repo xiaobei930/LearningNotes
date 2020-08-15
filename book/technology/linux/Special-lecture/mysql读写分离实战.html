@@ -1,0 +1,1865 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>mysql 读写分离实战 · 听小北瞎扯淡</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="小北">
+        
+        
+    
+    <link rel="stylesheet" href="../../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-yahei/yahei.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-prism/prism-tomorrow.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-multipart/multipart.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../../../assets/styles/website.css">
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="LNMP高性能服务器.html" />
+    
+    
+    <link rel="prev" href="mysql主从同步及mysqldump备份.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"xiaobei930","repo":"LearningNotes","type":"star","size":"small","count":true}]};
+    </script>
+
+    
+        <link rel="shortcut icon" href='../../../../assets/logo/favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../../../../assets/logo/favicon.ico' type="image/x-icon">
+    
+    
+        <link rel="apple-touch-icon" href='../../../../assets/logo/apple-touch-icon.png'>
+    
+    
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="../../../../assets/logo/apple-touch-icon-120x120.png">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="../../../../assets/logo/apple-touch-icon-180x180.png">
+        
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/xiaobei930" target="_blank" class="custom-link">GitHub</a>
+        </li>
+    
+        
+        <li>
+            <a href="https://xiaobei930.github.io/LearningNotes/" target="_blank" class="custom-link">博客</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <span>
+            
+                    
+                    技术剪影
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" >
+            
+                <span>
+            
+                    
+                    Linux
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" >
+            
+                <span>
+            
+                    
+                    系统学习
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1.1" data-path="操作系统入门.html">
+            
+                <a href="操作系统入门.html">
+            
+                    
+                    操作系统入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.2" data-path="linux介绍及安装.html">
+            
+                <a href="linux介绍及安装.html">
+            
+                    
+                    linux 介绍及安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.3" data-path="基础命令讲解一.html">
+            
+                <a href="基础命令讲解一.html">
+            
+                    
+                    基础命令讲解(一)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.4" data-path="基础命令讲解二.html">
+            
+                <a href="基础命令讲解二.html">
+            
+                    
+                    基础命令讲解(二)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.5" data-path="vim编辑器.html">
+            
+                <a href="vim编辑器.html">
+            
+                    
+                    vim 编辑器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.6" data-path="yum管理.html">
+            
+                <a href="yum管理.html">
+            
+                    
+                    yum 管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.7" data-path="nfs文件共享服务器.html">
+            
+                <a href="nfs文件共享服务器.html">
+            
+                    
+                    nfs 文件共享服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.8" data-path="ftp文件服务器.html">
+            
+                <a href="ftp文件服务器.html">
+            
+                    
+                    ftp 文件服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.9" data-path="nginx服务安装及配置文件.html">
+            
+                <a href="nginx服务安装及配置文件.html">
+            
+                    
+                    nginx 服务安装及配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.10" data-path="nginx配置文件解读及常用模块.html">
+            
+                <a href="nginx配置文件解读及常用模块.html">
+            
+                    
+                    nginx 配置文件解读及常用模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.11" data-path="nginx服务器location、rewite规则.html">
+            
+                <a href="nginx服务器location、rewite规则.html">
+            
+                    
+                    nginx 服务器 location、rewite 规则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.12" data-path="nginx服务器虚拟主机、反向代理.html">
+            
+                <a href="nginx服务器虚拟主机、反向代理.html">
+            
+                    
+                    nginx 服务器虚拟主机、反向代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.13" data-path="nginx负载均衡.html">
+            
+                <a href="nginx负载均衡.html">
+            
+                    
+                    nginx 负载均衡
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.14" data-path="mysql入门安装.html">
+            
+                <a href="mysql入门安装.html">
+            
+                    
+                    mysql 入门安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.15" data-path="mysql数据库基础操作.html">
+            
+                <a href="mysql数据库基础操作.html">
+            
+                    
+                    mysql 数据库基础操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.16" data-path="mysql主从同步及mysqldump备份.html">
+            
+                <a href="mysql主从同步及mysqldump备份.html">
+            
+                    
+                    mysql 主从同步及 mysqldump 备份
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.1.1.17" data-path="mysql读写分离实战.html">
+            
+                <a href="mysql读写分离实战.html">
+            
+                    
+                    mysql 读写分离实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.18" data-path="LNMP高性能服务器.html">
+            
+                <a href="LNMP高性能服务器.html">
+            
+                    
+                    LNMP 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.19" data-path="分布式LNMP高性能服务器.html">
+            
+                <a href="分布式LNMP高性能服务器.html">
+            
+                    
+                    分布式 LNMP 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.20" data-path="LNMP+redis高性能服务器.html">
+            
+                <a href="LNMP+redis高性能服务器.html">
+            
+                    
+                    LNMP+redis 高性能服务器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.21" data-path="redis数据库主从哨兵模式.html">
+            
+                <a href="redis数据库主从哨兵模式.html">
+            
+                    
+                    redis 数据库主从哨兵模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.22" data-path="zabbix监控入门.html">
+            
+                <a href="zabbix监控入门.html">
+            
+                    
+                    zabbix 监控入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.23" data-path="zabbix自定义监控项，触发器动作.html">
+            
+                <a href="zabbix自定义监控项，触发器动作.html">
+            
+                    
+                    zabbix 自定义监控项，触发器动作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.24" data-path="zabbix分布式应用，微信报警.html">
+            
+                <a href="zabbix分布式应用，微信报警.html">
+            
+                    
+                    zabbix 分布式应用，微信报警
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.25" data-path="tomcat服务器实战.html">
+            
+                <a href="tomcat服务器实战.html">
+            
+                    
+                    tomcat服务器实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.26" data-path="SHELL编程入门&案例实战.html">
+            
+                <a href="SHELL编程入门&案例实战.html">
+            
+                    
+                    SHELL编程入门&案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.27" data-path="SHELL编程变量&if实战.html">
+            
+                <a href="SHELL编程变量&if实战.html">
+            
+                    
+                    SHELL编程变量&if实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.28" data-path="SHELL编程if语句和for循环.html">
+            
+                <a href="SHELL编程if语句和for循环.html">
+            
+                    
+                    SHELL编程if语句和for循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.29" data-path="SHELL编程For&While.html">
+            
+                <a href="SHELL编程For&While.html">
+            
+                    
+                    SHELL编程For&While实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.30" data-path="SHELL编程Case&While实战.html">
+            
+                <a href="SHELL编程Case&While实战.html">
+            
+                    
+                    SHELL编程Case&While实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.31" data-path="SHELL编程Nginx虚拟主机实战.html">
+            
+                <a href="SHELL编程Nginx虚拟主机实战.html">
+            
+                    
+                    SHELL编程Nginx虚拟主机实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.32" data-path="SHELL编程Find案例实战.html">
+            
+                <a href="SHELL编程Find案例实战.html">
+            
+                    
+                    SHELL编程Find案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.33" data-path="SHELL编程Sed&Grep案例实战.html">
+            
+                <a href="SHELL编程Sed&Grep案例实战.html">
+            
+                    
+                    SHELL编程Sed&Grep案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.34" data-path="SHELL编程Grep&Awk案例实战.html">
+            
+                <a href="SHELL编程Grep&Awk案例实战.html">
+            
+                    
+                    SHELL编程Grep&Awk案例实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.35" data-path="LVS+Keepalived高可用实战.html">
+            
+                <a href="LVS+Keepalived高可用实战.html">
+            
+                    
+                    LVS+Keepalived高可用实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.36" data-path="Nginx+Keepalived高可用企业实战.html">
+            
+                <a href="Nginx+Keepalived高可用企业实战.html">
+            
+                    
+                    Nginx+Keepalived高可用企业实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.37" data-path="LVS+Keepalived高可用企业实战.html">
+            
+                <a href="LVS+Keepalived高可用企业实战.html">
+            
+                    
+                    LVS+Keepalived高可用企业实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.1.38" data-path="Docker虚拟化技术实战.html">
+            
+                <a href="Docker虚拟化技术实战.html">
+            
+                    
+                    Docker虚拟化技术实战
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" >
+            
+                <span>
+            
+                    
+                    linux 命令大全
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1" data-path="../command-encyclopedia/1.file-management/">
+            
+                <a href="../command-encyclopedia/1.file-management/">
+            
+                    
+                    1.文件管理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1.1" data-path="../command-encyclopedia/1.file-management/ls-显示指定工作目录下的内容及属性信息.html">
+            
+                <a href="../command-encyclopedia/1.file-management/ls-显示指定工作目录下的内容及属性信息.html">
+            
+                    
+                    ls-显示指定工作目录下的内容及属性信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.2" data-path="../command-encyclopedia/1.file-management/mkdir–创建目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/mkdir–创建目录.html">
+            
+                    
+                    mkdir–创建目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.3" data-path="../command-encyclopedia/1.file-management/cp-复制文件或目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/cp-复制文件或目录.html">
+            
+                    
+                    cp-复制文件或目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.4" data-path="../command-encyclopedia/1.file-management/pwd-显示当前目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/pwd-显示当前目录.html">
+            
+                    
+                    pwd-显示当前目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.5" data-path="../command-encyclopedia/1.file-management/mv-移动或改名.html">
+            
+                <a href="../command-encyclopedia/1.file-management/mv-移动或改名.html">
+            
+                    
+                    mv-移动或改名
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.6" data-path="../command-encyclopedia/1.file-management/touch-创建文件.html">
+            
+                <a href="../command-encyclopedia/1.file-management/touch-创建文件.html">
+            
+                    
+                    touch-创建文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.7" data-path="../command-encyclopedia/1.file-management/userdel-删除用户.html">
+            
+                <a href="../command-encyclopedia/1.file-management/userdel-删除用户.html">
+            
+                    
+                    userdel-删除用户
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.8" data-path="../command-encyclopedia/1.file-management/ln-为文件创建链接.html">
+            
+                <a href="../command-encyclopedia/1.file-management/ln-为文件创建链接.html">
+            
+                    
+                    ln-为文件创建链接
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.9" data-path="../command-encyclopedia/1.file-management/chattr-更改文件属性.html">
+            
+                <a href="../command-encyclopedia/1.file-management/chattr-更改文件属性.html">
+            
+                    
+                    chattr-更改文件属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.10" data-path="../command-encyclopedia/1.file-management/cd-切换目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/cd-切换目录.html">
+            
+                    
+                    cd-切换目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.11" data-path="../command-encyclopedia/1.file-management/traceroute-追踪数据包在网络上的传输时的全部路径.html">
+            
+                <a href="../command-encyclopedia/1.file-management/traceroute-追踪数据包在网络上的传输时的全部路径.html">
+            
+                    
+                    traceroute-追踪数据包在网络上的传输时的全部路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.12" data-path="../command-encyclopedia/1.file-management/cksum-校验文件.html">
+            
+                <a href="../command-encyclopedia/1.file-management/cksum-校验文件.html">
+            
+                    
+                    cksum-校验文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.13" data-path="../command-encyclopedia/1.file-management/locate-快速查找文件或目录.html">
+            
+                <a href="../command-encyclopedia/1.file-management/locate-快速查找文件或目录.html">
+            
+                    
+                    locate-快速查找文件或目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.14" data-path="../command-encyclopedia/1.file-management/wc-统计文件的字节数、字数、行数.html">
+            
+                <a href="../command-encyclopedia/1.file-management/wc-统计文件的字节数、字数、行数.html">
+            
+                    
+                    wc-统计文件的字节数、字数、行数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.15" data-path="../command-encyclopedia/1.file-management/lsattr-显示文件隐藏属性.html">
+            
+                <a href="../command-encyclopedia/1.file-management/lsattr-显示文件隐藏属性.html">
+            
+                    
+                    lsattr-显示文件隐藏属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.16" data-path="../command-encyclopedia/1.file-management/whereis-显示命令及相关文件的路径.html">
+            
+                <a href="../command-encyclopedia/1.file-management/whereis-显示命令及相关文件的路径.html">
+            
+                    
+                    whereis-显示命令及相关文件的路径
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.17" data-path="../command-encyclopedia/1.file-management/sort-排序文件并输出.html">
+            
+                <a href="../command-encyclopedia/1.file-management/sort-排序文件并输出.html">
+            
+                    
+                    sort-排序文件并输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.1.18" data-path="../command-encyclopedia/1.file-management/less-分页显示工具.html">
+            
+                <a href="../command-encyclopedia/1.file-management/less-分页显示工具.html">
+            
+                    
+                    less-分页显示工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.2" data-path="../command-encyclopedia/2.documents-editing/">
+            
+                <a href="../command-encyclopedia/2.documents-editing/">
+            
+                    
+                    2.文档编辑
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.3" data-path="../command-encyclopedia/3.system-management/">
+            
+                <a href="../command-encyclopedia/3.system-management/">
+            
+                    
+                    3.系统管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.4" data-path="../command-encyclopedia/4.disk-management/">
+            
+                <a href="../command-encyclopedia/4.disk-management/">
+            
+                    
+                    4.磁盘管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.5" data-path="../command-encyclopedia/5.file-transfer/">
+            
+                <a href="../command-encyclopedia/5.file-transfer/">
+            
+                    
+                    5.文件传输
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.6" data-path="../command-encyclopedia/6.network-communication/">
+            
+                <a href="../command-encyclopedia/6.network-communication/">
+            
+                    
+                    6.网络通讯
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.7" data-path="../command-encyclopedia/7.quipment-management/">
+            
+                <a href="../command-encyclopedia/7.quipment-management/">
+            
+                    
+                    7.设备管理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.8" data-path="../command-encyclopedia/8.backup-compression/">
+            
+                <a href="../command-encyclopedia/8.backup-compression/">
+            
+                    
+                    8.备份压缩
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.9" data-path="../command-encyclopedia/9.other-command/">
+            
+                <a href="../command-encyclopedia/9.other-command/">
+            
+                    
+                    9.其他命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" >
+            
+                <span>
+            
+                    
+                    Go
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.2.1" data-path="../../go/go环境及goland快捷键.html">
+            
+                <a href="../../go/go环境及goland快捷键.html">
+            
+                    
+                    go 环境及 goland 快捷键
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" >
+            
+                <span>
+            
+                    
+                    Gitbook
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.3.1" data-path="../../gitbook/命令及使用.html">
+            
+                <a href="../../gitbook/命令及使用.html">
+            
+                    
+                    命令及使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3.2" data-path="../../gitbook/vscode+picgo+github搭建markdown图床.html">
+            
+                <a href="../../gitbook/vscode+picgo+github搭建markdown图床.html">
+            
+                    
+                    vscode+picgo+github 搭建 markdown 图床
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" >
+            
+                <span>
+            
+                    
+                    C#
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" >
+            
+                <span>
+            
+                    
+                    Java
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" >
+            
+                <span>
+            
+                    
+                    Python
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.7" >
+            
+                <span>
+            
+                    
+                    数据库
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.7.1" data-path="../../database/redis总结.html">
+            
+                <a href="../../database/redis总结.html">
+            
+                    
+                    redis 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" >
+            
+                <span>
+            
+                    
+                    思维变革
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" >
+            
+                <span>
+            
+                    
+                    技术基础
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" >
+            
+                <span>
+            
+                    
+                    分布式架构
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" >
+            
+                <span>
+            
+                    
+                    编程规范
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" >
+            
+                <span>
+            
+                    
+                    弹性设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" >
+            
+                <span>
+            
+                    
+                    管理设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" >
+            
+                <span>
+            
+                    
+                    性能设计
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" >
+            
+                <span>
+            
+                    
+                    区块链
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.8" >
+            
+                <span>
+            
+                    
+                    面试
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.9" >
+            
+                <span>
+            
+                    
+                    高效学习
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.10" >
+            
+                <span>
+            
+                    
+                    高效沟通
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" >
+            
+                <span>
+            
+                    
+                    玩物丧志
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" >
+            
+                <span>
+            
+                    
+                    单反
+            
+                </span>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" >
+            
+                <span>
+            
+                    
+                    NAS
+            
+                </span>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../../../">
+            
+                <a href="../../../../">
+            
+                    
+                    关于
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../../.." >mysql 读写分离实战</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#mysql-&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x6982;&#x5FF5;"><b></b>MySQL &#x8BFB;&#x5199;&#x5206;&#x79BB;&#x6982;&#x5FF5;</a></li><ul><li><span class="title-icon "></span><a href="#&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;"><b></b>&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;</a></li><li><span class="title-icon "></span><a href="#&#x57FA;&#x4E8E;-mysql-proxy-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;"><b></b>&#x57FA;&#x4E8E; mysql-proxy &#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;</a></li><ul><li><span class="title-icon "></span><a href="#&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x56FE;&#x89E3;"><b></b>&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x56FE;&#x89E3;</a></li><li><span class="title-icon "></span><a href="#&#x914D;&#x7F6E;-proxy"><b></b>&#x914D;&#x7F6E; proxy</a></li><li><span class="title-icon "></span><a href="#&#x542F;&#x52A8;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;"><b></b>&#x542F;&#x52A8;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;</a></li><li><span class="title-icon "></span><a href="#&#x542F;&#x52A8;-masterslave"><b></b>&#x542F;&#x52A8; master/slave</a></li><li><span class="title-icon "></span><a href="#&#x67E5;&#x770B;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x72B6;&#x6001;"><b></b>&#x67E5;&#x770B;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x72B6;&#x6001;</a></li><li><span class="title-icon "></span><a href="#&#x6388;&#x6743;-proxy"><b></b>&#x6388;&#x6743; proxy</a></li><li><span class="title-icon "></span><a href="#&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x521B;&#x5EFA;&#x6570;&#x636E;"><b></b>&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x521B;&#x5EFA;&#x6570;&#x636E;</a></li><li><span class="title-icon "></span><a href="#&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x67E5;&#x8BE2;&#x6570;&#x636E;"><b></b>&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x67E5;&#x8BE2;&#x6570;&#x636E;</a></li></ul><li><span class="title-icon "></span><a href="#&#x57FA;&#x4E8E;-mycat-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;"><b></b>&#x57FA;&#x4E8E; Mycat &#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;</a></li><ul><li><span class="title-icon "></span><a href="#&#x5B89;&#x88C5;-mycat"><b></b>&#x5B89;&#x88C5; mycat</a></li><li><span class="title-icon "></span><a href="#&#x6388;&#x6743;-mycat"><b></b>&#x6388;&#x6743; mycat</a></li><li><span class="title-icon "></span><a href="#&#x914D;&#x7F6E;-mycat"><b></b>&#x914D;&#x7F6E; mycat</a></li><li><span class="title-icon "></span><a href="#&#x542F;&#x52A8;-mycat"><b></b>&#x542F;&#x52A8; mycat</a></li><li><span class="title-icon "></span><a href="#&#x8FDE;&#x63A5;&#x6D4B;&#x8BD5;"><b></b>&#x8FDE;&#x63A5;&#x6D4B;&#x8BD5;</a></li><li><span class="title-icon "></span><a href="#&#x62A5;&#x9519;&#x89E3;&#x51B3;"><b></b>&#x62A5;&#x9519;&#x89E3;&#x51B3;</a></li></ul></ul></ul></div><a href="#mysql-&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x6982;&#x5FF5;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="mysql-&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x6982;&#x5FF5;"><a name="mysql-&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x6982;&#x5FF5;" class="anchor-navigation-ex-anchor" href="#mysql-&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x6982;&#x5FF5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="mysql-&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x6982;&#x5FF5;" class="plugin-anchor" href="#mysql-&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x6982;&#x5FF5;"><i class="fa fa-link" aria-hidden="true"></i></a>MySQL &#x8BFB;&#x5199;&#x5206;&#x79BB;&#x6982;&#x5FF5;</h1>
+<p>MYSQL &#x8BFB;&#x5199;&#x5206;&#x79BB;&#x7684;&#x539F;&#x7406;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x8BA9; Master &#x6570;&#x636E;&#x5E93;&#x5904;&#x7406;&#x4E8B;&#x52A1;&#x6027;&#x589E;&#x3001;&#x5220;&#x9664;&#x3001;&#x4FEE;&#x6539;&#x3001;&#x66F4;&#x65B0;&#x64CD;&#x4F5C;&#xFF08;CREATE&#x3001;INSERT&#x3001;UPDATE&#x3001;DELETE&#xFF09;&#xFF0C;&#x800C;&#x8BA9; Slave &#x6570;&#x636E;&#x5E93;&#x5904;&#x7406; SELECT &#x64CD;&#x4F5C;&#xFF0C;MYSQL &#x8BFB;&#x5199;&#x5206;&#x79BB;&#x524D;&#x63D0;&#x662F;&#x57FA;&#x4E8E; MYSQL &#x4E3B;&#x4ECE;&#x590D;&#x5236;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x5728; Master &#x4E0A;&#x4FEE;&#x6539;&#x6570;&#x636E;&#xFF0C;Slave &#x540C;&#x6B65;&#x4E4B;&#x540E;&#xFF0C;WEB &#x5E94;&#x7528;&#x53EF;&#x4EE5;&#x8BFB;&#x53D6;&#x5230; Slave &#x7AEF;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<h2 id="&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;"><a name="&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;" class="plugin-anchor" href="#&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;</h2>
+<p>&#x5B9E;&#x73B0; MYSQL &#x8BFB;&#x5199;&#x5206;&#x79BB;&#x53EF;&#x4EE5;&#x57FA;&#x4E8E;&#x7B2C;&#x4E09;&#x65B9;&#x63D2;&#x4EF6;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5F00;&#x53D1;&#x4FEE;&#x6539;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#xFF0C;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x7684;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x7684;&#x5E38;&#x89C1;&#x65B9;&#x5F0F;&#x6709;&#x5982;&#x4E0B;&#x56DB;&#x79CD;&#xFF1A;</p>
+<ul>
+<li>Amoeba &#x8BFB;&#x5199;&#x5206;&#x79BB;&#xFF1B;</li>
+<li>MySQL-Proxy &#x8BFB;&#x5199;&#x5206;&#x79BB;&#xFF1B;</li>
+<li>Mycat &#x8BFB;&#x5199;&#x5206;&#x79BB;&#xFF1B;</li>
+<li>&#x57FA;&#x4E8E;&#x7A0B;&#x5E8F;&#x8BFB;&#x5199;&#x5206;&#x79BB;(&#x6548;&#x7387;&#x5F88;&#x9AD8;&#xFF0C;&#x5B9E;&#x65BD;&#x96BE;&#x5EA6;&#x5927;&#xFF0C;&#x5F00;&#x53D1;&#x6539;&#x4EE3;&#x7801;)&#xFF1B;</li>
+</ul>
+<p><strong>Amoeba</strong>&#x662F;&#x963F;&#x91CC; 08 &#x5E74;&#x5F00;&#x6E90;&#x7684;&#x4EE5; MySQL &#x4E3A;&#x5E95;&#x5C42;&#x6570;&#x636E;&#x5B58;&#x50A8;&#xFF0C;&#x5E76;&#x5BF9; WEB&#x3001;APP &#x5E94;&#x7528;&#x63D0;&#x4F9B; MySQL &#x534F;&#x8BAE;&#x63A5;&#x53E3;&#x7684; proxy&#x3002;&#x5B83;&#x96C6;&#x4E2D;&#x5730;&#x54CD;&#x5E94; WEB &#x5E94;&#x7528;&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x4F9D;&#x636E;&#x7528;&#x6237;&#x4E8B;&#x5148;&#x8BBE;&#x7F6E;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x5C06; SQL &#x8BF7;&#x6C42;&#x53D1;&#x9001;&#x5230;&#x7279;&#x5B9A;&#x7684;&#x6570;&#x636E;&#x5E93;&#x4E0A;&#x6267;&#x884C;&#xFF0C;&#x57FA;&#x4E8E;&#x6B64;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x3001;<a href="https://baike.baidu.com/item/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB" target="_blank">&#x8BFB;&#x5199;&#x5206;&#x79BB;</a>&#x3001;&#x9AD8;&#x53EF;&#x7528;&#x6027;&#x7B49;&#x9700;&#x6C42;&#x3002;</p>
+<p><strong>Mysql-Proxy</strong>&#x662F; MySQL &#x5B98;&#x65B9;&#x63D0;&#x4F9B;&#x7684; mysql &#x4E2D;&#x95F4;&#x4EF6;&#x670D;&#x52A1;&#xFF0C;&#x652F;&#x6301;&#x65E0;&#x6570;&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#xFF0C;&#x540C;&#x65F6;&#x540E;&#x7AEF;&#x53EF;&#x8FDE;&#x63A5;&#x82E5;&#x5E72;&#x53F0; Mysql-Server &#x670D;&#x52A1;&#x5668;&#xFF0C;MYSQL-Proxy &#x81EA;&#x8EAB;&#x57FA;&#x4E8E; MySQL &#x534F;&#x8BAE;&#xFF0C;&#x8FDE;&#x63A5; MYSQL-Proxy &#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x65E0;&#x9700;&#x4FEE;&#x6539;&#x4EFB;&#x4F55;&#x8BBE;&#x7F6E;&#xFF0C; &#x8DDF;&#x6B63;&#x5E38;&#x8FDE;&#x63A5; MYSQL Server &#x6CA1;&#x6709;&#x533A;&#x522B;&#xFF0C;&#x65E0;&#x9700;&#x4FEE;&#x6539;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#x3002;</p>
+<p><strong>Mycat</strong>&#x662F;&#x57FA;&#x4E8E;&#x963F;&#x91CC; 12 &#x5E74;&#x5F00;&#x6E90;&#x7684; cobar &#x5F00;&#x53D1;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x95F4;&#x4EF6;&#xFF0C;&#x5728;&#x67B6;&#x6784;&#x4F53;&#x7CFB;&#x4E2D;&#x662F;&#x4F4D;&#x4E8E;&#x6570;&#x636E;&#x5E93;&#x548C;&#x5E94;&#x7528;&#x5C42;&#x4E4B;&#x95F4;&#x7684;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#xFF0C;&#x5E76;&#x4E14;&#x5BF9;&#x4E8E;&#x5E94;&#x7528;&#x5C42;&#x662F;&#x900F;&#x660E;&#x7684;&#xFF0C;&#x5B83;&#x53EF;&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#xFF0C;&#x5206;&#x5E93;&#x5206;&#x8868;&#x3002;</p>
+<h2 id="&#x57FA;&#x4E8E;-mysql-proxy-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;"><a name="&#x57FA;&#x4E8E;-mysql-proxy-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x4E8E;-mysql-proxy-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x57FA;&#x4E8E;-mysql-proxy-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;" class="plugin-anchor" href="#&#x57FA;&#x4E8E;-mysql-proxy-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x57FA;&#x4E8E; mysql-proxy &#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;</h2>
+<pre class="language-"><code>proxy:  192.168.75.133
+master: 192.168.75.134
+slave:  192.168.75.135
+</code></pre><h3 id="&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x56FE;&#x89E3;"><a name="&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x56FE;&#x89E3;" class="anchor-navigation-ex-anchor" href="#&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x56FE;&#x89E3;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x56FE;&#x89E3;" class="plugin-anchor" href="#&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x56FE;&#x89E3;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x56FE;&#x89E3;</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/mysql&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x6218;-&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x56FE;&#x89E3;.jpg" alt="mysql&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x6218;-&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x56FE;&#x89E3;"></p>
+<h3 id="&#x914D;&#x7F6E;-proxy"><a name="&#x914D;&#x7F6E;-proxy" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;-proxy"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x914D;&#x7F6E;-proxy" class="plugin-anchor" href="#&#x914D;&#x7F6E;-proxy"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x7F6E; proxy</h3>
+<p>proxy &#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x548C; mysql &#x90E8;&#x7F72;&#x5728;&#x540C;&#x4E00;&#x53F0;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x5355;&#x72EC;&#x90E8;&#x7F72;&#x5728;&#x53E6;&#x4E00;&#x53F0;&#x72EC;&#x7ACB;&#x670D;&#x52A1;&#x5668;&#x3002;</p>
+<pre class="language-"><code class="lang-shell"># &#x4E0B;&#x8F7D;mysql-proxy&#xFF1A;
+wget http://mirrors.163.com/mysql/Downloads/MySQL-Proxy/mysql-proxy-0.8.4-linux-el6-x86-64bit.tar.gz
+
+# &#x89E3;&#x538B;&#xFF1A;
+tar xf mysql-proxy-0.8.4-linux-el6-x86-64bit.tar.gz
+mv mysql-proxy-0.8.4-linux-el6-x86-64bit /usr/local/mysql-proxy
+
+# &#x914D;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF1A;
+[root@node3 src]# echo &quot;export PATH=/usr/local/mysql-proxy/bin:$PATH&quot; &gt; /etc/profile.d/mysql-proxy.sh
+[root@node3 src]# . /etc/profile.d/mysql-proxy.sh
+
+# &#x542F;&#x52A8;MYSQL-Proxy&#x4E2D;&#x95F4;&#x4EF6;:
+[root@node3 src]# useradd  -r  mysql-proxy
+[root@node3 src]# mysql-proxy --daemon --log-level=debug --user=mysql-proxy --keepalive --log-file=/var/log/mysql-proxy.log --plugins=&quot;proxy&quot; --proxy-backend-addresses=&quot;192.168.75.134:3306&quot; --proxy-read-only-backend-addresses=&quot;192.168.75.135:3306&quot; --proxy-lua-script=&quot;/usr/local/mysql-proxy/share/doc/mysql-proxy/rw-splitting.lua&quot; --plugins=admin --admin-username=&quot;admin&quot; --admin-password=&quot;admin&quot; --admin-lua-script=&quot;/usr/local/mysql-proxy/lib/mysql-proxy/lua/admin.lua&quot;
+&#x200B;
+# &#x67E5;&#x770B;&#x7AEF;&#x53E3;/&#x65E5;&#x5FD7;&#xFF1A;
+[root@node3 src]# netstat -ntlp |grep 40
+tcp        0      0 0.0.0.0:4040            0.0.0.0:*               LISTEN      1348/mysql-proxy
+tcp        0      0 0.0.0.0:4041            0.0.0.0:*               LISTEN      1348/mysql-proxy
+</code></pre>
+<h3 id="&#x542F;&#x52A8;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;"><a name="&#x542F;&#x52A8;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;" class="anchor-navigation-ex-anchor" href="#&#x542F;&#x52A8;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x542F;&#x52A8;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;" class="plugin-anchor" href="#&#x542F;&#x52A8;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x542F;&#x52A8;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;</h3>
+<pre class="language-"><code class="lang-shell"># Mysql-Proxy&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;&#x8BE6;&#x89E3;&#x5982;&#x4E0B;&#xFF1A;
+--help-all                           &#xFF1A;&#x83B7;&#x53D6;&#x5168;&#x90E8;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#xFF1B;
+--proxy-address=host:port            &#xFF1A;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x76D1;&#x542C;&#x7684;&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;4040&#xFF1B;
+--admin-address=host:port            &#xFF1A;&#x7BA1;&#x7406;&#x6A21;&#x5757;&#x76D1;&#x542C;&#x7684;&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;4041&#xFF1B;
+--proxy-backend-addresses=host:port   &#xFF1A;&#x540E;&#x7AEF;mysql&#x670D;&#x52A1;&#x5668;&#x7684;&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;&#xFF1B;
+--proxy-read-only-backend-addresses=host:port &#xFF1A;&#x540E;&#x7AEF;&#x53EA;&#x8BFB;mysql&#x670D;&#x52A1;&#x5668;&#x7684;&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;&#xFF1B;
+--proxy-lua-script=file_name          &#xFF1A;&#x5B8C;&#x6210;mysql&#x4EE3;&#x7406;&#x529F;&#x80FD;&#x7684;Lua&#x811A;&#x672C;&#xFF1B;
+--daemon                         &#xFF1A;&#x4EE5;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#x6A21;&#x5F0F;&#x542F;&#x52A8;mysql-proxy&#xFF1B;
+--keepalive                          &#xFF1A;&#x5728;mysql-proxy&#x5D29;&#x6E83;&#x65F6;&#x5C1D;&#x8BD5;&#x91CD;&#x542F;&#x4E4B;&#xFF1B;
+--log-file=/path/to/log_file_name        &#xFF1A;&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#xFF1B;
+--log-level=level                    &#xFF1A;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;&#xFF1B;
+--log-use-syslog                     &#xFF1A;&#x57FA;&#x4E8E;syslog&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;&#xFF1B;
+--plugins=plugin                     &#xFF1A;&#x5728;mysql-proxy&#x542F;&#x52A8;&#x65F6;&#x52A0;&#x8F7D;&#x7684;&#x63D2;&#x4EF6;&#xFF1B;
+--user=user_name                 &#xFF1A;&#x8FD0;&#x884C;mysql-proxy&#x8FDB;&#x7A0B;&#x7684;&#x7528;&#x6237;&#xFF1B;
+--defaults-file=/path/to/conf_file_name &#xFF1A;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#xFF0C;&#x5176;&#x914D;&#x7F6E;&#x6BB5;&#x4F7F;&#x7528;[mysql-proxy]&#x6807;&#x8BC6;&#xFF1B;
+--proxy-skip-profiling               &#xFF1A;&#x7981;&#x7528;profile&#xFF1B;
+--pid-file=/path/to/pid_file_name        &#xFF1A;&#x8FDB;&#x7A0B;&#x6587;&#x4EF6;&#x540D;&#xFF1B;
+</code></pre>
+<h3 id="&#x542F;&#x52A8;-masterslave"><a name="&#x542F;&#x52A8;-masterslave" class="anchor-navigation-ex-anchor" href="#&#x542F;&#x52A8;-masterslave"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x542F;&#x52A8;-masterslave" class="plugin-anchor" href="#&#x542F;&#x52A8;-masterslave"><i class="fa fa-link" aria-hidden="true"></i></a>&#x542F;&#x52A8; master/slave</h3>
+<p>systemctl start mariadb</p>
+<h3 id="&#x67E5;&#x770B;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x72B6;&#x6001;"><a name="&#x67E5;&#x770B;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x72B6;&#x6001;" class="anchor-navigation-ex-anchor" href="#&#x67E5;&#x770B;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x72B6;&#x6001;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x67E5;&#x770B;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x72B6;&#x6001;" class="plugin-anchor" href="#&#x67E5;&#x770B;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x72B6;&#x6001;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x67E5;&#x770B;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x72B6;&#x6001;</h3>
+<p>&#x57FA;&#x4E8E; 4041 &#x7AEF;&#x53E3; MySQL-Proxy &#x67E5;&#x770B;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x72B6;&#x6001;&#xFF0C;&#x767B;&#x5F55; 4041 &#x7BA1;&#x7406;&#x7AEF;&#x53E3; &#xFF1A;</p>
+<pre class="language-"><code class="lang-shell">mysql -h192.168.75.133 -uadmin -padmin -P4041
+&#x200B;
+# &#x8FD9;&#x65F6;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x540E;&#x7AEF;&#x6570;&#x636E;&#x5E93;&#x4FE1;&#x606F;&#xFF0C;&#x53EA;&#x662F;&#x72B6;&#x6001;&#x4E3A;unknown,&#x8868;&#x793A;&#x8FD8;&#x6CA1;&#x6709;&#x5BA2;&#x6237;&#x7AEF;&#x8FDE;&#x63A5;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;4040&#x4EE3;&#x7406;&#x7AEF;&#x53E3;&#x901A;&#x8FC7;
+&#x67E5;&#x8BE2;&#x6570;&#x636E;&#x7B49;&#x64CD;&#x4F5C;&#x6FC0;&#x6D3B;&#x3002;
+mysql&gt; select * from backends;
++-------------+---------------------+---------+------+------+-------------------+
+| backend_ndx | address             | state   | type | uuid | connected_clients |
++-------------+---------------------+---------+------+------+-------------------+
+|           1 | 192.168.75.134:3306 | unknown | rw   | NULL |                 0 |
+|           2 | 192.168.75.135:3306 | unknown | ro   | NULL |                 0 |
++-------------+---------------------+---------+------+------+-------------------+
+2 rows in set (0.00 sec)
+</code></pre>
+<h3 id="&#x6388;&#x6743;-proxy"><a name="&#x6388;&#x6743;-proxy" class="anchor-navigation-ex-anchor" href="#&#x6388;&#x6743;-proxy"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6388;&#x6743;-proxy" class="plugin-anchor" href="#&#x6388;&#x6743;-proxy"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6388;&#x6743; proxy</h3>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">grant</span> <span class="token keyword">all</span> <span class="token keyword">on</span> <span class="token operator">*</span><span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">to</span> <span class="token string">&quot;mysql-proxy&quot;</span><span class="token variable">@&quot;192.168.75.133&quot;</span> identified <span class="token keyword">by</span> <span class="token string">&quot;123456&quot;</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x521B;&#x5EFA;&#x6570;&#x636E;"><a name="&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x521B;&#x5EFA;&#x6570;&#x636E;" class="anchor-navigation-ex-anchor" href="#&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x521B;&#x5EFA;&#x6570;&#x636E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x521B;&#x5EFA;&#x6570;&#x636E;" class="plugin-anchor" href="#&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x521B;&#x5EFA;&#x6570;&#x636E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x521B;&#x5EFA;&#x6570;&#x636E;</h3>
+<p>&#x901A;&#x8FC7;<strong>4040 &#x4EE3;&#x7406;&#x7AEF;&#x53E3;</strong>&#x63D2;&#x5165;&#x6570;&#x636E;&#xFF0C;&#x8BE5; sql &#x8BED;&#x53E5;&#x4F1A;&#x8D70; master&#xFF0C;&#x4E8E;&#x662F;&#x53EF;&#x4EE5;&#x6FC0;&#x6D3B; master &#x72B6;&#x6001;&#xFF1A;</p>
+<pre class="language-"><code class="lang-sql">mysql <span class="token operator">-</span>h192<span class="token punctuation">.</span><span class="token number">168.75</span><span class="token number">.133</span> <span class="token operator">-</span>umysql<span class="token operator">-</span>proxy <span class="token operator">-</span>p123456 <span class="token operator">-</span>P4040 <span class="token operator">-</span>e <span class="token string">&quot;create database xiaobei charset utf8;&quot;</span>
+</code></pre>
+<p>&#x5728;<strong>4041 &#x7BA1;&#x7406;&#x7AEF;&#x53E3;</strong>&#xFF0C;&#x518D;&#x6B21;&#x67E5;&#x770B;&#xFF1A;</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> backends<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------+---------------------+---------+------+------+-------------------+</span>
+<span class="token operator">|</span> backend_ndx <span class="token operator">|</span> address             <span class="token operator">|</span> state   <span class="token operator">|</span> <span class="token keyword">type</span> <span class="token operator">|</span> uuid <span class="token operator">|</span> connected_clients <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------+---------------------+---------+------+------+-------------------+</span>
+<span class="token operator">|</span>           <span class="token number">1</span> <span class="token operator">|</span> <span class="token number">192.168</span><span class="token number">.75</span><span class="token number">.134</span>:<span class="token number">3306</span> <span class="token operator">|</span> up      <span class="token operator">|</span> rw   <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span>                 <span class="token number">0</span> <span class="token operator">|</span>
+<span class="token operator">|</span>           <span class="token number">2</span> <span class="token operator">|</span> <span class="token number">192.168</span><span class="token number">.75</span><span class="token number">.135</span>:<span class="token number">3306</span> <span class="token operator">|</span> unknown <span class="token operator">|</span> ro   <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span>                 <span class="token number">0</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------+---------------------+---------+------+------+-------------------+</span>
+<span class="token number">2</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+</code></pre>
+<h3 id="&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x67E5;&#x8BE2;&#x6570;&#x636E;"><a name="&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x67E5;&#x8BE2;&#x6570;&#x636E;" class="anchor-navigation-ex-anchor" href="#&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x67E5;&#x8BE2;&#x6570;&#x636E;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x67E5;&#x8BE2;&#x6570;&#x636E;" class="plugin-anchor" href="#&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x67E5;&#x8BE2;&#x6570;&#x636E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x67E5;&#x8BE2;&#x6570;&#x636E;</h3>
+<pre class="language-"><code class="lang-sql"><span class="token comment"># &#x5148;&#x5728;&#x4ECE;&#x5E93;&#x9009;&#x62E9;xiaobei&#x6570;&#x636E;&#x5E93;&#xFF08;&#x56E0;&#x4E3A;&#x4E3B;&#x4ECE;&#x5173;&#x7CFB;&#xFF0C;&#x5728;&#x4E3B;&#x5E93;&#x521B;&#x5EFA;&#x7684;xiaobei&#x4F1A;&#x540C;&#x6B65;&#x81F3;&#x4ECE;&#x5E93;&#xFF09;&#xFF0C;&#x521B;&#x5EFA;&#x8868;&#x683C;&#xFF0C;&#x5E76;&#x63D2;&#x5165;&#x6570;&#x636E;&#xFF1A;</span>
+MariaDB <span class="token punctuation">[</span><span class="token punctuation">(</span>none<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token operator">&gt;</span> <span class="token keyword">use</span> xiaobei
+<span class="token keyword">Database</span> changed
+MariaDB <span class="token punctuation">[</span>xiaobei<span class="token punctuation">]</span><span class="token operator">&gt;</span> <span class="token keyword">create</span> <span class="token keyword">table</span> t1<span class="token punctuation">(</span> id <span class="token keyword">int</span><span class="token punctuation">,</span> name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">0</span> <span class="token keyword">rows</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+&#x200B;
+MariaDB <span class="token punctuation">[</span>xiaobei<span class="token punctuation">]</span><span class="token operator">&gt;</span> <span class="token keyword">insert</span> t1 <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">&quot;xiaoming&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Query OK<span class="token punctuation">,</span> <span class="token number">1</span> <span class="token keyword">row</span> affected <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+</code></pre>
+<p>&#x901A;&#x8FC7;<strong>4040 &#x4EE3;&#x7406;&#x7AEF;&#x53E3;</strong>&#x67E5;&#x8BE2;&#x6570;&#x636E;&#xFF0C;&#x8BE5; sql &#x8BED;&#x53E5;&#x4F1A;&#x8D70; slave&#xFF0C;&#x4E8E;&#x662F;&#x53EF;&#x4EE5;&#x6FC0;&#x6D3B; slave &#x72B6;&#x6001;&#xFF1A;</p>
+<pre class="language-"><code class="lang-sql"><span class="token comment"># &#x591A;&#x6267;&#x884C;&#x51E0;&#x6B21;&#xFF01;</span>
+<span class="token punctuation">[</span>root<span class="token variable">@node4</span> <span class="token operator">~</span><span class="token punctuation">]</span><span class="token comment"># mysql -h192.168.75.133 -umysql-proxy -p123456 -P4040 -e &quot;select * from xiaobei.t1;&quot;</span>
+<span class="token operator">+</span><span class="token comment">------+----------+</span>
+<span class="token operator">|</span> id   <span class="token operator">|</span> name     <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------+----------+</span>
+<span class="token operator">|</span>    <span class="token number">1</span> <span class="token operator">|</span> xiaoming <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">------+----------+</span>
+</code></pre>
+<p>&#x5728;<strong>4041 &#x7BA1;&#x7406;&#x7AEF;&#x53E3;</strong>&#xFF0C;&#x518D;&#x6B21;&#x67E5;&#x770B;</p>
+<pre class="language-"><code class="lang-sql">mysql<span class="token operator">&gt;</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> backends<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment">-------------+---------------------+-------+------+------+-------------------+</span>
+<span class="token operator">|</span> backend_ndx <span class="token operator">|</span> address             <span class="token operator">|</span> state <span class="token operator">|</span> <span class="token keyword">type</span> <span class="token operator">|</span> uuid <span class="token operator">|</span> connected_clients <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------+---------------------+-------+------+------+-------------------+</span>
+<span class="token operator">|</span>           <span class="token number">1</span> <span class="token operator">|</span> <span class="token number">192.168</span><span class="token number">.75</span><span class="token number">.134</span>:<span class="token number">3306</span> <span class="token operator">|</span> up    <span class="token operator">|</span> rw   <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span>                 <span class="token number">0</span> <span class="token operator">|</span>
+<span class="token operator">|</span>           <span class="token number">2</span> <span class="token operator">|</span> <span class="token number">192.168</span><span class="token number">.75</span><span class="token number">.135</span>:<span class="token number">3306</span> <span class="token operator">|</span> up    <span class="token operator">|</span> ro   <span class="token operator">|</span> <span class="token boolean">NULL</span> <span class="token operator">|</span>                 <span class="token number">0</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment">-------------+---------------------+-------+------+------+-------------------+</span>
+<span class="token number">2</span> <span class="token keyword">rows</span> <span class="token operator">in</span> <span class="token keyword">set</span> <span class="token punctuation">(</span><span class="token number">0.00</span> sec<span class="token punctuation">)</span>
+</code></pre>
+<h2 id="&#x57FA;&#x4E8E;-mycat-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;"><a name="&#x57FA;&#x4E8E;-mycat-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;" class="anchor-navigation-ex-anchor" href="#&#x57FA;&#x4E8E;-mycat-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x57FA;&#x4E8E;-mycat-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;" class="plugin-anchor" href="#&#x57FA;&#x4E8E;-mycat-&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x57FA;&#x4E8E; Mycat &#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x5206;&#x79BB;</h2>
+<p>Mycat &#x57FA;&#x4E8E;&#x963F;&#x91CC;&#x5F00;&#x6E90;&#x7684; Cobar &#x4EA7;&#x54C1;&#x800C;&#x7814;&#x53D1; , &#x4E00;&#x4E2A;&#x5F7B;&#x5E95;&#x5F00;&#x6E90;&#x7684;&#xFF0C;&#x9762;&#x5411;&#x4F01;&#x4E1A;&#x5E94;&#x7528;&#x5F00;&#x53D1;&#x7684;&#x5927;&#x6570;&#x636E;&#x5E93;&#x96C6;&#x7FA4; , &#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x89C6;&#x4E3A; MySQL &#x96C6;&#x7FA4;&#x7684;&#x4F01;&#x4E1A;&#x7EA7;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x7528;&#x6765;&#x66FF;&#x4EE3;&#x6602;&#x8D35;&#x7684; Oracle &#x96C6;&#x7FA4; &#xFF0C;MYCAT &#x5E76;&#x4E0D;&#x4F9D;&#x6258;&#x4E8E;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x5546;&#x4E1A;&#x516C;&#x53F8;&#xFF0C; &#x6C38;&#x4E0D;&#x6536;&#x8D39;&#xFF0C;&#x6C38;&#x4E0D;&#x95ED;&#x6E90; &#xFF01;
+<img src="https://cdn.jsdelivr.net/gh/xiaobei930/picBed@master/learningNotes/mysql&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x6218;-Mycat.jpg" alt="mysql&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x5B9E;&#x6218;-Mycat"></p>
+<pre class="language-"><code>mycat:  192.168.75.133
+master: 192.168.75.134
+slave:  192.168.75.135
+</code></pre><h3 id="&#x5B89;&#x88C5;-mycat"><a name="&#x5B89;&#x88C5;-mycat" class="anchor-navigation-ex-anchor" href="#&#x5B89;&#x88C5;-mycat"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x5B89;&#x88C5;-mycat" class="plugin-anchor" href="#&#x5B89;&#x88C5;-mycat"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B89;&#x88C5; mycat</h3>
+<pre class="language-"><code class="lang-shell"># &#x4E0B;&#x8F7D;mycat:
+wget http://dl.mycat.io/1.6.7.1/Mycat-server-1.6.7.1-release-20190627191042-linux.tar.gz
+
+# &#x89E3;&#x538B;&#xFF1A;
+tar xf Mycat-server-1.6.7.1-release-20190627191042-linux.tar.gz  -C /usr/local/
+
+# &#x5B89;&#x88C5;java-jdk&#xFF1A;
+yum install java-1.8.0-openjdk -y
+
+# &#x914D;&#x7F6E;mycat&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF1A;
+echo &quot;export PATH=/usr/local/mycat/bin:$PATH&quot; &gt; /etc/profile.d/mycat.sh
+. /etc/profile.d/mycat.sh
+</code></pre>
+<h3 id="&#x6388;&#x6743;-mycat"><a name="&#x6388;&#x6743;-mycat" class="anchor-navigation-ex-anchor" href="#&#x6388;&#x6743;-mycat"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x6388;&#x6743;-mycat" class="plugin-anchor" href="#&#x6388;&#x6743;-mycat"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6388;&#x6743; mycat</h3>
+<pre class="language-"><code class="lang-sql"><span class="token comment"># &#x5728;&#x4E3B;&#x5E93;&#x6267;&#x884C;&#x6388;&#x6743;&#x4FE1;&#x606F;&#xFF0C;&#x4ECE;&#x5E93;&#x4F1A;&#x81EA;&#x52A8;&#x540C;&#x6B65;&#xFF1A;</span>
+<span class="token keyword">grant</span> <span class="token keyword">all</span> <span class="token keyword">on</span> <span class="token operator">*</span><span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">to</span> <span class="token string">&quot;mycat-proxy&quot;</span><span class="token variable">@&quot;192.168.75.133&quot;</span> identified <span class="token keyword">by</span> <span class="token string">&quot;123456&quot;</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="&#x914D;&#x7F6E;-mycat"><a name="&#x914D;&#x7F6E;-mycat" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;-mycat"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x914D;&#x7F6E;-mycat" class="plugin-anchor" href="#&#x914D;&#x7F6E;-mycat"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x7F6E; mycat</h3>
+<pre class="language-"><code class="lang-shell"># &#x914D;&#x7F6E;server.xml
+&#x200B;
+# &#x9ED8;&#x8BA4;&#x7BA1;&#x7406;&#x7528;&#x6237;&#xFF0C;&#x53EF;&#x8BFB;&#x53EF;&#x5199;&#xFF1A;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mycat<span class="token punctuation">&quot;</span></span> <span class="token attr-name">defaultAccount</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>true<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>password<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>123456<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>schemas<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>xiaobeidb<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+...
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">&gt;</span></span>
+# &#x53EA;&#x8BFB;&#x7528;&#x6237;&#xFF1A;
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>user<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>password<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>user<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>schemas<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>xiaobeidb<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>readOnly<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">&gt;</span></span>
+&#x200B;
+# &#x914D;&#x7F6E;schema.xml
+&#x200B;
+# &#x8BBE;&#x7F6E;&#x903B;&#x8F91;&#x5E93;&#x4EE5;&#x53CA;&#x6570;&#x636E;&#x5E93;&#x8282;&#x70B9;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>schema</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>xiaobeidb<span class="token punctuation">&quot;</span></span> <span class="token attr-name">checkSQLschema</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>false<span class="token punctuation">&quot;</span></span> <span class="token attr-name">sqlMaxLimit</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>100<span class="token punctuation">&quot;</span></span> <span class="token attr-name">dataNode</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>dn1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>schema</span><span class="token punctuation">&gt;</span></span>
+# &#x914D;&#x7F6E;&#x6570;&#x636E;&#x5E93;&#x8282;&#x70B9;&#x5BF9;&#x5E94;&#x7684;&#x540E;&#x7AEF;&#x771F;&#x5B9E;&#x7684;&#x6570;&#x636E;&#x5E93;&#xFF1A;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dataNode</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>dn1<span class="token punctuation">&quot;</span></span> <span class="token attr-name">dataHost</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>localhost1<span class="token punctuation">&quot;</span></span> <span class="token attr-name">database</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>students<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+# &#x914D;&#x7F6E;&#x8BFB;&#x5199;&#x5E93;&#x4EE5;&#x53CA;&#x5747;&#x8861;&#xFF1A;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dataHost</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>localhost1<span class="token punctuation">&quot;</span></span> <span class="token attr-name">maxCon</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>1000<span class="token punctuation">&quot;</span></span> <span class="token attr-name">minCon</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>10<span class="token punctuation">&quot;</span></span> <span class="token attr-name">balance</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>1<span class="token punctuation">&quot;</span></span>
+                          <span class="token attr-name">writeType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>0<span class="token punctuation">&quot;</span></span> <span class="token attr-name">dbType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mysql<span class="token punctuation">&quot;</span></span> <span class="token attr-name">dbDriver</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>native<span class="token punctuation">&quot;</span></span> <span class="token attr-name">switchType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>1<span class="token punctuation">&quot;</span></span>  <span class="token attr-name">slaveThreshold</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>100<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>heartbeat</span><span class="token punctuation">&gt;</span></span>select user()<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>heartbeat</span><span class="token punctuation">&gt;</span></span>
+                <span class="token comment">&lt;!-- can have multi write hosts --&gt;</span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>writeHost</span> <span class="token attr-name">host</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>hostM1<span class="token punctuation">&quot;</span></span> <span class="token attr-name">url</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>192.168.75.134:3306<span class="token punctuation">&quot;</span></span> <span class="token attr-name">user</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mycat-proxy<span class="token punctuation">&quot;</span></span>
+                                   <span class="token attr-name">password</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>123456<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                        <span class="token comment">&lt;!-- can have multi read hosts --&gt;</span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>readHost</span> <span class="token attr-name">host</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>hostS1<span class="token punctuation">&quot;</span></span> <span class="token attr-name">url</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>192.168.75.135:3306<span class="token punctuation">&quot;</span></span> <span class="token attr-name">user</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>mycat-proxy<span class="token punctuation">&quot;</span></span> <span class="token attr-name">password</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>123456<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>writeHost</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dataHost</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<h3 id="&#x542F;&#x52A8;-mycat"><a name="&#x542F;&#x52A8;-mycat" class="anchor-navigation-ex-anchor" href="#&#x542F;&#x52A8;-mycat"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x542F;&#x52A8;-mycat" class="plugin-anchor" href="#&#x542F;&#x52A8;-mycat"><i class="fa fa-link" aria-hidden="true"></i></a>&#x542F;&#x52A8; mycat</h3>
+<pre class="language-"><code class="lang-sql">mycat  <span class="token keyword">start</span>
+</code></pre>
+<h3 id="&#x8FDE;&#x63A5;&#x6D4B;&#x8BD5;"><a name="&#x8FDE;&#x63A5;&#x6D4B;&#x8BD5;" class="anchor-navigation-ex-anchor" href="#&#x8FDE;&#x63A5;&#x6D4B;&#x8BD5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x8FDE;&#x63A5;&#x6D4B;&#x8BD5;" class="plugin-anchor" href="#&#x8FDE;&#x63A5;&#x6D4B;&#x8BD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8FDE;&#x63A5;&#x6D4B;&#x8BD5;</h3>
+<pre class="language-"><code class="lang-shell">mysql -umycat -p123456 -P8066 -h127.0.0.1
+MySQL [(none)]&gt; show databases;
++-----------+
+| DATABASE  |
++-----------+
+| xiaobeidb |
++-----------+
+1 row in set (0.00 sec)
+&#x200B;
+# &#x53EF;&#x4EE5;&#x5728;&#x540E;&#x7AEF;&#x4E3B;&#x5E93;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8868;&#xFF0C;&#x7EE7;&#x7EED;&#x67E5;&#x8BE2;&#x8868;&#x6D4B;&#x8BD5;&#xFF1A;
+MySQL [(none)]&gt; use xiaobeidb;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+&#x200B;
+Database changed
+MySQL [xiaobeidb]&gt; show tables;
++--------------------+
+| Tables_in_students |
++--------------------+
+| t1                 |
++--------------------+
+1 row in set (0.01 sec)
+&#x200B;
+# &#x5728;&#x4ECE;&#x5E93;&#x63D2;&#x5165;&#x6570;&#x636E;&#xFF0C;&#x7EE7;&#x7EED;&#x67E5;&#x8BE2;&#xFF1A;
+MySQL [xiaobeidb]&gt; select * from t1;
++------+----------+
+| id   | name     |
++------+----------+
+|    1 | xiaowang |
++------+----------+
+1 rows in set (0.00 sec)
+</code></pre>
+<p>&#x5728;&#x4E3B;&#x5E93;&#x67E5;&#x4E0D;&#x5230;&#x6570;&#x636E;&#xFF0C;&#x901A;&#x8FC7;&#x4EE3;&#x7406;&#x53EF;&#x4EE5;&#x67E5;&#x5230;&#xFF0C;&#x5373;&#x53EF;&#x9A8C;&#x8BC1;&#x8BFB;&#x5199;&#x5206;&#x79BB;&#x6210;&#x529F;&#x3002;</p>
+<h3 id="&#x62A5;&#x9519;&#x89E3;&#x51B3;"><a name="&#x62A5;&#x9519;&#x89E3;&#x51B3;" class="anchor-navigation-ex-anchor" href="#&#x62A5;&#x9519;&#x89E3;&#x51B3;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x62A5;&#x9519;&#x89E3;&#x51B3;" class="plugin-anchor" href="#&#x62A5;&#x9519;&#x89E3;&#x51B3;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x62A5;&#x9519;&#x89E3;&#x51B3;</h3>
+<pre class="language-"><code class="lang-shell">MySQL [xiaobeidb]&gt; show tables;
+ERROR 1184 (HY000): Invalid DataSource:0
+&#x200B;
+# &#x53EF;&#x80FD;&#x662F;&#x540E;&#x7AEF;&#x8282;&#x70B9;&#x51FA;&#x73B0;&#x4E86;&#x95EE;&#x9898;&#xFF0C;&#x4E5F;&#x6709;&#x53EF;&#x80FD;&#x662F;&#x4EE3;&#x7406;&#x7AEF;&#x65E0;&#x6CD5;&#x8FDE;&#x4E0A;&#x540E;&#x7AEF;&#x8282;&#x70B9;&#x5BFC;&#x81F4;&#xFF1A;
+# &#x53EF;&#x4EE5;&#x5148;&#x5728;&#x4EE3;&#x7406;&#x7AEF;&#x76F4;&#x63A5;&#x7528;&#x6388;&#x6743;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x767B;&#x5F55;&#x540E;&#x7AEF;&#x6570;&#x636E;&#x5E93;&#x6D4B;&#x8BD5;&#x8FDE;&#x63A5;&#x95EE;&#x9898;&#xFF1A;
+
+[root@node3 conf]# mysql -umycat-proxy -h192.168.75.134 -p123456
+ERROR 1129 (HY000): Host &apos;node3&apos; is blocked because of many connection errors; unblock with &apos;mysqladmin flush-hosts&apos;
+# &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x56E0;&#x4E3A;&#x591A;&#x6B21;&#x9519;&#x8BEF;&#xFF0C;&#x4EE3;&#x7406;&#x7AEF;&#x670D;&#x52A1;&#x5668;&#x88AB;&#x9501;&#x5B9A;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x4E5F;&#x4F1A;&#x51FA;&#x73B0;&#x4E0A;&#x9762;&#x7684;&#x62A5;&#x9519;&#xFF1A;
+
+# &#x5728;&#x540E;&#x7AEF;&#x4E3B;&#x5E93;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#xFF1A;
+mysqladmin flush-hosts
+# &#x518D;&#x6B21;&#x6D4B;&#x8BD5;&#xFF0C;&#x4E00;&#x822C;&#x95EE;&#x9898;&#x5C31;&#x80FD;&#x89E3;&#x51B3;&#x3002;
+</code></pre>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> By <a href="https://github.com/xiaobei930" target="_blank">xiaobei</a>&#xFF0C;&#x4F7F;&#x7528;<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">&#x77E5;&#x8BC6;&#x5171;&#x4EAB; &#x7F72;&#x540D;-&#x76F8;&#x540C;&#x65B9;&#x5F0F;&#x5171;&#x4EAB; 4.0&#x534F;&#x8BAE;</a>&#x53D1;&#x5E03; </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> &#x6B64;&#x9875;&#x9762;&#x4FEE;&#x8BA2;&#x4E8E;&#xFF1A; 2020-08-15 09:39:51 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="mysql主从同步及mysqldump备份.html" class="navigation navigation-prev " aria-label="Previous page: mysql 主从同步及 mysqldump 备份">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="LNMP高性能服务器.html" class="navigation navigation-next " aria-label="Next page: LNMP 高性能服务器">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"mysql 读写分离实战","level":"1.1.1.1.17","depth":4,"next":{"title":"LNMP 高性能服务器","level":"1.1.1.1.18","depth":4,"path":"book/technology/linux/Special-lecture/LNMP高性能服务器.md","ref":"book/technology/linux/Special-lecture/LNMP高性能服务器.md","articles":[]},"previous":{"title":"mysql 主从同步及 mysqldump 备份","level":"1.1.1.1.16","depth":4,"path":"book/technology/linux/Special-lecture/mysql主从同步及mysqldump备份.md","ref":"book/technology/linux/Special-lecture/mysql主从同步及mysqldump备份.md","articles":[]},"dir":"ltr"},"config":{"plugins":["favicon","yahei","github","autotheme","-lunr","-search","search-plus","prism","-highlight","github-buttons","splitter","-sharing","sharing-plus","page-footer-ex","expandable-chapters-small","book-summary-scroll-position-saver","anchors","anchor-navigation-ex","sitemap-general","copy-code-button","multipart","edit-link-plus","editlink","toc","expandable-chapters","insert-logo","advanced-emoji"],"root":".","styles":{"website":"assets/styles/website.css"},"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"github":{"url":"https://github.com/xiaobei930"},"editlink":{"label":"Edit","multilingual":false,"base":"https://github.com/xiaobei930/LearningNotes/blob/master"},"yahei":{},"book-summary-scroll-position-saver":{},"page-footer-ex":{"copyright":"By [xiaobei](https://github.com/xiaobei930)，使用[知识共享 署名-相同方式共享 4.0协议](https://creativecommons.org/licenses/by-sa/4.0/)发布","markdown":true,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"此页面修订于："},"splitter":{},"toc":{},"edit-link-plus":{"label":{"en":"Edit This Page","zh":"编辑本页"},"base":"https://github.com/xiaobei930/LearningNotes/edit/BRANCH/path/to/book"},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"multipart":{},"sitemap-general":{"prefix":"https://xiaobei930.github.io/myBook/"},"fontsettings":{"theme":"white","family":"sans","size":2},"fontSettings":{"family":"serif","size":2},"anchor-navigation-ex":{"associatedWithSummary":false,"float":{"floatIcon":"fa fa-navicon","level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"/assets/logo/favicon.ico","bookmark":"/assets/logo/favicon.ico","appleTouch":"/assets/logo/apple-touch-icon.png","appleTouchMore":{"120x120":"/assets/logo/apple-touch-icon-120x120.png","180x180":"/assets/logo/apple-touch-icon-180x180.png"}},"github-buttons":{"buttons":[{"user":"xiaobei930","repo":"LearningNotes","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"copy-code-button":{},"autotheme":{"night":[20,21,22,23,0,1,2,3,4,5],"sepia":[6,7,8,18,19,19],"white":[9,10,11,12,13,14,15,16,17]},"advanced-emoji":{"embedEmojis":false},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":true,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":true},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"https://cdn.jsdelivr.net/gh/xiaobei930/LearningNotes@master/assets/logo/logo.png"},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"小北","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"听小北瞎扯淡","language":"zh-hans","links":{"sidebar":{"GitHub":"https://github.com/xiaobei930","博客":"https://xiaobei930.github.io/LearningNotes/"}},"gitbook":"3.x.x","description":"杂七杂八乱记一通"},"file":{"path":"book/technology/linux/Special-lecture/mysql读写分离实战.md","mtime":"2020-08-15T09:39:51.413Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-15T09:40:42.655Z"},"basePath":"../../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../../gitbook/gitbook.js"></script>
+    <script src="../../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-autotheme/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-book-summary-scroll-position-saver/book-summary-scroll-position-saver.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-edit-link-plus/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="../../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
